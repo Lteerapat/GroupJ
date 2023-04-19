@@ -1,4 +1,4 @@
-import '../Styles/Landing.css';0
+import '../Styles/Landing.css';
 
 const Landing = () => {
 
