@@ -1,1 +1,120 @@
 @import '../Styles/global.css';
+
+/* Achievement */
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: "Lato", sans-serif;
+  }
+  .box {
+    width: 100%;
+    height: 75%;
+    max-width: 1000px;
+    padding: 15px;
+    background-color: #1d06485e;
+    border-radius: 15px;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.12);
+    box-shadow: 10px 10px 70px 2px black;
+  }
+  .box h1 {
+    margin: 1px 0 20px;
+    color: #D9C5FF;
+    font-size: 3rem;
+    letter-spacing: 2px;
+    text-align: center;
+  }
+  
+   /* Cards */
+
+  .boxr1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 42%;
+  }
+  .boxr2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 42%;
+  }
+  .card {
+    width: 20%;
+    padding: 15px 10px;
+    margin: 20px;
+    background-color: #b38bff;
+    border-radius: 15px;
+    transition: transform 0.3s;
+    box-shadow: 10px 10px 70px 2px black;
+  }
+  .card5,
+  .card6 {
+    width: 20%;
+    padding: 15px 10px;
+    margin: 20px;
+    background-color: #b38bff;
+    border-radius: 15px;
+    transition: transform 0.3s;
+    box-shadow: 10px 10px 70px 2px black;
+  }
+  .card a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .card-thumb {
+    width: 100%;
+    
+  }
+  .card-thumb img {
+    width: 100px;
+    justify-content: center;
+    margin-left: 35px;
+
+  }
+  .card-title {
+    margin: 5px 0;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #1d0648;
+  }
+  .card:hover {
+    box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+  }
+
+  @media screen and (max-width: 540px) {
+    #container {
+      height: auto;
+    }
+    .box {
+      padding: 10px;
+    }
+    .card {
+      width: 49%;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .box h1 {
+      font-size: 1.5rem;
+    }
+    .boxr1 {
+      justify-content: center;
+    }
+    .boxr2 {
+      justify-content: center;
+    }
+    .card {
+      margin-bottom: 20px;
+      width: 80%;
+    }
+  } 
