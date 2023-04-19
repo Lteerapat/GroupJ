@@ -8,7 +8,7 @@ function Achievement() {
     <div style={{ backgroundImage:`url(${bgachievement})`}} id="container">
       <div className="box">
         <a href="#">
-        <i class="fa-solid fa-house fa-2xl" style={{color: "#ffffff",}}></i>
+        <i className="fa-solid fa-house fa-2xl" style={{color: "#ffffff",}}></i>
         </a>
         <h1>Achievement/Quests</h1>
         <main>
@@ -18,8 +18,6 @@ function Achievement() {
     </div>
   )
 }
-
-
 
 function Cards() {
   
