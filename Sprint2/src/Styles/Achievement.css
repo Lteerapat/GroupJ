@@ -25,7 +25,7 @@
   }
   .box h1 {
     margin: 1px 0 20px;
-    color: #D9C5FF;
+    color:var(--primary-color-light);
     font-size: 3rem;
     letter-spacing: 2px;
     text-align: center;
@@ -51,7 +51,7 @@
     width: 20%;
     padding: 15px 10px;
     margin: 20px;
-    background-color: #b38bff;
+    background-color:var(--primary-color);
     border-radius: 15px;
     transition: transform 0.3s;
     box-shadow: 10px 10px 70px 2px black;
@@ -61,7 +61,7 @@
     width: 20%;
     padding: 15px 10px;
     margin: 20px;
-    background-color: #b38bff;
+    background-color:var(--primary-color);
     border-radius: 15px;
     transition: transform 0.3s;
     box-shadow: 10px 10px 70px 2px black;
@@ -85,13 +85,17 @@
     font-size: 1.25rem;
     letter-spacing: 1px;
     text-align: center;
-    color: #1d0648;
+    color: var(--bg-activity-color);
   }
   .card:hover {
     box-shadow: 0px 0px 20px -5px rgba(0, 0, 0, 0.2);
     transform: translateY(-4px);
   }
 
+  .card:active {
+    scale: 0.95;
+  }
+  
   @media screen and (max-width: 540px) {
     #container {
       height: auto;

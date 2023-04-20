@@ -7,7 +7,7 @@ function Achievement() {
   return (
     <div style={{ backgroundImage:`url(${bgachievement})`}} id="container">
       <div className="box">
-        <a href="#">
+        <a href="/dashboard">
         <i className="fa-solid fa-house fa-2xl" style={{color: "#ffffff",}}></i>
         </a>
         <h1>Achievement/Quests</h1>
