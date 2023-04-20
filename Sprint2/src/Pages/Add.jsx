@@ -4,17 +4,27 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Add = () => {
+  //Navigate
   const navigate = useNavigate();
   const submitButton = () => {
     navigate("/dashboard");
+  };
+
+  //NameActivity
+  const [nameActivity, setNameActivity] = useState();
+
+  //Type Acrivity
+  const [activity, setActivity] = useState();
+  const handleActivity = (active) => {
+    setActivity(active);
   };
 
   return (
     <div className="container-add">
       <div className="container">
         <h1>Add Your Activity</h1>
-        <NameActivity />
-        <TypeActivity />
+        <NameActivity nameActivity={nameActivity} setNameActivity={setNameActivity}/>
+        <TypeActivity handleActivity={handleActivity} activity={activity} />
         <DateAcitvity />
         <DurationNote />
         <Buttom submitButton={submitButton} />
@@ -23,37 +33,57 @@ const Add = () => {
   );
 };
 
-const NameActivity = () => {
+const NameActivity = (props) => {
+  const { nameActivity,setNameActivity } = props;
   return (
     <div className="NameActivity">
-      <label>Activity Name </label>
+      <label>Activity Name : {nameActivity} </label>
       <br />
-      <input type="text"></input>
+      <input onChange={(event)=> setNameActivity(event.target.value)} type="text" ></input>
     </div>
   );
 };
 
-const TypeActivity = () => {
+const TypeActivity = (props) => {
+  const { handleActivity, activity } = props;
   return (
     <div className="TypeActivity">
-      <label>Activity Type :</label>
+      <label>Activity Type : {activity}</label>
       <ul>
-        <li>
+        <li
+          id={activity === "walking" ? "SeleteActive" : ""}
+          onClick={() => handleActivity("walking")}
+        >
           <i className="fa-solid fa-person-walking"></i>
         </li>
-        <li>
+        <li
+          id={activity === "running" ? "SeleteActive" : ""}
+          onClick={() => handleActivity("running")}
+        >
           <i className="fa-sharp fa-solid fa-person-running"></i>
         </li>
-        <li>
+        <li
+          id={activity === "biking" ? "SeleteActive" : ""}
+          onClick={() => handleActivity("biking")}
+        >
           <i className="fa-sharp fa-solid fa-person-biking"></i>
         </li>
-        <li>
+        <li
+          id={activity === "swimming" ? "SeleteActive" : ""}
+          onClick={() => handleActivity("swimming")}
+        >
           <i className="fa-sharp fa-solid fa-person-swimming"></i>
         </li>
-        <li>
+        <li
+          id={activity === "hiking" ? "SeleteActive" : ""}
+          onClick={() => handleActivity("hiking")}
+        >
           <i className="fa-sharp fa-solid fa-person-hiking"></i>
         </li>
-        <li>
+        <li
+          id={activity === "plus" ? "SeleteActive" : ""}
+          onClick={() => handleActivity("plus")}
+        >
           <i className="fa-sharp fa-solid fa-plus"></i>
         </li>
       </ul>
@@ -77,19 +107,19 @@ const DurationNote = () => {
       <div>
         <label>Duration</label>
         <br />
-        <input type="text"></input>
+        <input type="number"/><span>min</span>
       </div>
       <div>
         <label>Note</label>
         <br />
-        <input type="text"></input>
+        <input type="text"/>
       </div>
     </div>
   );
 };
 
 const Buttom = (props) => {
-    const {submitButton} = props
+  const { submitButton } = props;
   return (
     <div className="Buttom">
       <button onClick={submitButton}>Add</button>
