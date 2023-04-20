@@ -3,9 +3,19 @@ import React from 'react';
 import {useRef} from 'react';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import emailjs from '@emailjs/browser';
-
+import Navbar from '../Components/Navbar';
 
 const ContactUs = () => {
+    return (
+    <div>
+        <Navbar />
+        <ContactUs2 />>
+    </div>
+    );
+}
+
+
+const ContactUs2 = () => {
     const form = useRef()
 
 
@@ -21,6 +31,8 @@ const ContactUs = () => {
       e.target.reset()
   };
     return (
+        
+    <div className="body">
         <div className="container" >
         <div className="contact">
             <h1 id="contact">Contact Us</h1>
@@ -50,12 +62,13 @@ const ContactUs = () => {
                     <h4> 0xx-xxxxxx</h4>
                     <br/>
                     <h3 className="ourEmail">Email</h3>
-                    <h4>helloworld@gaintrack.com</h4>
+                    <h4>gaintrack6@gmail.com</h4>
                     <br/>
                     <h3 className="location">Location</h3>
                     <h4>Earth, Milky way</h4>
             </div>
         </div>
+    </div>
     </div>
     )
  }

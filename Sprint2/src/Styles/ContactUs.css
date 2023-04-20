@@ -1,16 +1,20 @@
 @import '../Styles/global.css';
 
-:root {
+/* :root {
     --primary-dark: #3B0967;
     --primary-light: #d9c5ff
-}
+} */
 
 
-body {
-    /* width: 100%;
-    height: 100%; */
-    /* width: 1200px; */
-    /* height: 900px; */
+/* body {
+    width: 100%;
+    height: 100%; 
+    width: 1200px;
+     height: 900px;
+   
+} */
+
+.body {
     display: flex;
     justify-content: center;
 }
@@ -28,7 +32,7 @@ body {
    background-size: 100%;
    background-position: center;
    background-repeat: no-repeat;
-   background-color: var(--primary-light);
+   background-color: var(--primary-color-light);
    border-radius: 25px;
    /* width: 50%;  */
 } 
@@ -63,7 +67,7 @@ body {
 
 .button{
     text-align: center;
-    background-color: var(--primary-dark); 
+    background-color: var(--primary-color-dark); 
     border-radius: 25px;
     width: 95%;
     font-style: bold;
@@ -75,18 +79,18 @@ body {
   }
 .contact {
     font-size: 1.5rem;
-    color: var(--primary-dark);  
+    color: var(--primary-color-dark);  
     text-align: center; 
     justify-content: center;
 }
 .call {
-    color: var(--primary-dark);
+    color: var(--primary-color-dark);
 }
 .ourEmail {
-    color: var(--primary-dark);
+    color: var(--primary-color-dark);
 }
 .location {
-    color: var(--primary-dark);
+    color: var(--primary-color-dark);
 }
 .name {
     border-radius: 5px;
