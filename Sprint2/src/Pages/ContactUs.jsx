@@ -9,7 +9,7 @@ const ContactUs = () => {
     return (
     <div>
         <Navbar />
-        <ContactUs2 />>
+        <ContactUs2 />
     </div>
     );
 }
