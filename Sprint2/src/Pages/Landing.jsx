@@ -1,4 +1,8 @@
 import '../Styles/Landing.css';
+import Sponsor_section from '../Components/Sponsor'
+import Follow_section from '../Components/follower'
+import Pros from '../Components/Benefit'
+
 
 const Landing = () => {
 
@@ -15,6 +19,8 @@ const Landing = () => {
             <a style={{'padding-right': '10px'}} href='/contactus'>Contact Us</a>
             <a style={{'padding-right': '10px'}} href='/add'>Add</a>
             <a style={{'padding-right': '10px'}} href='/edit'>Edit</a>
+            <Pros />
+            <Follow_section />
         </>
     );
 };
