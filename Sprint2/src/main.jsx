@@ -14,7 +14,7 @@ import Error from './Pages/Error';
 import Landing from './Pages/Landing';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
-
+import Slider2 from './Components/Slider2';
 
 const router = createBrowserRouter([
     {
@@ -57,10 +57,15 @@ const router = createBrowserRouter([
         element: <ContactUs />,
         errorElement: <Error />
     },
+    {
+        path: '/slider2',
+        element: <Slider2 />,
+        errorElement: <Error />
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <RouterProvider router={router}/>
+        <Slider2/>
     </React.StrictMode>
 )
