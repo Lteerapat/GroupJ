@@ -103,8 +103,8 @@
 .DurationNote :nth-child(1) span {
   font-size: 1.25rem;
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 28px;
+  right: 130px;
 }
 .DurationNote :nth-child(2) input {
   width: 100%;
