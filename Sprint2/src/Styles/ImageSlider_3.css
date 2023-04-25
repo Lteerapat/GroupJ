@@ -1,0 +1,85 @@
+@import '../Styles/global.css';
+
+.slider-container {
+    width: 500px;
+    height: 280px;
+    margin: 0 auto;
+}
+
+.slider {
+    height: 100%;
+    position: relative;
+}
+
+.slides-container {
+    display: flex;
+    height: 100%;
+    transition: transform ease-out .8s;
+}
+
+.slides-container-overflow {
+    overflow: hidden;
+    height: 100%;
+    border-radius: 10px
+}
+
+.slides {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+}
+
+.previous-arrow {
+    position: absolute;
+    top: 50%;
+    Transform: translate(0, -50%);
+    left: 32px;
+    font-size: 45px;
+    color: #fff;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.next-arrow {
+    position: absolute;
+    top: 50%;
+    Transform: translate(0, -50%);
+    right: 32px;
+    font-size: 45px;
+    color: #fff;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.previous-arrow:hover, .next-arrow:hover {
+    background: rgba(211, 211, 211, .8);
+    box-shadow: 0 0 25px rgba(211, 211, 211);
+    border-radius: 20%;
+    box-shadow: 0 0 5px rgba(211, 211, 211),
+                0 0 25px rgba(211, 211, 211),
+                0 0 50px rgba(211, 211, 211),
+                0 0 100px rgba(211, 211, 211);
+}
+
+.slides-tab-container {
+    display: flex;
+    justify-content: center;
+}
+
+.slides-tab {
+    cursor: pointer;
+    margin: 0 3px;
+}
+
+.slides-tab button {
+    padding: 5px 30px;
+    border: none;
+    background-color: lightgray;
+}
+
+.active-slide-tab button {
+    background-color: gray;
+}
+
