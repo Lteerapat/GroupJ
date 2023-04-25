@@ -15,6 +15,7 @@ const Landing = () => {
             <a style={{'padding-right': '10px'}} href='/contactus'>Contact Us</a>
             <a style={{'padding-right': '10px'}} href='/add'>Add</a>
             <a style={{'padding-right': '10px'}} href='/edit'>Edit</a>
+            <a style={{'padding-right': '10px'}} href='/slider1'>Slider1</a>
         </>
     );
 };

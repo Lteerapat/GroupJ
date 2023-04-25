@@ -1,0 +1,8 @@
+@import '../Styles/global.css';
+
+.slider-top{
+    text-align: center;
+    
+    background-image:  linear-gradient(var(--primary-color-light),white);
+    
+}
