@@ -1,8 +1,64 @@
-@import '../Styles/global.css';
+@import "../Styles/global.css";
 
-.slider-top{
-    text-align: center;
-    
-    background-image:  linear-gradient(var(--primary-color-light),white);
-    
+.slider-top {
+  text-align: center;
+  background-image: linear-gradient(var(--primary-color-light), white);
+  position: relative;
+}
+.slider-img {
+  width: 80%;
+  height: 350px;
+  animation-duration: 4s;
+}
+.pervious {
+  position: absolute;
+  top: 35%;
+  left: 30px;
+  background: transparent;
+  font-size: 70px;
+  border: none;
+  border-radius: 10px;
+  padding-top: 0px;
+  padding-bottom: 8px;
+  width: 40px;
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.pervious:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.next {
+  position: absolute;
+  top: 35%;
+  right: 30px;
+  background: transparent;
+  font-size: 70px;
+  border: none;
+  border-radius: 10px;
+  padding-top: 0px;
+  padding-bottom: 8px;
+  width: 40px;
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.next:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.slider-top-dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.slider-top-dot span {
+  width: 40px;
+  height: 10px;
+  background-color: rgb(173, 173, 173);
+  cursor: pointer;
+}
+#span-active {
+  background-color: rgb(36, 35, 35);
 }
