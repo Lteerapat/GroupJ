@@ -3,18 +3,27 @@ import '../Styles/ImageSlider_3.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import myJourney1 from '../Images/Landing/myJourney1.jpg';
 import myJourney2 from '../Images/Landing/myJourney2.png';
+import myJourney3 from '../Images/Landing/myJourney3.jpg';
 
 const ImageSlider_3 = () => {
     const slides = [
-        {url: myJourney1, title: "myJourney1"},
-        {url: myJourney2, title: "myJourney2"},
-        {url: myJourney2, title: "myJourney2"},
-
+        {url: myJourney1, title: "myJourney1", 
+            descriptionHeader:<h2>It's my first day to start a Journey!</h2>,
+            descriptionContent:<p>They always say that the most difficult thing is to start something and now I'm standing here beginning with my first track.</p> 
+        },
+        {url: myJourney2, title: "myJourney2", 
+            descriptionHeader:<h2>Exploring the Unknown</h2>,
+            descriptionContent:<p>I'm stepping into the unknown, eager to discover what lies ahead on my journey.</p> 
+        },
+        {url: myJourney3, title: "myJourney3", 
+            descriptionHeader:<h2>Chasing My Dreams</h2>,
+            descriptionContent:<p>With every step, I'm getting closer to my dreams. I won't stop until I reach them.</p> 
+        },
     ]
     
     return (
         <>
-            <div>
+            <div className="img-slider-3">
                 <h1>My Journey</h1>
                 <div className="slider-container">
                     <Slider 
@@ -91,21 +100,29 @@ const Slider = ({slides, parentWidth}) => {
                     style={slidesContainerStyles()}
                 >
                     {slides.map((slide, slideIndex) => (
-                        <div
-                            key={slideIndex}
-                            style={slidesStyles(slideIndex)}
-                            className="slides"
-                        ></div>
-                    ))}
+                        <div className="slides-content">
+                            <div className="slides-img-container">
+                                <div
+                                    key={slideIndex}
+                                    style={slidesStyles(slideIndex)}
+                                    className="slides-img"
+                                ></div>
+                            </div>
+                            <div className="slides-description">
+                                {slides[slideIndex].descriptionHeader}
+                                {slides[slideIndex].descriptionContent}
+                            </div>
+                        </div>
+                    ))}    
                 </div>
             </div>
 
             <div className="slides-tab-container">
-                {slides.map((slide,slideindex) => (
+                {slides.map((slide,slideIndex) => (
                     <div 
-                        key={slideindex} 
-                        className={`slides-tab ${activeSlideTab === slideindex ? 'active-slide-tab' : ''}`}
-                        onClick={() => goToSlide(slideindex)}
+                        key={slideIndex} 
+                        className={`slides-tab ${activeSlideTab === slideIndex ? 'active-slide-tab' : ''}`}
+                        onClick={() => goToSlide(slideIndex)}
                     >
                         <button></button>
                     </div>
