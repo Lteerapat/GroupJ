@@ -49,6 +49,8 @@ const Slider = () => {
     <div className="slider-top">
       <div className="slider-top-img">
         <img className="slider-img" src={slideImage[Image]} />
+        {/* <img className="slider-img" src={slideImage[1]} />
+        <img className="slider-img" src={slideImage[2]} /> */}
       </div>
       <div className="slider-top-dot">
         <span

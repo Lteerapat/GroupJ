@@ -14,7 +14,6 @@ import Error from './Pages/Error';
 import Landing from './Pages/Landing';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
-import Slider from './Components/Slider1';
 
 
 const router = createBrowserRouter([
@@ -56,11 +55,6 @@ const router = createBrowserRouter([
     {
         path: '/contactus',
         element: <ContactUs />,
-        errorElement: <Error />
-    },
-    {
-        path: '/slider1',
-        element: <Slider />,
         errorElement: <Error />
     },
 ]);
