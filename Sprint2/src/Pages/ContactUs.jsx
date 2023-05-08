@@ -4,12 +4,15 @@ import {useRef} from 'react';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import emailjs from '@emailjs/browser';
 import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 const ContactUs = () => {
     return (
     <div>
         <Navbar />
         <ContactUs2 />
+        <Footer /> 
+
     </div>
     );
 }
