@@ -5,16 +5,6 @@ import trophy from "../Images/Landing/trophy.png";
 import graph from "../Images/Landing/graph.png";
 import Line from "../Images/Landing/Line.png";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-const shortList = [
-  {
-    id: 1,
-    name: "Achievement",
-    title:
-      "Get started today and see how our achievement feature can help you achieve your goals.",
-    image: trophy,
-    link:"/achievement",
-  },
-];
 
 const list = [
   {
@@ -43,32 +33,6 @@ const list = [
   },
 ];
 
-const longList = [
-  {
-    id: 1,
-    name: "Achievement",
-    title:
-      "Get started today and see how our achievement feature can help you achieve your goals.",
-    image: trophy,
-    link:"/achievement",
-  },
-  {
-    id: 2,
-    name: "JS Chart",
-    title:
-      "Visualize your exercise progress!! our graph progress can help you stay motivated and reach your goals.",
-    image: graph,
-    link:"/dashboard",
-  },
-  {
-    id: 3,
-    name: "Line Connect",
-    title:
-      "Connect your exercise tracking to LINE and start sharing with friends. It's easy and fun!",
-    image: Line,
-    link:"/#",
-  },
-];
 
 const Slider2 = () => {
   const [people, setPeople] = useState(list);
@@ -87,14 +51,14 @@ const Slider2 = () => {
     });
   };
 
-  // useEffect(() => {
-  //   let sliderId = setInterval( () => {
-  //     nextSlide();
-  //   }, 2000);
-  //   return () => {
-  //     clearInterval(sliderId);
-  //   };
-  // },[currentPerson]);
+  useEffect(() => {
+    let sliderId = setInterval( () => {
+      nextSlide();
+    }, 4000);
+    return () => {
+      clearInterval(sliderId);
+    };
+  },[currentPerson]);
 
 
   return (
