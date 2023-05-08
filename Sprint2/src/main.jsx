@@ -55,8 +55,7 @@ const router = createBrowserRouter([
         path: '/contactus',
         element: <ContactUs />,
         errorElement: <Error />
-    },
-    
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
