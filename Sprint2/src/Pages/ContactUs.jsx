@@ -12,7 +12,6 @@ const ContactUs = () => {
         <Navbar />
         <ContactUs2 />
         <Footer /> 
-
     </div>
     );
 }
