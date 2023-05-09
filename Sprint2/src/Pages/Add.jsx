@@ -113,6 +113,10 @@ const DateAcitvity = (props) => {
 
 const DurationNote = (props) => {
   const { duration,setDuration,note,setNote} = props
+  const navigate = useNavigate();
+  const submitButton = () => {
+    navigate("/dashboard");
+  };
 
   return (
     <div className="DurationNote">
