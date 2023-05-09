@@ -1,0 +1,53 @@
+@import '../Styles/global.css';
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    background-color: var(--primary-color-dark);
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    scroll-behavior: smooth;
+
+}
+
+.left-footer {
+  color: white;
+  
+    
+}
+
+.middle-footer {
+    padding-right: 150px;
+}
+.right-footer {
+    scroll-behavior: smooth;
+    color: white;
+    padding-right: 5px;
+}
+
+a:link {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: var(--primary-color-light);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: var(--primary-color-dark);
+    background-color: transparent;
+    text-decoration: underline;
+  }
