@@ -19,14 +19,23 @@ const Add = () => {
     setActivity(active);
   };
 
+  //Date 
+  const [date,setDate] = useState()
+
+  //Duration
+  const [duration,setDuration] = useState()
+
+  //Note
+  const [note,setNote] = useState()
+
   return (
     <div className="container-add">
       <div className="container">
         <h1>Add Your Activity</h1>
         <NameActivity nameActivity={nameActivity} setNameActivity={setNameActivity}/>
         <TypeActivity handleActivity={handleActivity} activity={activity} />
-        <DateAcitvity />
-        <DurationNote />
+        <DateAcitvity date={date} setDate={setDate} />
+        <DurationNote duration={duration} setDuration={setDuration} note={note} setNote={setNote} />
         <Buttom submitButton={submitButton} />
       </div>
     </div>
@@ -91,28 +100,31 @@ const TypeActivity = (props) => {
   );
 };
 
-const DateAcitvity = () => {
+const DateAcitvity = (props) => {
+  const {date ,setDate} = props
   return (
     <div className="DateAcitvity">
-      <label>Date</label>
+      <label>Date : {date}</label>
       <br />
-      <input type="date" placeholder="Date / Month / Year"></input>
+      <input type="date" onChange={(event)=> setDate(event.target.value)} placeholder="Date / Month / Year"></input>
     </div>
   );
 };
 
-const DurationNote = () => {
+const DurationNote = (props) => {
+  const { duration,setDuration,note,setNote} = props
+
   return (
     <div className="DurationNote">
       <div>
-        <label>Duration</label>
+        <label>Duration :{duration}</label>
         <br />
-        <input type="number"/><span>min</span>
+        <input type="number" onChange={(event)=> setDuration(event.target.value)}/><span>min</span>
       </div>
       <div>
-        <label>Note</label>
+        <label>Note: {note}</label>
         <br />
-        <input type="text"/>
+        <input type="text" onChange={(event)=> setNote(event.target.value)}/>
       </div>
     </div>
   );
