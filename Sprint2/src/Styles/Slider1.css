@@ -1,0 +1,81 @@
+@import "../Styles/global.css";
+
+.slider-top {
+  text-align: center;
+  background-image: linear-gradient(var(--primary-color-light), white);
+  position: relative;
+}
+.slider-img {
+  width: 80%;
+  height: 350px;
+  animation-duration: 4s;
+}
+/* .slider-top-img{
+  display: flex;
+  animation: slider 30s ease-in-out infinite alternate;
+}
+@keyframes slider{
+  0%{transform: translateX(0%);}
+  10%{transform: translateX(-100%);}
+  20%{transform: translateX(-100%);}
+  30%{transform: translateX(-200%);}
+  40%{transform: translateX(-200%);}
+  50%{transform: translateX(-200%);}
+  60%{transform: translateX(-300%);}
+  70%{transform: translateX(-300%);}
+  80%{transform: translateX(-300%);}
+  90%{transform: translateX(0%);}
+  100%{transform: translateX(0%);}
+} */
+.pervious {
+  position: absolute;
+  top: 35%;
+  left: 30px;
+  background: transparent;
+  font-size: 70px;
+  border: none;
+  border-radius: 10px;
+  padding-top: 0px;
+  padding-bottom: 8px;
+  width: 40px;
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.pervious:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.next {
+  position: absolute;
+  top: 35%;
+  right: 30px;
+  background: transparent;
+  font-size: 70px;
+  border: none;
+  border-radius: 10px;
+  padding-top: 0px;
+  padding-bottom: 8px;
+  width: 40px;
+  opacity: 0.5;
+  transition: 0.3s;
+}
+.next:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.slider-top-dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.slider-top-dot span {
+  width: 40px;
+  height: 10px;
+  background-color: rgb(173, 173, 173);
+  cursor: pointer;
+}
+#span-active {
+  background-color: rgb(36, 35, 35);
+}
