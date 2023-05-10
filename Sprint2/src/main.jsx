@@ -57,6 +57,11 @@ const router = createBrowserRouter([
         element: <ContactUs />,
         errorElement: <Error />
     },
+    {
+        path: '/slider2',
+        element: <Slider2 />,
+        errorElement: <Error />
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
