@@ -1,7 +1,7 @@
 import '../Styles/Landing.css';
-import Sponsor_section from '../Components/Sponsor'
-import Follow_section from '../Components/follower'
-import Pros from '../Components/Benefit'
+
+
+
 
 
 const Landing = () => {
