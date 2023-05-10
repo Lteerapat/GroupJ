@@ -1,0 +1,118 @@
+@import '../Styles/global.css';
+
+.img-slider-3 {
+    background: var(--primary-color-light);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+    padding: 32px;
+
+}
+
+.slider-container {
+    width: 500px;
+    height: 280px;
+}
+
+.slider {
+    height: 100%;
+    position: relative;
+}
+
+.slides-container-overflow {
+    background-color: white;
+    overflow: hidden;
+    height: 100%;
+    border-radius: 20px;
+    box-shadow: 2px 2px 15px rgb(0, 0, 0,.5);
+}
+
+.slides-container {
+    display: flex;
+    height: 100%;
+    transition: transform ease-out .8s;
+}
+
+.slides-content {
+    border-radius: 20px;
+    display: flex;
+    width: 500px;
+}
+
+.slides-img-container {
+    display: flex;
+    width: 50%;
+    padding: 48px 16px 48px 32px;
+}
+
+.slides-img {
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.slides-description {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding-top: 48px;
+    padding-right: 32px;
+    gap: 16px;
+}
+
+.slides-description p {
+    text-align: justify;
+}
+
+.previous-arrow {
+    position: absolute;
+    top: 50%;
+    Transform: translate(-100%, -50%);
+    font-size: 45px;
+    color: #585050;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.next-arrow {
+    position: absolute;
+    top: 50%;
+    Transform: translate(100%, -50%);
+    right: 0px;
+    font-size: 45px;
+    color: #585050;
+    z-index: 1;
+    cursor: pointer;
+}
+
+/* .previous-arrow:hover, .next-arrow:hover {
+    background: rgba(211, 211, 211, .8);
+    box-shadow: 0 0 25px rgba(211, 211, 211);
+    border-radius: 20%;
+    box-shadow: 0 0 5px rgba(211, 211, 211),
+                0 0 25px rgba(211, 211, 211),
+                0 0 50px rgba(211, 211, 211),
+                0 0 100px rgba(211, 211, 211);
+} */
+
+.slides-tab-container {
+    display: flex;
+    justify-content: center;
+}
+
+.slides-tab {
+    cursor: pointer;
+    margin: 0 3px;
+}
+
+.slides-tab button {
+    padding: 5px 30px;
+    border: none;
+    background-color: lightgray;
+}
+
+.active-slide-tab button {
+    background-color: gray;
+}
+
