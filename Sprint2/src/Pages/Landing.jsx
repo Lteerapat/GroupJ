@@ -1,4 +1,5 @@
 import '../Styles/Landing.css';
+import ImageSlider_3 from '../Components/ImageSlider_3';
 
 const Landing = () => {
 
