@@ -2,7 +2,7 @@ import React from 'react';
 import easyIcon from '../images/Landing/easy.png';
 import enjoymentIcon from '../images/Landing/Enjoyment.svg';
 import empoweringIcon from '../images/Landing/Empowering.svg';
-
+import  '../Styles/Caption.css';
 
 function Pros() {
   return (
