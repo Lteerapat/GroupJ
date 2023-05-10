@@ -15,7 +15,6 @@ import Landing from './Pages/Landing';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
 
-
 const router = createBrowserRouter([
     {
         path: '/',
@@ -56,11 +55,11 @@ const router = createBrowserRouter([
         path: '/contactus',
         element: <ContactUs />,
         errorElement: <Error />
-    },
+    }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <RouterProvider router={router}/>
+        <Landing />
     </React.StrictMode>
 )
