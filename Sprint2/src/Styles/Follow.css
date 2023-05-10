@@ -1,0 +1,24 @@
+:root {
+    --primary-dark:#3B0967;
+    --primary-light:#D9C5FF;
+    --primary:#B38BFF;
+    --acrivity-bg-color:#1D0648;
+    --bf-color:#1B1B1B;
+    --bg-color-alr:#232323;
+    --primary-color:black;
+    --secondary-color:white;
+    --primary-hover:rgb(4, 179, 179);
+
+}
+
+/* Follow&Download */
+.follow {
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 40px;
+}
+.follow div {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}

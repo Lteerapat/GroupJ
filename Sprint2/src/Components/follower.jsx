@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Styles/Landing.css';
+import '../Styles/Follow.css';
 
 function Follow_section() {
     return (
