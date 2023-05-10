@@ -14,6 +14,8 @@ import Error from './Pages/Error';
 import Landing from './Pages/Landing';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
+import Slider2 from './Components/Slider2';
+
 
 
 const router = createBrowserRouter([
