@@ -6,14 +6,14 @@
   padding-top: 100px;
 }
 
-.container {
+.container-form-add-edit {
   background-color: var(--primary-color-light);
   border-radius: 20px;
   padding: 30px;
   width: 500px;
   height: 550px;
 }
-.container h1 {
+.container-form-add-edit h1 {
   text-align: center;
   font-size: 1.5rem;
 }

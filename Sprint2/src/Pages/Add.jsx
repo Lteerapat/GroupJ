@@ -30,7 +30,7 @@ const Add = () => {
 
   return (
     <div className="container-add">
-      <div className="container">
+      <div className="container-form-add-edit">
         <h1>Add Your Activity</h1>
         <NameActivity nameActivity={nameActivity} setNameActivity={setNameActivity}/>
         <TypeActivity handleActivity={handleActivity} activity={activity} />
