@@ -23,12 +23,12 @@ const ImageSlider_3 = () => {
     
     return (
         <>
-            <div className="img-slider-3">
+            <div className="img-slider-3" id="myJourney">
                 <h1>My Journey</h1>
-                <div className="slider-container">
+                <div className="my-journey-slider-container">
                     <Slider 
                         slides={slides} 
-                        parentWidth={500} 
+                        parentWidth={900} 
                     />
                 </div>
             </div>
@@ -61,12 +61,12 @@ const Slider = ({slides, parentWidth}) => {
     }
 
     //style background image
-    const slidesStyles = (slideIndex) => ({
+    const myJourneySlidesStyles = (slideIndex) => ({
         backgroundImage: `url(${slides[slideIndex].url})`,
         width: `${parentWidth}px`,
     })
 
-    const slidesContainerStyles = () => ({
+    const myJourneySlidesContainerStyles = () => ({
         width: parentWidth * slides.length,
         transform: `translateX(${-(currentIndex * parentWidth)}px)`,
     });
@@ -84,31 +84,31 @@ const Slider = ({slides, parentWidth}) => {
     }, [goToNext]);
     
     return (
-        <div className="slider">
+        <div className="my-journey-slider">
             <div>
-                <div className="previous-arrow" onClick={goToPrevious}>
+                <div className="my-journey-previous-arrow" onClick={goToPrevious}>
                     <i class="fa-solid fa-chevron-left"></i>
                 </div>
-                <div className="next-arrow" onClick={goToNext}>
+                <div className="my-journey-next-arrow" onClick={goToNext}>
                     <i class="fa-solid fa-chevron-right"></i>
                 </div>
             </div>
 
-            <div className="slides-container-overflow">
+            <div className="my-journey-slides-container-overflow">
                 <div
-                    className="slides-container"
-                    style={slidesContainerStyles()}
+                    className="my-journey-slides-container"
+                    style={myJourneySlidesContainerStyles()}
                 >
                     {slides.map((slide, slideIndex) => (
-                        <div className="slides-content">
-                            <div className="slides-img-container">
+                        <div className="my-journey-slides-content">
+                            <div className="my-journey-slides-img-container">
                                 <div
                                     key={slideIndex}
-                                    style={slidesStyles(slideIndex)}
-                                    className="slides-img"
+                                    style={myJourneySlidesStyles(slideIndex)}
+                                    className="my-journey-slides-img"
                                 ></div>
                             </div>
-                            <div className="slides-description">
+                            <div className="my-journey-slides-description">
                                 {slides[slideIndex].descriptionHeader}
                                 {slides[slideIndex].descriptionContent}
                             </div>
@@ -117,11 +117,11 @@ const Slider = ({slides, parentWidth}) => {
                 </div>
             </div>
 
-            <div className="slides-tab-container">
+            <div className="my-journey-slides-tab-container">
                 {slides.map((slide,slideIndex) => (
                     <div 
                         key={slideIndex} 
-                        className={`slides-tab ${activeSlideTab === slideIndex ? 'active-slide-tab' : ''}`}
+                        className={`my-journey-slides-tab ${activeSlideTab === slideIndex ? 'my-journey-active-slide-tab' : ''}`}
                         onClick={() => goToSlide(slideIndex)}
                     >
                         <button></button>
