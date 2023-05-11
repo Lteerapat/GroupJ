@@ -43,9 +43,9 @@ const SignUp = () => {
 
         return (
           <div className="container_signup">
-          <div className="login-card">
+          <div className="login-card_singup">
             <div className="column">
-              <a href="#"><img src={light_logo} alt="gaintrack-logo" /></a>
+              <a href="/"><img src={light_logo} alt="gaintrack-logo" /></a>
               <h2>Welcome to Our Website</h2>
             </div>
             <div className="column">

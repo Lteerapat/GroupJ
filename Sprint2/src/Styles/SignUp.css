@@ -1,7 +1,5 @@
 @import '../Styles/global.css';
 
-
-
 .container_signup{
 	font-family: 'Lato', sans-serif;
 	display: flex;
@@ -23,7 +21,7 @@
 	z-index: -1;
 }
 
-.login-card {
+.login-card_singup {
 	background-color: #fff;
 	border: 1px solid #ddd;
 	box-shadow: 0 10px 50px -20px black;
@@ -34,25 +32,25 @@
 	grid-template-columns: auto auto;
 }
 
-.login-card a {
+.login-card_singup a {
 	text-decoration: none;
 	color: var(--primary-color);
 }
 
-.login-card a:hover {
+.login-card_singup a:hover {
 	color: var(--primary-color-dark);
 }
 
-.login-card .column {
+.login-card_singup .column {
 	padding: 4rem;
 }
 
-.login-card .column img {
+.login-card_singup .column img {
     display: block;
     margin-bottom: 1rem;
 }
 
-.login-card .column:first-child {
+.login-card_singup .column:first-child {
 	background-size: cover;
 	position: relative;
     background: url(../Images/Login-Signup/bg-login-signup.png) center;
@@ -65,7 +63,7 @@
     opacity: .9;
 }
 
-.login-card .column:first-child::before {
+.login-card_singup .column:first-child::before {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -78,34 +76,34 @@
     border: 1px solid white;
 }
 
-.login-card .column:last-child h1 {
+.login-card_singup .column:last-child h1 {
 	font-weight: 900;
     font-size: 3rem;
 }
 
-.login-card .column:first-child:after {
+.login-card_singup .column:first-child:after {
 	content: "";
 	position: absolute;
 	background: linear-gradient(-90deg, #fff, rgba(179,139,255,.8));
 	inset: 0;
 }
 
-.login-card .column:first-child * {
+.login-card_singup .column:first-child * {
 	z-index: 1;
 }
 
-.login-card .column:first-child button:hover {
+.login-card_singup .column:first-child button:hover {
 	background-color: var(--primary-color);
 	color: white;
     transform: .2;
 }
 
-.login-card .column:first-child button:active {
+.login-card_singup .column:first-child button:active {
 	scale: 0.95;
 	background-color: var(--bg-color-alt);
 }
 
-.login-card .form-element {
+.login-card_singup .form-element {
 	width: 100%;
 	border: none;
 	background-color: #f1f1f1;
@@ -115,19 +113,19 @@
 	transition: box-shadow 0.2s;
 }
 
-.login-card .form-element:focus {
+.login-card_singup .form-element:focus {
 	outline: none;
 	box-shadow: 0 0 0 2px var(--primary-color-light);
 }
 
-.login-card form {
+.login-card_singup form {
 	margin-top: 3rem;
 }
-.login-card form > * {
+.login-card_singup form > * {
 	margin-top: 1rem;
 }
 
-.login-card form button {
+.login-card_singup form button {
 	background-color: var(--primary-color-dark);
 	color: #fff;
 	border: none;
@@ -140,11 +138,11 @@
     width: 100%;
 }
 
-.login-card form button:hover {
+.login-card_singup form button:hover {
 	background-color: var(--primary-color);
 }
 
-.login-card form button:active {
+.login-card_singup form button:active {
 	scale: 0.95;
 	background-color: var(--primary-color-light);
 }
@@ -156,12 +154,12 @@
 }
 
 @media (max-width: 992px) {
-	.login-card {
+	.login-card_singup {
 	display: block;
 	width: 500px;
 	text-align: center;
 	}
-	.login-card .column:first-child {
+	.login-card_singup .column:first-child {
 	display: none;
 	}
 	.flex {
