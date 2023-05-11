@@ -32,10 +32,10 @@ const Navbar = () => {
                 <div className="right-navbar">
                             <ul>
                                 <li>
-                                <a href="/login"><button className="login">Login</button></a>
+                                <a href="/login"><button className="login-navbar footer-link">Login</button></a>
                                 </li>
                                 <li>
-                                <a href="/signup"><button className="signup">SignUp</button></a>
+                                <a href="/signup"><button className="signup-navbar footer-link">SignUp</button></a>
                                 </li>
                             </ul>
                 </div>
