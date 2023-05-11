@@ -11,7 +11,7 @@
   border-radius: 20px;
   padding: 30px;
   width: 500px;
-  height: 600px;
+  height: 610px;
 }
 .container-form-add-edit h1 {
   text-align: center;
@@ -121,6 +121,9 @@
 }
 
 /* Note */
+.Note {
+  
+}
 .Note textarea {
   outline: none;
   font-size: 1.25rem;
@@ -183,6 +186,10 @@
 .container-form-add-edit label {
   opacity: 0.9;
 }
+.container-form-add-edit textarea {
+  margin-top: 5px;
+}
+
 .container-form-add-edit textarea:focus {
   border-color: #0bf163;
   border-radius: 5px;

@@ -145,7 +145,7 @@ const Note = (props) => {
       <div>
         <label for="note-area">Note</label>
         <br />
-        <textarea name="note-area" rows="4" cols="41" onChange={(event)=> setNote(event.target.value)}></textarea>
+        <textarea name="note-area" rows="4" cols="39" onChange={(event)=> setNote(event.target.value)}></textarea>
       </div>
     </div>
   );
