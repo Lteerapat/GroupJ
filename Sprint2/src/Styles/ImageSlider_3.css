@@ -91,16 +91,6 @@
     cursor: pointer;
 }
 
-/* .previous-arrow:hover, .next-arrow:hover {
-    background: rgba(211, 211, 211, .8);
-    box-shadow: 0 0 25px rgba(211, 211, 211);
-    border-radius: 20%;
-    box-shadow: 0 0 5px rgba(211, 211, 211),
-                0 0 25px rgba(211, 211, 211),
-                0 0 50px rgba(211, 211, 211),
-                0 0 100px rgba(211, 211, 211);
-} */
-
 .my-journey-slides-tab-container {
     display: flex;
     justify-content: center;
