@@ -15,21 +15,21 @@ return (
             </div>
                 <div className="middle-footer">
                     <div>
-                        <ul>
+                        <ul className="nav-ul">
                             <li>
-                                <a href="#">Terms</a>
+                                <a href="#" className="footer-link">Terms</a>
                             </li>
                             <li>
-                                <a href="#">Privacy</a>
+                                <a href="#" className="footer-link">Privacy</a>
                             </li>
                             <li>
-                                <a href="/contactUs">Contact us</a>
+                                <a href="/contactUs" className="footer-link">Contact us</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             <div className="right-footer">
-                <a  href='#top'>Back to top</a>
+                <a  href='#top' className="footer-link">Back to top</a>
             </div>
         </footer>
 );
