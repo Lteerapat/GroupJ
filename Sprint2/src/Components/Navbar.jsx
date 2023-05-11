@@ -10,32 +10,32 @@ const Navbar = () => {
         
             <div className="navBar">
                 <div className="left-navbar">
-                    <div className="logo">
+                    <div className="logo-navbar">
                         <a href='/'><img src= {logo} alt="logo-pic" width={200} /></a>
                     </div>
                 </div>
                     <div className="middle-navbar">
                         <nav>
-                            <ul>
+                            <ul className="nav-ul">
                                 <li>
-                                    <a href="#">Feature</a>
+                                    <a href="#" className="footer-link">Feature</a>
                                 </li>
                                 <li>
-                                    <a href="#">My Journey</a>
+                                    <a href="#" className="footer-link">My Journey</a>
                                 </li>
                                 <li>
-                                    <a href="#">Our Customers</a>
+                                    <a href="#" className="footer-link">Our Customers</a>
                                 </li>
                             </ul>
                         </nav>
                     </div>
                 <div className="right-navbar">
-                            <ul>
+                            <ul class="nav-ul">
                                 <li>
-                                <a href="/login"><button className="login">Login</button></a>
+                                <a href="/login"><button className="login-navbar footer-link">Login</button></a>
                                 </li>
                                 <li>
-                                <a href="/signup"><button className="signup">SignUp</button></a>
+                                <a href="/signup"><button className="signup-navbar footer-link">SignUp</button></a>
                                 </li>
                             </ul>
                 </div>
