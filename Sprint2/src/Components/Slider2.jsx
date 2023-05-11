@@ -8,15 +8,15 @@ import line_slider2 from '../Images/Landing/Line.png';
 const Slider2 = () => {
     const slides = [
         {url: trophy_slider2, title: "Achievement", 
-            descriptionHeader:<h2>Achievement</h2>,
+            descriptionHeader: <a href="/login"><h2>Achievement</h2></a>,
             descriptionContent:<p>Get started today and see how our achievement feature can help you achieve your goals.</p> 
         },
         {url:chart_slider2, title: "JS Chart", 
-            descriptionHeader:<h2>JS Chart</h2>,
+            descriptionHeader: <a href="/login"><h2>JS Chart</h2></a>,
             descriptionContent:<p>Visualize your exercise progress!! our graph progress can help you stay motivated and reach your goals.</p> 
         },
         {url:line_slider2, title: "Line Connect", 
-            descriptionHeader:<h2>Line Connect</h2>,
+            descriptionHeader:<a href="/login"><h2>Line Connect</h2></a>,
             descriptionContent:<p>Connect your exercise tracking to LINE and start sharing with friends. It's easy and fun!</p> 
         },
     ]
@@ -103,6 +103,7 @@ const Slider = ({slides, parentWidth}) => {
                           <div className="slider2-description">
                                 {slides[slideIndex].descriptionHeader}
                                 {slides[slideIndex].descriptionContent}
+                                {slides[slideIndex].link}
                             </div>
                             <div className="slider2-img-container">
                                 <div
