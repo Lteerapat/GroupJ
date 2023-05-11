@@ -15,7 +15,6 @@
 
 .left-footer {
   color: white;
-  
     
 }
 
@@ -28,25 +27,25 @@
     padding-right: 5px;
 }
 
-a:link {
+a.footer-link:link {
     color: white;
     background-color: transparent;
     text-decoration: none;
   }
   
-  a:visited {
+  a.footer-link:visited {
     color: white;
     background-color: transparent;
     text-decoration: none;
   }
   
-  a:hover {
+  a.footer-link:hover {
     color: var(--primary-color-light);
     background-color: transparent;
     text-decoration: underline;
   }
   
-  a:active {
+  a.footer-link:active {
     color: var(--primary-color-dark);
     background-color: transparent;
     text-decoration: underline;
