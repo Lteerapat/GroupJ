@@ -1,13 +1,13 @@
 @import '../Styles/global.css';
 
-.container {
+.login-page-container {
 	display: grid;
     place-items: center;
 	min-height: 100vh;
 	padding: 1.5rem;
 }
 
-.container:after {
+.login-page-container:after {
 	content: "";
 	position: fixed;
 	inset: 0;
@@ -39,16 +39,16 @@
 	color: var(--primary-color-dark);
 }
 
-.login-card .column {
+.login-card .login-card-column {
 	padding: 4rem;
 }
 
-.login-card .column img {
+.login-card .login-card-column img {
     display: block;
     margin-bottom: 1rem;
 }
 
-.login-card .column:last-child {
+.login-card .login-card-column:last-child {
 	background: url(../Images/Login-Signup/bg-login-signup.png) center;
 	background-size: cover;
 	position: relative;
@@ -61,23 +61,23 @@
     opacity: .9;
 }
 
-.login-card .column:last-child h2 {
+.login-card .login-card-column:last-child h2 {
 	font-weight: 900;
     font-size: 2rem;
 }
 
-.login-card .column:last-child:after {
+.login-card .login-card-column:last-child:after {
 	content: "";
 	position: absolute;
 	background: linear-gradient(90deg, #fff, rgba(179,139,255,.8));
 	inset: 0;
 }
 
-.login-card .column:last-child * {
+.login-card .login-card-column:last-child * {
 	z-index: 1;
 }
 
-.login-card .column:last-child button {
+.login-card .login-card-column:last-child button {
 	padding: 12px 30px;
 	font-size: 16px;
 	background: var(--primary-color-dark);
@@ -89,18 +89,18 @@
     border:none;
 }
 
-.login-card .column:last-child button:hover {
+.login-card .login-card-column:last-child button:hover {
 	background-color: var(--primary-color);
 	color: white;
     transform: .2;
 }
 
-.login-card .column:last-child button:active {
+.login-card .login-card-column:last-child button:active {
 	scale: 0.95;
 	background-color: var(--bg-color-alt);
 }
 
-.login-card .form-element {
+.login-card .login-form-element {
 	width: 100%;
 	border: none;
 	background-color: #f1f1f1;
@@ -110,7 +110,7 @@
 	transition: box-shadow 0.2s;
 }
 
-.login-card .form-element:focus {
+.login-card .login-form-element:focus {
 	outline: none;
 	box-shadow: 0 0 0 2px var(--primary-color-light);
 }
@@ -122,11 +122,11 @@
     cursor: pointer;
 }
 
-.login-card form .form-item {
+.login-card form .login-form-item {
     position: relative;
 }
 
-.login-card form .form-item i {
+.login-card form .login-form-item i {
     cursor: pointer;
     position: absolute;
     font-size: 1.5rem;
@@ -135,7 +135,7 @@
     opacity: .5;
 }
 
-.login-card form .form-checkbox-item {
+.login-card form .login-form-checkbox-item {
     display: flex;
     align-items: center;
     gap: 2px;
@@ -174,10 +174,14 @@
 	background-color: var(--primary-color-light);
 }
 
-.flex {
+.login-flex {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+}
+
+.login-flex > button:last-child {
+    display: none;
 }
 
 @media (max-width: 992px) {
@@ -187,16 +191,16 @@
 	text-align: center;
 	}
 
-	.login-card .column:last-child {
+	.login-card .login-card-column:last-child {
 	display: none;
 	}
 
-	.flex {
+	.login-flex {
 	flex-direction: column;
 	gap: 1rem;
 	}
 
-	.social-buttons {
-	justify-content: center;
-	}
+    .login-flex > button:last-child {
+        display: block;
+    }
 }

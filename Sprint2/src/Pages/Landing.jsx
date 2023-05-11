@@ -1,5 +1,12 @@
 import '../Styles/Landing.css';
-
+import Navbar from './../Components/Navbar';
+import Slider from './../Components/Slider1';
+import Pros from './../Components/Benefit';
+import Follow_section from '../Components/follower';
+import Slider2 from './../Components/Slider2';
+import Sponsor_section from './../Components/Sponsor';
+import ImageSlider_3 from './../Components/ImageSlider_3';
+import Footer from './../Components/Footer';
 
 
 
@@ -8,18 +15,14 @@ const Landing = () => {
 
     return (
         <>
-            <h1>Hello, Group J!</h1>
-            <a href='/contact/1'>Check Error</a>
-            <h2>Test Routers</h2>
-            <a style={{'padding-right': '10px'}} href='/'>Landing</a>
-            <a style={{'padding-right': '10px'}} href='/dashboard'>Dashboard</a>
-            <a style={{'padding-right': '10px'}} href='/login'>Login</a>
-            <a style={{'padding-right': '10px'}} href='/signup'>SignUp</a>
-            <a style={{'padding-right': '10px'}} href='/achievement'>Achievement</a>
-            <a style={{'padding-right': '10px'}} href='/contactus'>Contact Us</a>
-            <a style={{'padding-right': '10px'}} href='/add'>Add</a>
-            <a style={{'padding-right': '10px'}} href='/edit'>Edit</a>
-          
+            <Navbar />
+            <Slider />
+            <Pros />
+            <Slider2 />
+            <Follow_section />
+            <ImageSlider_3 />
+            <Sponsor_section />
+            <Footer />
         </>
 
        

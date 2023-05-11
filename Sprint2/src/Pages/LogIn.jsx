@@ -70,24 +70,24 @@ const LogIn = () => {
     return (
         
         <>
-            <div className="container">
+            <div className="login-page-container">
                 <div className="login-card">
-                    <div className="column">
+                    <div className="login-card-column">
                         <a href="/"><img src={gaintrackLogo} alt="gaintrack-logo" /></a>
                         <p>Easy to track your activities</p>
                         <form>
-                            <div className="form-item">
-                                <input type="text" className="form-element" placeholder="Username or Email" onChange={(e) => setUsername(e.target.value)} value={username} />
+                            <div className="login-form-item">
+                                <input type="text" className="login-form-element" placeholder="Username or Email" onChange={(e) => setUsername(e.target.value)} value={username} />
                             </div>
-                            <div className="form-item">
+                            <div className="login-form-item">
                                 {passwordType==="password" ? 
                                     <i className="fa-solid fa-eye-slash" onMouseDown={togglePassword}></i>
                                     :
                                     <i className="fa-solid fa-eye" onClick={togglePassword}></i>
                                 }
-                                <input type={passwordType} className="form-element" placeholder="Password" onChange={handleEyeClick} value={password} />
+                                <input type={passwordType} className="login-form-element" placeholder="Password" onChange={handleEyeClick} value={password} />
                             </div>
-                            <div className="form-checkbox-item">
+                            <div className="login-form-checkbox-item">
                                 <input 
                                     type="checkbox" 
                                     id="rememberMe"  
@@ -96,13 +96,13 @@ const LogIn = () => {
                                 />
                                 <label for="rememberMe">Remember me</label>
                             </div>
-                            <div className="flex">
+                            <div className="login-flex">
                                 <button type="button" onClick={handleLogIn}>Log In</button>
-                                <a href="#">Forget password?</a>
+                                <button type="button" onClick={navigateToSignUp}>Sign Up</button>
                             </div>
                         </form>
                     </div>
-                    <div className="column">
+                    <div className="login-card-column">
                         <h2>Welcome to Our Website</h2>
                         <p>If you don't have an account, would you like to register now?</p>
                         <button onClick={navigateToSignUp}>Sign Up</button>
