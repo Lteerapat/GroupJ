@@ -10,17 +10,21 @@
 
 }
 
-.slider-container {
-    width: 500px;
-    height: 280px;
+.img-slider-3 h1 {
+    font-size: 4rem;
 }
 
-.slider {
+.my-journey-slider-container {
+    width: 900px;
+    height: 400px;
+}
+
+.my-journey-slider {
     height: 100%;
     position: relative;
 }
 
-.slides-container-overflow {
+.my-journey-slides-container-overflow {
     background-color: white;
     overflow: hidden;
     height: 100%;
@@ -28,59 +32,60 @@
     box-shadow: 2px 2px 15px rgb(0, 0, 0,.5);
 }
 
-.slides-container {
+.my-journey-slides-container {
     display: flex;
     height: 100%;
     transition: transform ease-out .8s;
 }
 
-.slides-content {
+.my-journey-slides-content {
     border-radius: 20px;
     display: flex;
-    width: 500px;
+    width: 900px;
 }
 
-.slides-img-container {
+.my-journey-slides-img-container {
     display: flex;
     width: 50%;
     padding: 48px 16px 48px 32px;
 }
 
-.slides-img {
+.my-journey-slides-img {
     width: 100%;
     background-position: center;
     background-size: cover;
 }
 
-.slides-description {
+.my-journey-slides-description {
     width: 50%;
     display: flex;
     flex-direction: column;
     padding-top: 48px;
     padding-right: 32px;
     gap: 16px;
+    font-size: x-large;
 }
 
-.slides-description p {
+.my-journey-slides-description p {
     text-align: justify;
 }
 
-.previous-arrow {
+.my-journey-previous-arrow {
     position: absolute;
     top: 50%;
-    Transform: translate(-100%, -50%);
-    font-size: 45px;
+    Transform: translate(-150%, -50%);
+    font-size: 70px;
     color: #585050;
     z-index: 1;
     cursor: pointer;
 }
 
-.next-arrow {
+.my-journey-next-arrow {
     position: absolute;
     top: 50%;
-    Transform: translate(100%, -50%);
+    Transform: translate(150%, -50%);
     right: 0px;
-    font-size: 45px;
+    font-size: 70px;
     color: #585050;
     z-index: 1;
     cursor: pointer;
@@ -96,23 +101,23 @@
                 0 0 100px rgba(211, 211, 211);
 } */
 
-.slides-tab-container {
+.my-journey-slides-tab-container {
     display: flex;
     justify-content: center;
 }
 
-.slides-tab {
+.my-journey-slides-tab {
     cursor: pointer;
     margin: 0 3px;
 }
 
-.slides-tab button {
+.my-journey-slides-tab button {
     padding: 5px 30px;
     border: none;
     background-color: lightgray;
 }
 
-.active-slide-tab button {
+.my-journey-active-slide-tab button {
     background-color: gray;
 }
 
