@@ -30,7 +30,7 @@ const Navbar = () => {
                         </nav>
                     </div>
                 <div className="right-navbar">
-                            <ul>
+                            <ul className="nav-ul">
                                 <li>
                                 <a href="/login"><button className="login-navbar footer-link">Login</button></a>
                                 </li>
