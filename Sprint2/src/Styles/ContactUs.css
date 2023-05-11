@@ -19,34 +19,28 @@
     justify-content: center;
 }
 
-.container {
+.container-contact {
     display: flex;
     position:relative;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
    justify-content: center;
-   padding: 1rem 1rem 1rem 1rem;
-   margin: 1rem 1rem 1rem 1rem;
+   margin: 2rem 1rem 1rem 1rem;
    background-image: url('https://cdn-icons-png.flaticon.com/512/7798/7798941.png');
    background-size: 100%;
    background-position: center;
    background-repeat: no-repeat;
    background-color: var(--primary-color-light);
    border-radius: 25px;
-   /* width: 50%;  */
+   place-items: center;
+   padding: 3rem;
+  
 } 
 .contact-box {
     display: flex;
     align-items: baseline;
     text-align: justify; 
-     /* padding: 30px 30px 30px;
-    border-radius: 25px; 
-     background-color: var(--primary-light); 
-    background-image: url('https://cdn-icons-png.flaticon.com/512/7798/7798941.png');
-    background-size: 80%;
-    background-position: center;
-    background-repeat: no-repeat;  */
+   
 } 
 
 .form-right {
@@ -54,8 +48,8 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
-    padding-left: 1rem;
-    /* padding-top: 3rem; */
+    padding-left: 1.5rem;
+    
 
 }
 .form-left {
@@ -72,32 +66,53 @@
     width: 95%;
     font-style: bold;
     color:white;
+    font-size: 22px;
 
 }
 .button:hover {
     background-color: plum; 
   }
 .contact {
-    font-size: 1.5rem;
+    font-size: 28px;
     color: var(--primary-color-dark);  
     text-align: center; 
     justify-content: center;
+    padding-bottom: 1rem;
 }
 .call {
     color: var(--primary-color-dark);
+    font-size: 22px;  
+}
+
+.call h4 {
+    font-size: 20px;  
 }
 .ourEmail {
     color: var(--primary-color-dark);
+    font-size: 22px;
 }
+.ourEmail h4{
+    font-size: 20px;
+}
+
 .location {
     color: var(--primary-color-dark);
+    font-size: 22px;
+}
+
+.location h4 {
+    font-size: 20px;
 }
 .name {
     border-radius: 5px;
+    font-size: 20px;
 }
 .email {
     border-radius: 5px;
+    font-size: 20px;
 }
 .message {
     border-radius: 5px;
+    font-size: 20px;
 }
+
