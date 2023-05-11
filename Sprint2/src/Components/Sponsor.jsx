@@ -13,7 +13,7 @@ import true_logo from '../Images/Sponsor/true.svg'
 
 function Sponsor_section() {
     return (
-      <div className="logos">
+      <div className="logos_sponsor" id="sponsor">
         <div className="logos-slide">
           <img src={aom1} alt="aom" />
           <img src={bua} alt="bua" />
