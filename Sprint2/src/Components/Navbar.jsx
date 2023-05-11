@@ -11,6 +11,7 @@ const Navbar = () => {
             <div className="navBar">
                 <div className="left-navbar">
                     <div className="logo-navbar">
+                    <div className="logo-navbar">
                         <a href='/'><img src= {logo} alt="logo-pic" width={200} /></a>
                     </div>
                 </div>
@@ -31,10 +32,13 @@ const Navbar = () => {
                     </div>
                 <div className="right-navbar">
                             <ul class="nav-ul">
+                            <ul class="nav-ul">
                                 <li>
+                                <a href="/login"><button className="login-navbar footer-link">Login</button></a>
                                 <a href="/login"><button className="login-navbar footer-link">Login</button></a>
                                 </li>
                                 <li>
+                                <a href="/signup"><button className="signup-navbar footer-link">SignUp</button></a>
                                 <a href="/signup"><button className="signup-navbar footer-link">SignUp</button></a>
                                 </li>
                             </ul>
