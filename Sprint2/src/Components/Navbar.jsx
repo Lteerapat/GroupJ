@@ -10,21 +10,21 @@ const Navbar = () => {
         
             <div className="navBar">
                 <div className="left-navbar">
-                    <div className="logo">
+                    <div className="logo-navbar">
                         <a href='/'><img src= {logo} alt="logo-pic" width={200} /></a>
                     </div>
                 </div>
                     <div className="middle-navbar">
                         <nav>
-                            <ul>
+                            <ul className="nav-ul">
                                 <li>
-                                    <a href="#">Feature</a>
+                                    <a href="#feature" className="footer-link">Feature</a>
                                 </li>
                                 <li>
-                                    <a href="#">My Journey</a>
+                                    <a href="#myJourney" className="footer-link">My Journey</a>
                                 </li>
                                 <li>
-                                    <a href="#">Our Customers</a>
+                                    <a href="#sponsor" className="footer-link">Our Customers</a>
                                 </li>
                             </ul>
                         </nav>

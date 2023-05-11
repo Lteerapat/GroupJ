@@ -9,7 +9,7 @@
     background-color: var(--primary-color-dark);
 }
 
-ul {
+ul.nav-ul {
     display: flex;
     flex-direction: row;
 
@@ -19,7 +19,7 @@ ul {
     padding: 1rem;
 }
 
-li a{
+ul.nav-ul li a{
     color: white;
     font-size: 1.5rem;
     display: flex;
@@ -31,10 +31,10 @@ li a{
 
 }
 
-.logo {
+.logo-navbar {
     padding: 10px;
 }
-.login {
+.login-navbar {
     background-color: #ffff;
     border: 0;
     border-radius: 100px;
@@ -57,7 +57,7 @@ li a{
 
 }
 
-.signup {
+.signup-navbar {
     background-color: var(--primary-color-light);
     border: 0;
     border-radius: 100px;

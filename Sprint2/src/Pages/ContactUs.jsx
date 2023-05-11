@@ -11,7 +11,6 @@ const ContactUs = () => {
     <div>
         <Navbar />
         <ContactUs2 />
-        <Footer /> 
     </div>
     );
 }
@@ -35,7 +34,7 @@ const ContactUs2 = () => {
     return (
         
     <div className="body">
-        <div className="container" >
+        <div className="container-contact" >
         <div className="contact">
             <h1 id="contact">Contact Us</h1>
         </div>
