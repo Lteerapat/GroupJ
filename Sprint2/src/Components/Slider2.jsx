@@ -1,100 +1,136 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import "../Styles/Slider2.css";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import trophy from "../Images/Landing/trophy.png";
-import graph from "../Images/Landing/graph.png";
-import Line from "../Images/Landing/Line.png";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-
-const list = [
-  {
-    id: 1,
-    name: "Achievement",
-    title:
-      "Get started today and see how our achievement feature can help you achieve your goals.",
-    image: trophy,
-    link:"/achievement",
-  },
-  {
-    id: 2,
-    name: "JS Chart",
-    title:
-      "Visualize your exercise progress!! our graph progress can help you stay motivated and reach your goals.",
-    image: graph,
-    link:"/dashboard",
-  },
-  {
-    id: 3,
-    name: "Line Connect",
-    title:
-      "Connect your exercise tracking to LINE and start sharing with friends. It's easy and fun!",
-    image: Line,
-    link:"/#",
-  },
-];
-
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import trophy_slider2 from '../Images/Landing/trophy.png';
+import chart_slider2 from '../Images/Landing/graph.png';
+import line_slider2 from '../Images/Landing/Line.png';
 
 const Slider2 = () => {
-  const [people, setPeople] = useState(list);
-  const[currentPerson, setCurrentPerson] = useState(0);
-  
-  const prevSlide  = () => {
-    setCurrentPerson((oldPerson)=>{
-      const result = (oldPerson - 1 + people.length) % people.length;
-      return result;
-    });
-  };
-  const nextSlide = () => {
-    setCurrentPerson((oldPerson)=>{
-      const result = (oldPerson + 1 ) % people.length;
-      return result;
-    });
-  };
-
-  useEffect(() => {
-    let sliderId = setInterval( () => {
-      nextSlide();
-    }, 4000);
-    return () => {
-      clearInterval(sliderId);
-    };
-  },[currentPerson]);
-
-
-  return (
-    <section className="slider-container">
-      {people.map((person, personIndex) => {
-        const { id, name, title, image, link } = person;
-        return(
-        <article className="slide " style={{transform:`translateX(${100*(personIndex-currentPerson)}%)`,
-        opacity: personIndex === currentPerson ? 1 : 0,
-        visibility: personIndex === currentPerson ? 'visible' : 'hidden',
-        }} 
-        key={id}>
-            <div className="container_content1">
-              <div>
-                <h1>{name}</h1>
-                <p>{title}</p>
-              </div>
-              <div>
-                <div className="container_trophy">
-                  <a href= {link}>
-                  <img src={image} alt={name} />
-                  </a>
+    const slides = [
+        {url: trophy_slider2, title: "Achievement", 
+            descriptionHeader: <a href="/login"><h2>Achievement</h2></a>,
+            descriptionContent:<p>Get started today and see how our achievement feature can help you achieve your goals.</p> 
+        },
+        {url:chart_slider2, title: "JS Chart", 
+            descriptionHeader: <a href="/login"><h2>JS Chart</h2></a>,
+            descriptionContent:<p>Visualize your exercise progress!! our graph progress can help you stay motivated and reach your goals.</p> 
+        },
+        {url:line_slider2, title: "Line Connect", 
+            descriptionHeader:<a href="/login"><h2>Line Connect</h2></a>,
+            descriptionContent:<p>Connect your exercise tracking to LINE and start sharing with friends. It's easy and fun!</p> 
+        },
+    ]
+    
+    return (
+        <>
+            <div className="container-out__slider2" id="id__slider2">
+                <div className="container-size__slider2">
+                    <Slider 
+                        slides={slides} 
+                        parentWidth={900} 
+                    />
                 </div>
-              </div>
             </div>
-        </article>
-        );
-      })}
-    <button type='button' className='prev' onClick={prevSlide}>
-      <FiChevronLeft/>
-    </button>
-    <button type='button' className='next' onClick={nextSlide}>
-      <FiChevronRight/>
-   </button>
-    </section>
-  );
+        </>
+    );
+};
+
+const Slider = ({slides, parentWidth}) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [activeSlideTab, setActiveSlideTab] = useState(0);
+    const timeRef = useRef();
+
+    const goToPrevious = () => {
+        const isFirstSlide = currentIndex === 0
+        const newIndex = isFirstSlide ? slides.length - 1 : currentIndex - 1;
+        setCurrentIndex(newIndex);
+        setActiveSlideTab(newIndex)
+    }
+
+    const goToNext = useCallback(() => {
+        const isLastSlide = currentIndex === slides.length - 1;
+        const newIndex = isLastSlide ? 0 : currentIndex + 1;
+        setCurrentIndex(newIndex);
+        setActiveSlideTab(newIndex)
+    }, [currentIndex, slides]);
+
+    const goToSlide = (slideindex) => {
+        setCurrentIndex(slideindex)
+        setActiveSlideTab(slideindex)
+    }
+
+    //style background image
+    const myJourneySlidesStyles = (slideIndex) => ({
+        backgroundImage: `url(${slides[slideIndex].url})`,
+        width: `${parentWidth}px`,
+    })
+
+    const myJourneySlidesContainerStyles = () => ({
+        width: parentWidth * slides.length,
+        transform: `translateX(${-(currentIndex * parentWidth)}px)`,
+    });
+
+    useEffect(() => {
+        if (timeRef.current) {
+            clearTimeout(timeRef.current);
+        }
+
+        timeRef.current = setTimeout(() => {
+            goToNext()
+        }, 4000);
+
+        return () => clearTimeout(timeRef.current);
+    }, [goToNext]);
+    
+    return (
+        <div className="container-content-slider2">
+            <div>
+                <div className="slider2-previous-arrow" onClick={goToPrevious}>
+                    <i class="fa-solid fa-chevron-left"></i>
+                </div>
+                <div className="slider2-next-arrow" onClick={goToNext}>
+                    <i class="fa-solid fa-chevron-right"></i>
+                </div>
+            </div>
+
+            <div className="slider2-container-overflow">
+                <div
+                    className="slider2-container"
+                    style={myJourneySlidesContainerStyles()}
+                >
+                    {slides.map((slide, slideIndex) => (
+                        <div className="slider2-content">
+                          <div className="slider2-description">
+                                {slides[slideIndex].descriptionHeader}
+                                {slides[slideIndex].descriptionContent}
+                                {slides[slideIndex].link}
+                            </div>
+                            <div className="slider2-img-container">
+                                <div
+                                    key={slideIndex}
+                                    style={myJourneySlidesStyles(slideIndex)}
+                                    className="slider2-img"
+                                ></div>
+                            </div>
+                            
+                        </div>
+                    ))}    
+                </div>
+            </div>
+
+            <div className="slider2-tab-container">
+                {slides.map((slide,slideIndex) => (
+                    <div 
+                        key={slideIndex} 
+                        className={`slider2-tab ${activeSlideTab === slideIndex ? 'active-slider2-tab' : ''}`}
+                        onClick={() => goToSlide(slideIndex)}
+                    >
+                        <button></button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 };
 
 export default Slider2;
