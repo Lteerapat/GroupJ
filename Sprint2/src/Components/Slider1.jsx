@@ -1,5 +1,6 @@
 import "../Styles/Slider1.css";
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 // Import Image
 import Image1 from "../Images/Landing/slide-top-1.png";
@@ -10,6 +11,7 @@ const Slider = () => {
   const timeRef = useRef(null);
   const slideImage = [Image1, Image2, Image3];
   const [Image, setImage] = useState(0);
+
 
   const next = () => {
     if (Image < slideImage.length - 1) {
@@ -33,7 +35,7 @@ const Slider = () => {
     }
     timeRef.current = setTimeout(() => {
       next();
-    }, 3000);
+    }, 4000);
 
     return () => clearTimeout(timeRef.current);
   });
@@ -48,9 +50,7 @@ const Slider = () => {
   return (
     <div className="slider-top">
       <div className="slider-top-img">
-        <img className="slider-img" src={slideImage[Image]} />
-        {/* <img className="slider-img" src={slideImage[1]} />
-        <img className="slider-img" src={slideImage[2]} /> */}
+        <img className="slide-top-img" src={slideImage[Image]} />
       </div>
       <div className="slider-top-dot">
         <span
@@ -66,12 +66,17 @@ const Slider = () => {
           onClick={() => dotImage(2)}
         ></span>
       </div>
-      <button className="pervious" onClick={() => prev()}>
+      <button className="pervious-slider-top" onClick={() => prev()}>
         &#8249;
       </button>
-      <button className="next" onClick={() => next()}>
+      <button className="next-slider-top" onClick={() => next()}>
         &#8250;
       </button>
+      <Link to="/signup">
+        <button id={Image === 0 ? "join-us-slider-top-none" : " "} className="join-us-slider-top">
+          Join US
+        </button>
+      </Link>
     </div>
   );
 };

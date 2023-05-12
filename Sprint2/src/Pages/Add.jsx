@@ -25,17 +25,23 @@ const Add = () => {
   //Duration
   const [duration,setDuration] = useState()
 
+  //Distance
+  const [distance,setDistance] = useState()
+
   //Note
   const [note,setNote] = useState()
 
+
+
   return (
     <div className="container-add">
-      <div className="container">
+      <div className="container-form-add-edit">
         <h1>Add Your Activity</h1>
         <NameActivity nameActivity={nameActivity} setNameActivity={setNameActivity}/>
         <TypeActivity handleActivity={handleActivity} activity={activity} />
         <DateAcitvity date={date} setDate={setDate} />
-        <DurationNote duration={duration} setDuration={setDuration} note={note} setNote={setNote} />
+        <DurationNote duration={duration} setDuration={setDuration} distance={distance} setDistance={setDistance} />
+        <Note note={note} setNote={setNote} />
         <Buttom submitButton={submitButton} />
       </div>
     </div>
@@ -46,7 +52,7 @@ const NameActivity = (props) => {
   const { nameActivity,setNameActivity } = props;
   return (
     <div className="NameActivity">
-      <label>Activity Name : {nameActivity} </label>
+      <label>Activity Name  {nameActivity} </label>
       <br />
       <input onChange={(event)=> setNameActivity(event.target.value)} type="text" ></input>
     </div>
@@ -57,7 +63,7 @@ const TypeActivity = (props) => {
   const { handleActivity, activity } = props;
   return (
     <div className="TypeActivity">
-      <label>Activity Type : {activity}</label>
+      <label>Activity Type  {activity}</label>
       <ul>
         <li
           id={activity === "walking" ? "SeleteActive" : ""}
@@ -104,7 +110,7 @@ const DateAcitvity = (props) => {
   const {date ,setDate} = props
   return (
     <div className="DateAcitvity">
-      <label>Date : {date}</label>
+      <label>Date  {date}</label>
       <br />
       <input type="date" onChange={(event)=> setDate(event.target.value)} placeholder="Date / Month / Year"></input>
     </div>
@@ -112,23 +118,34 @@ const DateAcitvity = (props) => {
 };
 
 const DurationNote = (props) => {
-  const { duration,setDuration,note,setNote} = props
-  const navigate = useNavigate();
-  const submitButton = () => {
-    navigate("/dashboard");
-  };
+  const { duration,setDuration,distance,setDistance} = props
+
 
   return (
-    <div className="DurationNote">
+    <div className="DurationDistance">
       <div>
-        <label>Duration :{duration}</label>
+        <label>Duration {duration}</label>
         <br />
         <input type="number" onChange={(event)=> setDuration(event.target.value)}/><span>min</span>
       </div>
       <div>
-        <label>Note: {note}</label>
+        <label>Distance {distance}</label>
         <br />
-        <input type="text" onChange={(event)=> setNote(event.target.value)}/>
+        <input type="number" onChange={(event)=> setDistance(event.target.value)}/><span>meter</span>
+      </div>
+    </div>
+  );
+};
+
+const Note = (props) => {
+  const { note,setNote} = props
+
+  return (
+    <div className="Note">
+      <div>
+        <label for="note-area">Note</label>
+        <br />
+        <textarea name="note-area" rows="4" cols="39" onChange={(event)=> setNote(event.target.value)}></textarea>
       </div>
     </div>
   );
@@ -137,7 +154,7 @@ const DurationNote = (props) => {
 const Buttom = (props) => {
   const { submitButton } = props;
   return (
-    <div className="Buttom">
+    <div className="Buttom-Add-Edit">
       <button onClick={submitButton}>Add</button>
       <button onClick={submitButton}>Cancel</button>
     </div>

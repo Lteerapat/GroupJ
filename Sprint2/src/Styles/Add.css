@@ -6,14 +6,14 @@
   padding-top: 100px;
 }
 
-.container {
+.container-form-add-edit {
   background-color: var(--primary-color-light);
   border-radius: 20px;
   padding: 30px;
   width: 500px;
-  height: 550px;
+  height: 610px;
 }
-.container h1 {
+.container-form-add-edit h1 {
   text-align: center;
   font-size: 1.5rem;
 }
@@ -81,49 +81,64 @@
   padding: 5px;
 }
 
-/* Duration and Note */
-.DurationNote {
+/* Duration and Distance */
+.DurationDistance {
   display: flex;
-  justify-content: space-between;
   margin: 20px 0;
   
 }
-.DurationNote div {
+.DurationDistance div {
   position: relative;
 }
 
-.DurationNote :nth-child(1) input {
+.DurationDistance :nth-child(1) input {
   width: 50%;
   height: 35px;
   outline: none;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding: 5px;
   
 }
-.DurationNote :nth-child(1) span {
+.DurationDistance :nth-child(1) span {
   font-size: 1.25rem;
   position: absolute;
-  top: 28px;
-  right: 130px;
+  top: 49%;
+  left: 25%;
 }
-.DurationNote :nth-child(2) input {
+.DurationDistance :nth-child(2) input {
   width: 100%;
   height: 35px;
+  width: 150px;
   outline: none;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  padding: 5px;
+}
+.DurationDistance :nth-child(2) span {
+  font-size: 1.25rem;
+  position: absolute;
+  top: 49%;
+  right: 17%;
+}
+
+/* Note */
+.Note {
+  
+}
+.Note textarea {
+  outline: none;
+  font-size: 1.25rem;
   padding: 5px;
 }
 
 /* Button */
-.Buttom {
+.Buttom-Add-Edit {
   text-align: center;
-  margin-top: 60px;
 }
-.Buttom button {
+.Buttom-Add-Edit button {
   padding: 5px 35px;
   margin: 20px;
 }
-.Buttom :nth-child(1) {
+.Buttom-Add-Edit :nth-child(1) {
   background-color: #008000;
   color: white;
   border: 0px;
@@ -132,7 +147,7 @@
   height: 35px;
   overflow: hidden;
 }
-.Buttom :nth-child(1):hover {
+.Buttom-Add-Edit :nth-child(1):hover {
   background-color: #a5e65a;
   font-weight: bolder;
   color: #5f7174;
@@ -141,7 +156,7 @@
   transition: all 0.25s ease;
 }
 
-.Buttom :nth-child(2) {
+.Buttom-Add-Edit :nth-child(2) {
   background-color: #ff0000;
   color: white;
   border: 0px;
@@ -151,7 +166,7 @@
   overflow: hidden;
 }
 
-.Buttom :nth-child(2):hover {
+.Buttom-Add-Edit :nth-child(2):hover {
   background-color: #ff4026;
   font-weight: bolder;
   color: #000000;
@@ -161,13 +176,21 @@
 }
 
 /* all  */
-input {
+.container-form-add-edit input {
   margin-top: 5px;
 }
-input:focus {
+.container-form-add-edit input:focus {
   border-color: #0bf163;
   border-radius: 5px;
 }
-label {
+.container-form-add-edit label {
   opacity: 0.9;
+}
+.container-form-add-edit textarea {
+  margin-top: 5px;
+}
+
+.container-form-add-edit textarea:focus {
+  border-color: #0bf163;
+  border-radius: 5px;
 }
