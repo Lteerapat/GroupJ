@@ -1,6 +1,6 @@
 @import '../Styles/global.css';
 
-span {
+.db-location span {
     color: white;
 }
 
@@ -110,7 +110,7 @@ span {
     border-radius: 100%;
 }
 
-.card-container {
+.db-card-container {
     display: flex;
     height: 100%;
     width: 100%;
@@ -120,7 +120,7 @@ span {
     
 }
 
-.card-add {
+.db-card-add {
     display: flex;
     justify-content: center;
     border-radius: 50px;
@@ -133,18 +133,18 @@ span {
     color: var(--bg-activity-color);
 }
 
-.card-add:hover {
+.db-card-add:hover {
     scale: 1.02;
     cursor: pointer;
     box-shadow: 0px 5px 30px rgb(185, 178, 178);
 
 }
 
-.card-add:active {
+.db-card-add:active {
     scale: .95;
 }
 
-.card {
+.db-card {
     background: var(--primary-color);
     display: flex;
     justify-content: space-between;
@@ -155,18 +155,18 @@ span {
     color: var(--bg-activity-color);
 }
 
-.card:hover {
+.db-card:hover {
     scale: 1.02;
     cursor: pointer;
     box-shadow: 0px 5px 30px rgb(185, 178, 178);
 
 }
 
-.card:active {
+.db-card:active {
     scale: .95;
 }
 
-.activity-bg {
+.db-activity-bg {
     display: flex;
     background-color: var(--bg-activity-color);
     border-radius: 100%;
@@ -178,7 +178,7 @@ span {
     font-size: 3rem;
 }
 
-.activity-edit-del {
+.db-activity-edit-del {
     display: flex;
     gap: 3rem;
     font-size: 3rem;
@@ -204,31 +204,31 @@ span {
     color: red;
 }
 
-.activity-content {
+.db-activity-content {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.activity-content h2 {
+.db-activity-content h2 {
     font-size: 2rem;
     font-weight: 900;
 }
 
-.activity-property {
+.db-activity-property {
     display: flex;
     flex-direction: column;
     gap: .5rem;
     font-size: large;
 }
 
-.activity-property-top {
+.db-activity-property-top {
     display: flex;
     gap: 1rem;
     justify-content: space-between;
 
 }
-.activity-property-bottom {
+.db-activity-property-bottom {
     display: flex;
     gap: 2rem;
     

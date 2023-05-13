@@ -38,28 +38,28 @@ const Cards = () => {
   };
 
   return (
-    <div className="card-container">
+    <div className="db-card-container">
       {cards.map((card) => (
-        <div className="card" key={card.id}>
-          <div className="activity-bg">
+        <div className="db-card" key={card.id}>
+          <div className="db-activity-bg">
           {/*need to change to card.activityType */}
             <i className="fa-solid fa-person-running"></i>
           {/*need to change to card.activityType */}
           </div>
-          <div className="activity-content">
+          <div className="db-activity-content">
             <h2>{card.activityName}</h2>
-            <div className="activity-property">
-              <div className="activity-property-top">
+            <div className="db-activity-property">
+              <div className="db-activity-property-top">
                 <h4>Date : {card.activityDate}</h4>
                 <h4>Duration : {card.activityDuration}</h4>
               </div>
-              <div className="activity-property-bottom">
+              <div className="db-activity-property-bottom">
                 <h4>Distance : {card.activityDistance}</h4>
                 <h4>Note : {card.activityNote}</h4>
               </div>
             </div>
           </div>
-          <div className="activity-edit-del">
+          <div className="db-activity-edit-del">
             <a href={"/edit"}>
               <i className="fa-solid fa-pen-to-square"></i>
             </a>

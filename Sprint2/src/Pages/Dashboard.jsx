@@ -53,8 +53,8 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="card-container">
-              <div className="card-add">
+            <div className="db-card-container">
+              <div className="db-card-add">
                 <a href={"/add"}>
                   <i className="fa-solid fa-plus"></i>
                 </a>
