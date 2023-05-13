@@ -5,7 +5,7 @@ span {
 }
 
 /* container section */
-.container {
+.db-container {
     height: 100%;
     display: flex;
     justify-content:  center;
@@ -13,7 +13,7 @@ span {
     
 }
 
-.container > img {
+.db-container > img {
     width: 100%;
     display: block;
     position: fixed;
@@ -21,7 +21,7 @@ span {
 }
 
 /* left section */
-.left-container{
+.db-left-container{
     width: 25%;
     height: 100%;
     position: fixed;
@@ -29,7 +29,7 @@ span {
     padding: 1rem;
 }
 
-.left {
+.db-left {
     display: flex;
     flex-direction: column;
     border-radius: 50px;
@@ -37,22 +37,22 @@ span {
     height: 100%;
 }
 
-.logo a img {
+.db-logo a img {
     display: block;
     width: 100%;
     padding: 1rem;
 }
 
-.nav-bar {
+.db-nav-bar {
     height: 100%;
 }
-nav {
+.db-nav-bar nav {
     display: flex;
     justify-content: center;
     height: 100%;
 }
 
-ul {
+.db-nav-bar nav ul {
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -60,36 +60,35 @@ ul {
     padding: 1rem;
 }
 
-li a{
+.db-nav-bar nav ul li a {
     color: white;
     font-size: 1.5rem;
     display: flex;
     gap: 5px;
     align-items: center;
     justify-content: center;
-
 }
 
 
 /* middle section */
-.middle-container {
+.db-middle-container {
     width: 50%;
 }
 
-.middle {
+.db-middle {
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.mini-profile {
+.db-mini-profile {
     width: 100%;
     display: flex;
     justify-content: space-between;
     padding: 2rem;
 }
 
-.location {
+.db-location {
     display: flex;
     font-size: large;
     align-items: center;
@@ -98,14 +97,14 @@ li a{
     
 }
 
-.location i {
+.db-location i {
     color: white;
     font-size: 3rem;
 }
 
 
 
-.profile-pic img {
+.db-profile-pic img {
     display: block;
     width: 5rem;
     border-radius: 100%;
@@ -237,7 +236,7 @@ li a{
 
 
 /* right section */
-.right-container {
+.db-right-container {
     width: 25%;
     height: 100%;
     position: fixed;
@@ -245,7 +244,7 @@ li a{
     padding: 1rem;
 }
 
-.right {
+.db-right {
     display: flex;
     flex-direction: column;
     border-radius: 50px;
@@ -255,11 +254,11 @@ li a{
     align-items: center;
 }
 
-.activity-summary-top {
+.db-activity-summary-top {
     color: white;
 }
 
-.activity-summary {
+.db-activity-summary {
     background-color: var(--bg-color-alt);
     width: 90%;
     height: 20%;
@@ -270,6 +269,3 @@ li a{
     
 }
 
-.delete {
-    font-size: 2rem;
-}

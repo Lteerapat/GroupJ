@@ -4,25 +4,24 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import bgDashBoard from "../Images/Dashboard/bg-dashboard.png";
 import logoLight from "../Images/Logo/gaintrack-logo-light.png";
 import profilePic from "../Images/Dashboard/profilePic.png";
-import { useState, useEffect } from "react";
-import Cards from "../Components/card"
+import Cards from "./../Components/cards"
 
 const Dashboard = () => {
 
   return (
 
-    <div className="big-container">
-      <div className="container">
+    <div className="db-big-container">
+      <div className="db-container">
         <img src={bgDashBoard} alt="bg" />
 
-        <div className="left-container">
-          <div className="left">
-            <div className="logo">
+        <div className="db-left-container">
+          <div className="db-left">
+            <div className="db-logo">
               <a href={"/"}>
                 <img src={logoLight} alt="logo-pic" />
               </a>
             </div>
-            <div className="nav-bar">
+            <div className="db-nav-bar">
               <nav>
                 <ul>
                   <li>
@@ -41,15 +40,15 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="middle-container">
-          <div className="middle">
-            <div className="mini-profile">
-              <div className="location">
+        <div className="db-middle-container">
+          <div className="db-middle">
+            <div className="db-mini-profile">
+              <div className="db-location">
                 <i className="fa-solid fa-location-dot"></i>
                 <span>Somewhere, Space</span>
               </div>
 
-              <div className="profile-pic">
+              <div className="db-profile-pic">
                 <img src={profilePic} alt="profile-pic" />
               </div>
             </div>
@@ -65,15 +64,15 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="right-container">
-          <div className="right">
-            <div className="activity-summary-top">
+        <div className="db-right-container">
+          <div className="db-right">
+            <div className="db-activity-summary-top">
               <h2>Activity Tracking</h2>
               <h4>Monday, 01 Jan</h4>
             </div>
-            <div className="activity-summary">a</div>
-            <div className="activity-summary">a</div>
-            <div className="activity-summary">sa</div>
+            <div className="db-activity-summary">a</div>
+            <div className="db-activity-summary">a</div>
+            <div className="db-activity-summary">sa</div>
           </div>
         </div>
       </div>
