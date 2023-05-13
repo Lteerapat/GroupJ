@@ -181,21 +181,27 @@ li a{
 
 .activity-edit-del {
     display: flex;
-    gap: 2rem;
+    gap: 3rem;
     font-size: 3rem;
 }
 
-.activity-edit-del:hover a i:first-child {
+.fa-pen-to-square:hover {
     scale: 1.02;
     cursor: pointer;
     box-shadow: 0px 5px 30px rgb(80, 238, 255);
 }
 
-.activity-edit-del a i:first-child {
+.fa-pen-to-square {
     color: var(--primary-color-dark);
 }
 
-.activity-edit-del i:last-child {
+.fa-trash:hover {
+    scale: 1.02;
+    cursor: pointer;
+    box-shadow: 0px 5px 30px rgb(255, 80, 238);
+}
+
+.fa-trash {
     color: red;
 }
 
@@ -262,4 +268,8 @@ li a{
     align-items: center;
     justify-content: center;
     
+}
+
+.delete {
+    font-size: 2rem;
 }
