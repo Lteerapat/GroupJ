@@ -1,49 +1,71 @@
 import "../Styles/Add.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 
 const Edit = () => {
-  //Navigate
-  const navigate = useNavigate();
-  const submitButton = () => {
-    navigate("/dashboard");
-  };
+    const {id} =useParams();
+    //NameActivity
+    const [nameActivity, setNameActivity] = useState('');
+    //Type Activity
+    const [activity, setActivity] = useState('');
+    //Date 
+    const [date,setDate] = useState('');
+    //Duration
+    const [duration,setDuration] = useState('');
+    //Distance
+    const [distance,setDistance] = useState('');
+    //Note
+    const [note,setNote] = useState('');
+    const [saveRedirect, setSaveRedirect] = useState(false);
 
-  //NameActivity
-  const [nameActivity, setNameActivity] = useState();
+    useEffect(() => {
+        if (!id) {
+            return;
+        }
+        axios.get('/activity-edit/'+id).then(res => {
+            const {data} = res;
+            setNameActivity(data.title);
+            setActivity(data.activity_type);
+            setDate(data.date);
+            setDuration(data.duration);
+            setDistance(data.distance);
+            setNote(data.note);
+        });
+    }, [id]);
+    
+    const saveEditedActivity = async (e) => {
+        e.preventDefault();
+        const activityData = {nameActivity, activity, date, duration, distance, note};
+        if (id) {
+            await axios.put('/activity-edit', {id, ...activityData});
+            setSaveRedirect(true);
+        } 
+    };
 
-  //Type Acrivity
-  const [activity, setActivity] = useState();
-  const handleActivity = (active) => {
-    setActivity(active);
-  };
+    //Navigate
+    if (saveRedirect) {
+        return <Navigate to={'/dashboard'} />
+    }
 
-  //Date 
-  const [date,setDate] = useState()
-
-  //Duration
-  const [duration,setDuration] = useState()
-
-  //Distance
-  const [distance,setDistance] = useState()
-
-  //Note
-  const [note,setNote] = useState()
+    const handleActivity = (active) => {
+        setActivity(active);
+    };
 
 
 
   return (
     <div className="container-add">
-      <div className="container-form-add-edit">
+      <form className="container-form-add-edit" onSubmit={saveEditedActivity}>
         <h1>Edit Your Activity</h1>
         <NameActivity nameActivity={nameActivity} setNameActivity={setNameActivity}/>
         <TypeActivity handleActivity={handleActivity} activity={activity} />
-        <DateAcitvity date={date} setDate={setDate} />
+        <DateActivity date={date} setDate={setDate} />
         <DurationNote duration={duration} setDuration={setDuration} distance={distance} setDistance={setDistance} />
         <Note note={note} setNote={setNote} />
-        <Buttom submitButton={submitButton} />
-      </div>
+        <Button />
+      </form>
     </div>
   );
 };
@@ -52,9 +74,13 @@ const NameActivity = (props) => {
   const { nameActivity,setNameActivity } = props;
   return (
     <div className="NameActivity">
-      <label>Activity Name  {nameActivity} </label>
+      <label>Activity Name:  {nameActivity} </label>
       <br />
-      <input onChange={(event)=> setNameActivity(event.target.value)} type="text" ></input>
+      <input 
+        type="text" 
+        value={nameActivity}
+        onChange={(event)=> setNameActivity(event.target.value)} 
+      />
     </div>
   );
 };
@@ -63,7 +89,7 @@ const TypeActivity = (props) => {
   const { handleActivity, activity } = props;
   return (
     <div className="TypeActivity">
-      <label>Activity Type  {activity}</label>
+      <label>Activity Type:  {activity}</label>
       <ul>
         <li
           id={activity === "walking" ? "SeleteActive" : ""}
@@ -95,22 +121,16 @@ const TypeActivity = (props) => {
         >
           <i className="fa-sharp fa-solid fa-person-hiking"></i>
         </li>
-        <li
-          id={activity === "plus" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("plus")}
-        >
-          <i className="fa-sharp fa-solid fa-plus"></i>
-        </li>
       </ul>
     </div>
   );
 };
 
-const DateAcitvity = (props) => {
+const DateActivity = (props) => {
   const {date ,setDate} = props
   return (
     <div className="DateAcitvity">
-      <label>Date  {date}</label>
+      <label>Date:  {date}</label>
       <br />
       <input type="date" onChange={(event)=> setDate(event.target.value)} placeholder="Date / Month / Year"></input>
     </div>
@@ -124,12 +144,12 @@ const DurationNote = (props) => {
   return (
     <div className="DurationDistance">
       <div>
-        <label>Duration {duration}</label>
+        <label>Duration: {duration}</label>
         <br />
         <input type="number" onChange={(event)=> setDuration(event.target.value)}/><span>min</span>
       </div>
       <div>
-        <label>Distance {distance}</label>
+        <label>Distance: {distance}</label>
         <br />
         <input type="number" onChange={(event)=> setDistance(event.target.value)}/><span>meter</span>
       </div>
@@ -143,7 +163,7 @@ const Note = (props) => {
   return (
     <div className="Note">
       <div>
-        <label for="note-area">Note</label>
+        <label for="note-area">Note:</label>
         <br />
         <textarea name="note-area" rows="4" cols="39" onChange={(event)=> setNote(event.target.value)}></textarea>
       </div>
@@ -151,14 +171,17 @@ const Note = (props) => {
   );
 };
 
-const Buttom = (props) => {
-  const { submitButton } = props;
-  return (
-    <div className="Buttom-Add-Edit">
-      <button onClick={submitButton}>Save</button>
-      <button onClick={submitButton}>Cancel</button>
-    </div>
-  );
+const Button = () => {
+    const [cancelRedirect, setCancelRedirect] = useState(false);
+    if (cancelRedirect) {
+        return <Navigate to={'/dashboard'} />
+    }
+    return (
+        <div className="Buttom-Add-Edit">
+        <button>Save</button>
+        <button onClick={()=>{setCancelRedirect(true)}}>Cancel</button>
+        </div>
+    );
 };
 
 export default Edit;
