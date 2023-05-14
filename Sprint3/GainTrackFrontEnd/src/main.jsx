@@ -55,6 +55,11 @@ const router = createBrowserRouter([
         errorElement: <Error />
     },
     {
+        path: '/edit/:id',
+        element: <Edit />,
+        errorElement: <Error />
+    },
+    {
         path: '/contactus',
         element: <ContactUs />,
         errorElement: <Error />

@@ -49,18 +49,12 @@ const Edit = () => {
         return <Navigate to={'/dashboard'} />
     }
 
-    const handleActivity = (active) => {
-        setActivity(active);
-    };
-
-
-
   return (
     <div className="container-add">
       <form className="container-form-add-edit" onSubmit={saveEditedActivity}>
         <h1>Edit Your Activity</h1>
         <NameActivity nameActivity={nameActivity} setNameActivity={setNameActivity}/>
-        <TypeActivity handleActivity={handleActivity} activity={activity} />
+        <TypeActivity setActivity={setActivity} activity={activity} />
         <DateActivity date={date} setDate={setDate} />
         <DurationNote duration={duration} setDuration={setDuration} distance={distance} setDistance={setDistance} />
         <Note note={note} setNote={setNote} />
@@ -74,7 +68,7 @@ const NameActivity = (props) => {
   const { nameActivity,setNameActivity } = props;
   return (
     <div className="NameActivity">
-      <label>Activity Name:  {nameActivity} </label>
+      <label>Activity Name: {nameActivity}</label>
       <br />
       <input 
         type="text" 
@@ -86,38 +80,38 @@ const NameActivity = (props) => {
 };
 
 const TypeActivity = (props) => {
-  const { handleActivity, activity } = props;
+  const { activity, setActivity } = props;
   return (
     <div className="TypeActivity">
-      <label>Activity Type:  {activity}</label>
+      <label>Activity Type: {activity}</label>
       <ul>
         <li
           id={activity === "walking" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("walking")}
+          onClick={() => setActivity("walking")}
         >
           <i className="fa-solid fa-person-walking"></i>
         </li>
         <li
           id={activity === "running" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("running")}
+          onClick={() => setActivity("running")}
         >
           <i className="fa-sharp fa-solid fa-person-running"></i>
         </li>
         <li
           id={activity === "biking" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("biking")}
+          onClick={() => setActivity("biking")}
         >
           <i className="fa-sharp fa-solid fa-person-biking"></i>
         </li>
         <li
           id={activity === "swimming" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("swimming")}
+          onClick={() => setActivity("swimming")}
         >
           <i className="fa-sharp fa-solid fa-person-swimming"></i>
         </li>
         <li
           id={activity === "hiking" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("hiking")}
+          onClick={() => setActivity("hiking")}
         >
           <i className="fa-sharp fa-solid fa-person-hiking"></i>
         </li>
@@ -127,31 +121,44 @@ const TypeActivity = (props) => {
 };
 
 const DateActivity = (props) => {
-  const {date ,setDate} = props
-  return (
-    <div className="DateAcitvity">
-      <label>Date:  {date}</label>
-      <br />
-      <input type="date" onChange={(event)=> setDate(event.target.value)} placeholder="Date / Month / Year"></input>
-    </div>
-  );
+    const {date, setDate} = props
+    return (
+        <div className="DateAcitvity">
+        <label>Date: {date}</label>
+        <br />
+        <input 
+            type="date" 
+            value={date}
+            onChange={(event)=> setDate(event.target.value)} 
+        />
+        </div>
+    );
 };
 
 const DurationNote = (props) => {
   const { duration,setDuration,distance,setDistance} = props
-
 
   return (
     <div className="DurationDistance">
       <div>
         <label>Duration: {duration}</label>
         <br />
-        <input type="number" onChange={(event)=> setDuration(event.target.value)}/><span>min</span>
+        <input 
+            type="number" 
+            value={duration}
+            onChange={(event)=> setDuration(event.target.value)}
+        />
+        <span>min</span>
       </div>
       <div>
         <label>Distance: {distance}</label>
         <br />
-        <input type="number" onChange={(event)=> setDistance(event.target.value)}/><span>meter</span>
+        <input 
+            type="number" 
+            value={distance}
+            onChange={(event)=> setDistance(event.target.value)}
+        />
+        <span>meter</span>
       </div>
     </div>
   );
@@ -165,7 +172,10 @@ const Note = (props) => {
       <div>
         <label for="note-area">Note:</label>
         <br />
-        <textarea name="note-area" rows="4" cols="39" onChange={(event)=> setNote(event.target.value)}></textarea>
+        <textarea name="note-area" rows="4" cols="39" 
+            value={note}
+            onChange={(event)=> setNote(event.target.value)} 
+        />
       </div>
     </div>
   );

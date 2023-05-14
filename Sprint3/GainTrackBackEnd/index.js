@@ -10,6 +10,9 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const app = express();
 
+// Routes
+const activityEdit = require('./routes/activityEdit');
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
@@ -17,9 +20,11 @@ app.use(cors({
     origin: 'http://localhost:5173',
 }));
 
+// Use Routes
 app.get('/', (req, res) => {
     res.json('test ok');
 });
+app.use('/activity-edit', activityEdit);
 
 const port = process.env.PORT || 3002
 const start = async () => {
