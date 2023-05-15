@@ -24,7 +24,7 @@ const Edit = () => {
         if (!id) {
             return;
         }
-        axios.get('/activity-edit/'+id).then(res => {
+        axios.get('/activities/edit/'+id).then(res => {
             const {data} = res;
             setNameActivity(data.title);
             setActivity(data.activity_type);
@@ -39,7 +39,7 @@ const Edit = () => {
         e.preventDefault();
         const activityData = {nameActivity, activity, date, duration, distance, note};
         if (id) {
-            await axios.put('/activity-edit', {id, ...activityData});
+            await axios.put('/activities/edit', {id, ...activityData});
             setSaveRedirect(true);
         } 
     };

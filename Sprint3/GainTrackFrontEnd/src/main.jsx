@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import {
     createBrowserRouter, 
+    Navigate, 
     RouterProvider
 } from 'react-router-dom';
-
+import axios from 'axios';
 import Achievement from './Pages/Achievement';
 import Add from './Pages/Add';
 import ContactUs from './Pages/ContactUs';
@@ -14,9 +15,23 @@ import Error from './Pages/Error';
 import Landing from './Pages/Landing';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
-import Slider2 from './Components/Slider2';
+import UserContextProvider, { UserContext } from './Contexts/UserContext';
+
+axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.withCredentials = true;
 
 
+//protect the route from the user who doesn't login or already logout
+// const ProtectedRoute = ({ children }) => {
+//     const { user } = useContext(UserContext);
+  
+//     if (user) {
+//         return children;
+//     } else {
+//         console.log(user)
+//         return <Navigate to="/login" />;
+//     }
+// }
 
 const router = createBrowserRouter([
     {
@@ -26,7 +41,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: (
+            // <ProtectedRoute>
+                <Dashboard />
+            // </ProtectedRoute>
+        ),
         errorElement: <Error />
     },
     {
@@ -41,22 +60,38 @@ const router = createBrowserRouter([
     },
     {
         path: '/achievement',
-        element: <Achievement />,
+        element: (
+            // <ProtectedRoute>
+                <Achievement />
+            // </ProtectedRoute>
+        ),
         errorElement: <Error />
     },
     {
         path: '/add',
-        element: <Add />,
+        element: (
+            // <ProtectedRoute>
+                <Add />
+            // </ProtectedRoute>
+        ),
         errorElement: <Error />
     },
     {
         path: '/edit',
-        element: <Edit />,
+        element: (
+            // <ProtectedRoute>
+                <Edit />
+            // </ProtectedRoute>
+        ),
         errorElement: <Error />
     },
     {
         path: '/edit/:id',
-        element: <Edit />,
+        element: (
+            // <ProtectedRoute>
+                <Edit />
+            // </ProtectedRoute>
+        ),
         errorElement: <Error />
     },
     {
@@ -67,7 +102,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
+    <UserContextProvider>
         <RouterProvider router={router}/>
-    </React.StrictMode>
+    </UserContextProvider>
 )

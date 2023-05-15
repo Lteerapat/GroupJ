@@ -44,8 +44,7 @@ const Slider = () => {
     setImage(indexImg);
   };
 
-  console.log(Image);
-  console.log(slideImage.length);
+  
 
   return (
     <div className="slider-top">
