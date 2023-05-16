@@ -121,6 +121,21 @@
 .login-card_singup form {
 	margin-top: 3rem;
 }
+
+.login-card_singup .column form .form-item {
+    position: relative;
+}
+
+.login-card_singup .column form .form-item i{
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5rem;
+    padding: 20px;
+    right: 0;
+    bottom: 0;
+    opacity: .5;
+}
+
 .login-card_singup form > * {
 	margin-top: 1rem;
 }

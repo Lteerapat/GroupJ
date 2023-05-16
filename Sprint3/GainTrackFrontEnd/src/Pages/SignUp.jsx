@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Joi from 'joi';
 import { useState } from 'react';
 import axios from 'axios';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 
 const SignUp = () => {  
@@ -11,7 +12,17 @@ const SignUp = () => {
     const[lastName, setLastName] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
+    const[confirmPassword, setConfirmPassword] = useState('');
     const[profileImageUrl, setProfileImageUrl] = useState('');
+    const [passwordType, setPasswordType] = useState('password');
+
+    const togglePassword = () =>{
+        if (passwordType==="password") {
+            setPasswordType("text")
+            return;
+        }
+        setPasswordType("password")
+    }
 
   // navigation
     let a = false
@@ -44,6 +55,11 @@ const SignUp = () => {
         const { error } = schema.validate(userData);
         if (error) {
             alert(error.details[0].message);
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert('Passwords do NOT match');
             return;
         }
 
@@ -110,14 +126,36 @@ const SignUp = () => {
                         </div>
                         <div className="form-item">
                             <label htmlFor="password">Password</label>
+                            {passwordType==="password" ? 
+                                <i className="fa-solid fa-eye-slash" onClick={togglePassword}></i>
+                                :
+                                <i className="fa-solid fa-eye" onClick={togglePassword}></i>
+                            }
                             <input
-                                type="password"
+                                type={passwordType}
                                 className="form-element"
                                 id="password"
                                 name="password"
                                 placeholder="Password"
                                 value={password}
                                 onChange={e => {setPassword(e.target.value)}}
+                            />
+                        </div>
+                        <div className="form-item">
+                            <label htmlFor="password">Confirm password</label>
+                            {passwordType==="password" ? 
+                                <i className="fa-solid fa-eye-slash" onClick={togglePassword}></i>
+                                :
+                                <i className="fa-solid fa-eye" onClick={togglePassword}></i>
+                            }
+                            <input
+                                type={passwordType}
+                                className="form-element"
+                                id="password"
+                                name="password"
+                                placeholder="Password"
+                                value={confirmPassword}
+                                onChange={e => {setConfirmPassword(e.target.value)}}
                             />
                         </div>
                         <div className="flex">

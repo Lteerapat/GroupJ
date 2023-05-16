@@ -24,6 +24,7 @@ axios.defaults.withCredentials = true;
 //protect the route from the user who doesn't login or already logout
 const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem('token')
+    // const {token} = res.cookie
   
     if (token) {
         return children;
