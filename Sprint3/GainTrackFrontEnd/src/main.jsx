@@ -22,16 +22,15 @@ axios.defaults.withCredentials = true;
 
 
 //protect the route from the user who doesn't login or already logout
-// const ProtectedRoute = ({ children }) => {
-//     const { user } = useContext(UserContext);
+const ProtectedRoute = ({ children }) => {
+    const token = localStorage.getItem('token')
   
-//     if (user) {
-//         return children;
-//     } else {
-//         console.log(user)
-//         return <Navigate to="/login" />;
-//     }
-// }
+    if (token) {
+        return children;
+    } else {
+        return <Navigate to="/login" />;
+    }
+}
 
 const router = createBrowserRouter([
     {
@@ -42,9 +41,9 @@ const router = createBrowserRouter([
     {
         path: '/dashboard',
         element: (
-            // <ProtectedRoute>
+            <ProtectedRoute>
                 <Dashboard />
-            // </ProtectedRoute>
+            </ProtectedRoute>
         ),
         errorElement: <Error />
     },
@@ -61,36 +60,36 @@ const router = createBrowserRouter([
     {
         path: '/dashboard/achievement',
         element: (
-            // <ProtectedRoute>
+            <ProtectedRoute>
                 <Achievement />
-            // </ProtectedRoute>
+            </ProtectedRoute>
         ),
         errorElement: <Error />
     },
     {
         path: '/dashboard/add',
         element: (
-            // <ProtectedRoute>
+            <ProtectedRoute>
                 <Add />
-            // </ProtectedRoute>
+            </ProtectedRoute>
         ),
         errorElement: <Error />
     },
     {
         path: '/dashboard/edit',
         element: (
-            // <ProtectedRoute>
+            <ProtectedRoute>
                 <Edit />
-            // </ProtectedRoute>
+            </ProtectedRoute>
         ),
         errorElement: <Error />
     },
     {
         path: '/dashboard/edit/:id',
         element: (
-            // <ProtectedRoute>
+            <ProtectedRoute>
                 <Edit />
-            // </ProtectedRoute>
+            </ProtectedRoute>
         ),
         errorElement: <Error />
     },

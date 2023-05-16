@@ -22,6 +22,7 @@ const Dashboard = () => {
     const logout = async (e) => {
         e.preventDefault();
         await axios.post('/logout');
+        localStorage.removeItem('token');
         setUser(null);
         navigate('/login');
     }

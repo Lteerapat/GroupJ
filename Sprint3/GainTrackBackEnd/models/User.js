@@ -24,7 +24,8 @@ const userSchema = new Schema({
     },
     location: {
         type: String
-    }
+    },
+    
 });
 
 const User = mongoose.model('User', userSchema);

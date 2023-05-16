@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const User = require('./models/User');
 const Activity = require('./models/Activity');
-const LineUser = require('./models/LineUser');
 const cookieParser = require('cookie-parser');
 
 require('dotenv').config();

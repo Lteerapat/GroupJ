@@ -66,6 +66,8 @@ const LogIn = () => {
                 // console.log(user)
                 // setUser(data);
                 // console.log(user)
+                localStorage.setItem('token', data.password)
+                console.log(data)
                 alert('Login successful');
                 navigate('/dashboard');
             } catch (err) {
