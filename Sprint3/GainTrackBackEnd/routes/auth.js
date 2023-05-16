@@ -7,22 +7,32 @@ const User = require('../models/User');
 const bcryptSalt = bcrypt.genSaltSync(10);
 const jwtSecret = 'asjdgbhflijasdhripasdhf';
 
+// signup new user
 router.post('/signup', async (req, res) => {
-    const {firstName, lastName, email, password, profileImageUrl} = req.body;
+    const { firstName, lastName, email, password } = req.body;
     try {
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+            return res.status(409).json({ error: 'This email already registered' });
+        }
+        
         const userDoc = await User.create({
             first_name: firstName,
             last_name: lastName,
             email,
             password: bcrypt.hashSync(password, bcryptSalt),
-            profile_image_url: profileImageUrl
         });
+        
         res.json(userDoc);
     } catch (err) {
-        res.status(422).json(err);
+        console.log(err)
+        res.status(500).json('Internal Server Error');
     }
 });
+  
 
+
+// check login
 router.post('/login', async (req, res) => {
     const {email, password} = req.body;
     const userDoc = await User.findOne({email});

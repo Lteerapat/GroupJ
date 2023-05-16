@@ -23,10 +23,13 @@ app.use(cors({
     origin: 'http://localhost:5173',
 }));
 
-// Use Routes
+
+// check if server is ok
 app.get('/', (req, res) => {
     res.json('test ok');
 });
+
+// Use Routes
 app.use('/auth', authRouter);
 app.use('/profile', profileRouter);
 app.use('/logout', logoutRouter);
@@ -46,5 +49,6 @@ const start = async () => {
     }
 };
 
+// start the server
 start();
 
