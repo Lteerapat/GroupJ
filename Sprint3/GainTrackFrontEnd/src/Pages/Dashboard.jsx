@@ -4,20 +4,21 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import bgDashBoard from "../Images/Dashboard/bg-dashboard.png";
 import logoLight from "../Images/Logo/gaintrack-logo-light.png";
 import profilePic from "../Images/Dashboard/profilePic.png";
-import Cards from "./../Components/cards"
-import MiniProfile from "../Components/MiniProfile";
 import { UserContext } from "../Contexts/UserContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
+import ActivityCards from "../Components/ActivityCard";
 
 const Dashboard = () => {
     // const {ready, user, setUser} = useContext(UserContext);
+    const [activityCards, setActivityCards] = useState([]);
     const [user, setUser] = useState([]);
     const [ready, setReady] = useState(false);
 
     //Navigation
     const navigate = useNavigate();
     
+    //when click logout 
     const logout = async (e) => {
         e.preventDefault();
         await axios.post('/logout');
@@ -25,6 +26,7 @@ const Dashboard = () => {
         navigate('/login');
     }
 
+    // render mini profile
     useEffect(() => {
         if (user) {
             axios.get('/profile')
@@ -36,7 +38,15 @@ const Dashboard = () => {
                     setUser(null);
                 });
         }
+
+         // render all activities
+        // axios.get('/user-activities').then(({data}) => {
+        //     setActivityCards(data);
+        // });
     }, []);
+
+   
+    
 
     return (
 
@@ -86,12 +96,10 @@ const Dashboard = () => {
                     </div>
 
                     <div className="db-card-container">
-                    <div className="db-card-add">
-                        <a href={"/add"}>
-                        <i className="fa-solid fa-plus"></i>
+                        <a className="db-card-add" href="/add">
+                            <i className="fa-solid fa-plus"></i>
                         </a>
-                    </div>
-                    <Cards />
+                        <ActivityCards />
                     </div>
                 </div>
             </div>

@@ -3,7 +3,8 @@
 .container-add {
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  /* padding-top: 100px; */
+  margin-top: 25px;
 }
 
 .container-form-add-edit {
@@ -130,6 +131,7 @@
   font-size: 1.25rem;
   display: block;
   width: 100%;
+  padding: 5px;
 }
 
 /* Button */

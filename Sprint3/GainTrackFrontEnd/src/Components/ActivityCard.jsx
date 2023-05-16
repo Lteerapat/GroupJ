@@ -1,0 +1,59 @@
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import React from "react";
+import {format} from 'date-fns';
+import ActivityCardIcon from "./ActivityTypeIcon";
+
+const ActivityCards = () => {
+
+    const [activityCards, setActivityCards] = useState([]);
+
+    useEffect(() => {
+        axios.get('/activities/user').then(({data}) => {
+            setActivityCards(data);
+        });
+    }, []);
+    
+    const handleDelete = (id) => {
+        setActivityCards(activityCards.filter(activityCard => activityCard.id !== id))
+    };
+
+    return (
+        <div className="db-card-container">
+        {activityCards.length > 0 && activityCards.map((activityCard) => (
+            <div className="db-card" key={activityCard.id}>
+                <div className="db-activity-bg">
+                    <ActivityCardIcon activityCard={activityCard} />
+                </div>
+                <div className="db-activity-content">
+                    <h2>{activityCard.title}</h2>
+                    <div className="db-activity-property">
+                        <div className="db-activity-property-top">
+                            <h4>Date: {format(new Date(activityCard.date), 'yyyy-MM-dd')}</h4>
+                            <h4>Duration: {activityCard.duration} mins</h4>
+                        </div>
+                        <div className="db-activity-property-bottom">
+                            <h4>Distance: {activityCard.distance} m</h4>
+                            <h4>Note: {activityCard.note}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div className="db-activity-edit-del">
+                    <a href={"/edit"}>
+                        <i className="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <div>
+                        <i
+                            className="fa-solid fa-trash"
+                            onClick={() => handleDelete(card.id)}
+                        ></i>
+                    </div>
+                </div>
+            </div>
+        ))}
+        </div>
+    );
+};
+
+export default ActivityCards;

@@ -11,10 +11,10 @@ require('dotenv').config();
 const app = express();
 
 // Routes
-const activityRouter = require('./routes/activity');
 const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
 const logoutRouter = require('./routes/logout');
+const activitiesRouter = require('./routes/activities');
 
 app.use(express.json());
 app.use(cookieParser());
@@ -27,10 +27,10 @@ app.use(cors({
 app.get('/', (req, res) => {
     res.json('test ok');
 });
-app.use('/activities', activityRouter);
 app.use('/auth', authRouter);
 app.use('/profile', profileRouter);
 app.use('/logout', logoutRouter);
+app.use('/activities', activitiesRouter);
 
 
 //connect to db
