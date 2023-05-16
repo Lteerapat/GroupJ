@@ -20,39 +20,42 @@ const SignUp = () => {
         navigate("/login")
     }
 
-    // validation scheme
+    // validation scheme in signup
     const schema = Joi.object({
-        firstname: Joi.string().alphanum().min(3).max(30).required(),
-        lastname: Joi.string().alphanum().min(3).max(30).required(),
+        firstName: Joi.string().alphanum().min(3).max(30).required(),
+        lastName: Joi.string().alphanum().min(3).max(30).required(),
         email: Joi.string().email({ tlds: { allow: false } }).required(),
         password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
     });
 
     // function validation
     // submit to backend
-    const handleSubmit = async (event) => {
+    const handleCreateAccount = async (event) => {
         event.preventDefault();
+        const userData = {
+            firstName, 
+            lastName, 
+            email, 
+            password,
+        }
         // const formData = new FormData(event.target);
         // const data = Object.fromEntries(formData.entries());
     
-        // const { error } = schema.validate(data);
-        // if (error) {
-        // console.log(error.details[0].message);
-        // alert(error.details[0].message);
-        // return;
-        // }
+        const { error } = schema.validate(userData);
+        if (error) {
+            alert(error.details[0].message);
+            return;
+        }
+
         try {
-            await axios.post('/auth/signup', {
-                firstName, 
-                lastName, 
-                email, 
-                password,
-                profileImageUrl
-            });
+            await axios.post('/auth/signup', userData);
             alert('Registration successful');
             navigationToLogin();
         } catch (err) {
-            alert('Registration failed. Please try again later');
+            err.response.data.error === 'This email already registered' ?
+                alert (err.response.data.error)
+                :
+                alert ("Registration failed. Please try again later.")
         }
         // Form data is valid, do something with it here
     };
@@ -68,14 +71,14 @@ const SignUp = () => {
                 </div>
                 <div className="column">
                     <h1>Create an account</h1>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleCreateAccount}>
                         <div className="form-item">
                             <label htmlFor="firstname">First Name</label>
                             <input
                                 type="text"
                                 className="form-element"
                                 id="firstname"
-                                name="firstname"
+                                name="first_name"
                                 placeholder="Firstname"
                                 value={firstName}
                                 onChange={e => {setFirstName(e.target.value)}}
@@ -87,7 +90,7 @@ const SignUp = () => {
                                 type="text"
                                 className="form-element"
                                 id="lastname"
-                                name="lastname"
+                                name="last_name"
                                 placeholder="Lastname"
                                 value={lastName}
                                 onChange={e => {setLastName(e.target.value)}}
@@ -118,7 +121,7 @@ const SignUp = () => {
                             />
                         </div>
                         <div className="flex">
-                            <button type="submit">Create Account</button>
+                            <button>Create Account</button>
                             {/* <input type="submit" value="Create Account" /> */}
                             <p>
                             Already have an account? <a href="/login">Log In</a>

@@ -9,20 +9,29 @@ const ActivityCards = () => {
 
     const [activityCards, setActivityCards] = useState([]);
 
+    // render all activities
     useEffect(() => {
         axios.get('/activities/user').then(({data}) => {
             setActivityCards(data);
         });
     }, []);
     
-    const handleDelete = (id) => {
-        setActivityCards(activityCards.filter(activityCard => activityCard.id !== id))
+    const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this activity?");
+        if (confirmDelete) {
+            try {
+                await axios.delete('/activities/'+id);
+                setActivityCards(activityCards.filter(activityCard => activityCard._id !== id));
+            } catch (err) {
+                console.error(err);
+            }
+        }
     };
 
     return (
         <div className="db-card-container">
         {activityCards.length > 0 && activityCards.map((activityCard) => (
-            <div className="db-card" key={activityCard.id}>
+            <div className="db-card" key={activityCard._id}>
                 <div className="db-activity-bg">
                     <ActivityCardIcon activityCard={activityCard} />
                 </div>
@@ -40,13 +49,15 @@ const ActivityCards = () => {
                     </div>
                 </div>
                 <div className="db-activity-edit-del">
-                    <a href={"/edit"}>
-                        <i className="fa-solid fa-pen-to-square"></i>
-                    </a>
+                    <div>
+                        <a href={"/dashboard/edit/"+activityCard._id}>
+                            <i className="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </div>
                     <div>
                         <i
                             className="fa-solid fa-trash"
-                            onClick={() => handleDelete(card.id)}
+                            onClick={() => handleDelete(activityCard._id)}
                         ></i>
                     </div>
                 </div>

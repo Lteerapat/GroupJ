@@ -3,6 +3,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import  axios  from 'axios';
+import Joi from "joi";
 
 const Add = () => {
     //NameActivity
@@ -20,9 +21,23 @@ const Add = () => {
     const [addRedirect, setAddRedirect] = useState(false);
 
 
+    //validation schema in add
+    const schema = Joi.object({
+        nameActivity: Joi.string().min(3).max(30).required(),
+        duration:Joi.number().integer().required(),
+        distance: Joi.number().integer().required(),
+    });
+    
     const addActivity = async (e) => {
         e.preventDefault();
         const activityData = {nameActivity, activity, date, duration, distance, note};
+
+        const { error } = schema.validate({nameActivity, duration, distance});
+        if (error) {
+            const errorMessage = error.details[0].message.replace(/nameActivity/g, 'Activity Name');
+            alert(errorMessage);
+            return;
+        }
         
         await axios.post('/activities/add', activityData);
         setAddRedirect(true);

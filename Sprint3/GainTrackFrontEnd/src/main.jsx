@@ -59,7 +59,7 @@ const router = createBrowserRouter([
         errorElement: <Error />
     },
     {
-        path: '/achievement',
+        path: '/dashboard/achievement',
         element: (
             // <ProtectedRoute>
                 <Achievement />
@@ -68,7 +68,7 @@ const router = createBrowserRouter([
         errorElement: <Error />
     },
     {
-        path: '/add',
+        path: '/dashboard/add',
         element: (
             // <ProtectedRoute>
                 <Add />
@@ -77,7 +77,7 @@ const router = createBrowserRouter([
         errorElement: <Error />
     },
     {
-        path: '/edit',
+        path: '/dashboard/edit',
         element: (
             // <ProtectedRoute>
                 <Edit />
@@ -86,7 +86,7 @@ const router = createBrowserRouter([
         errorElement: <Error />
     },
     {
-        path: '/edit/:id',
+        path: '/dashboard/edit/:id',
         element: (
             // <ProtectedRoute>
                 <Edit />

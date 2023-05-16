@@ -4,11 +4,18 @@
     color: white;
 }
 
+.db-big-container {
+    position:relative;
+
+}
+
 /* container section */
 .db-container {
     height: 100%;
     display: flex;
     justify-content:  center;
+    position:relative;
+
     /* background: var(--primary-color-dark); */
     
 }
@@ -166,13 +173,8 @@
 
 .db-card:hover {
     scale: 1.02;
-    cursor: pointer;
     box-shadow: 0px 5px 30px rgb(185, 178, 178);
 
-}
-
-.db-card:active {
-    scale: .95;
 }
 
 .db-activity-bg {
@@ -184,7 +186,7 @@
     justify-content: center;
     align-items: center;
     color: white;
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 
 .db-activity-edit-del {
@@ -265,6 +267,10 @@
 
 .db-activity-summary-top {
     color: white;
+}
+
+.db-activity-summary-top > h2 {
+    margin-bottom: 10px;
 }
 
 .db-activity-summary {

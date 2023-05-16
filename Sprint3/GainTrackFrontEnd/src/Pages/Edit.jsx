@@ -1,6 +1,7 @@
 import "../Styles/Add.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import axios from "axios";
+import Joi from "joi";
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 
@@ -20,6 +21,13 @@ const Edit = () => {
     const [note,setNote] = useState('');
     const [saveRedirect, setSaveRedirect] = useState(false);
 
+    //validation schema in edit
+    const schema = Joi.object({
+        nameActivity: Joi.string().min(3).max(30).required(),
+        duration:Joi.number().integer().required(),
+        distance: Joi.number().integer().required(),
+    });
+
     useEffect(() => {
         if (!id) {
             return;
@@ -32,12 +40,22 @@ const Edit = () => {
             setDuration(data.duration);
             setDistance(data.distance);
             setNote(data.note);
+            console.log(data)
+            console.log(id)
         });
     }, [id]);
     
     const saveEditedActivity = async (e) => {
         e.preventDefault();
         const activityData = {nameActivity, activity, date, duration, distance, note};
+
+        const { error } = schema.validate({nameActivity, duration, distance});
+        if (error) {
+            const errorMessage = error.details[0].message.replace(/nameActivity/g, 'Activity Name');
+            alert(errorMessage);
+            return;
+        }
+
         if (id) {
             await axios.put('/activities/edit', {id, ...activityData});
             setSaveRedirect(true);
