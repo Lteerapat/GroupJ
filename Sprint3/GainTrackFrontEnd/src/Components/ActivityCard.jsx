@@ -11,7 +11,7 @@ const ActivityCards = () => {
 
     // render all activities
     useEffect(() => {
-        axios.get('/activities/user').then(({data}) => {
+        axios.get('/activities/user-activities').then(({data}) => {
             setActivityCards(data);
         });
     }, []);

@@ -20,7 +20,7 @@ router.post('/add', (req, res) => {
 });
 
 //get all activities of user
-router.get('/user', (req, res) => {
+router.get('/user-activities', (req, res) => {
     const {token} = req.cookies;
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
         if (err) throw err;
