@@ -3,17 +3,17 @@ import "../Styles/Dashboard.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import bgDashBoard from "../Images/Dashboard/bg-dashboard.png";
 import logoLight from "../Images/Logo/gaintrack-logo-light.png";
-import profilePic from "../Images/Dashboard/profilePic.png";
 import { UserContext } from "../Contexts/UserContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ActivityCards from "../Components/ActivityCard";
 import {format} from 'date-fns';
+import MiniProfile from "../Components/MiniProfile";
+import EditProfile from "./EditProfile";
 
 const Dashboard = () => {
     // const {ready, user, setUser} = useContext(UserContext);
     const [user, setUser] = useState([]);
-    const [ready, setReady] = useState(false);
 
     //Navigation
     const navigate = useNavigate();
@@ -27,21 +27,23 @@ const Dashboard = () => {
         navigate('/login');
     }
 
-    // render mini profile
-    useEffect(() => {
-        if (user) {
-            axios.get('/profile')
-                .then(({data}) => {
-                    setUser(data);
-                    setReady(true)
-                })
-                .catch(() => {
-                    setUser(null);
-                });
-        }
+    // // render mini profile
+    // useEffect(() => {
+    //     if (user) {
+    //         axios.get('/profile')
+    //             .then(({data}) => {
+    //                 setUser(data);
+    //                 setReady(true)
+    //             })
+    //             .catch(() => {
+    //                 setUser(null);
+    //             });
+    //     }
 
          
-    }, []);
+    // }, []);
+
+    
 
    
     
@@ -49,6 +51,7 @@ const Dashboard = () => {
     return (
 
         <div className="db-big-container">
+            {/* <EditProfile /> */}
             <div className="db-container">
                 <img src={bgDashBoard} alt="bg" />
 
@@ -81,17 +84,7 @@ const Dashboard = () => {
 
                 <div className="db-middle-container">
                     <div className="db-middle">
-                        <div className="db-mini-profile">
-                            <div className="db-location">
-                                <i className="fa-solid fa-location-dot"></i>
-                                <span>Somewhere, Space</span>
-                            </div>
-
-                            <div className="db-profile-pic">
-                                <img src={profilePic} alt="profile-pic" />
-                                <h2>Welcome, {!ready ? 'Loading...' : user.first_name}</h2>
-                            </div>
-                        </div>
+                        <MiniProfile />
 
                         <div className="db-card-container">
                             <a className="db-card-add" href="/dashboard/add">

@@ -16,6 +16,8 @@ import Landing from './Pages/Landing';
 import LogIn from './Pages/LogIn';
 import SignUp from './Pages/SignUp';
 import UserContextProvider, { UserContext } from './Contexts/UserContext';
+import Cookies from 'js-cookie';
+import EditProfile from './Pages/EditProfile';
 
 axios.defaults.baseURL = 'http://localhost:3001';
 axios.defaults.withCredentials = true;
@@ -24,7 +26,6 @@ axios.defaults.withCredentials = true;
 //protect the route from the user who doesn't login or already logout
 const ProtectedRoute = ({ children }) => {
     const token = localStorage.getItem('token')
-    // const {token} = res.cookie
   
     if (token) {
         return children;
@@ -97,6 +98,15 @@ const router = createBrowserRouter([
     {
         path: '/contactus',
         element: <ContactUs />,
+        errorElement: <Error />
+    },
+    {
+        path: '/dashboard/edit-profile',
+        element: (
+            <ProtectedRoute>
+                <EditProfile />
+            </ProtectedRoute>
+        ),
         errorElement: <Error />
     },
 ]);

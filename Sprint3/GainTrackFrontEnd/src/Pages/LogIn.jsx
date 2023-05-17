@@ -5,14 +5,19 @@ import '../Styles/LogIn.css';
 import gaintrackLogo from '../Images/Logo/gaintrack-logo-dark.png';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useCookies } from 'react-cookie';
+
 
 const LogIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordType, setPasswordType] = useState('password');
     const [rememberMe, setRememberMe] = useState(false);
+    const [cookies, setCookie] = useCookies(['token']);
     const {setUser} = useContext(UserContext);
-    // const ctx = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     const togglePassword = () =>{
         if (passwordType==="password") {
@@ -33,10 +38,16 @@ const LogIn = () => {
             setPassword(storedPassword);
             setRememberMe(storedRememberMe);
         }
+
+
+        if (cookies.token) {
+            navigate('/dashboard');
+        }
+
+        
     }, []);
 
     //Navigation
-    const navigate = useNavigate();
     const navigateToSignUp = () => {
         navigate('/signup');
     };
@@ -52,22 +63,21 @@ const LogIn = () => {
         } else if (password === '') {
             alert("Please enter you password!")
         } else {
-            if (rememberMe) {
-                localStorage.setItem("email", email);
-                localStorage.setItem("password", password);
-                localStorage.setItem("rememberMe", true);
-            } else {
-                localStorage.removeItem("email");
-                localStorage.removeItem("password");
-                localStorage.removeItem("rememberMe");
-            }
             try {
-                const {data} = await axios.post('/auth/login', {email, password}, {withCredentials:true});
-                // console.log(user)
-                // setUser(data);
-                // console.log(user)
-                localStorage.setItem('token', data.password)
-                console.log(data)
+                const {data, headers} = await axios.post('/auth/login', {email, password}, {withCredentials:true});
+                if (rememberMe) {
+                    localStorage.setItem('token', data.password)
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("password", password);
+                    localStorage.setItem("rememberMe", true);
+                } else {
+                    localStorage.removeItem("email");
+                    localStorage.removeItem("password");
+                    localStorage.removeItem("rememberMe");
+                }
+                // const token = headers['set-cookie'][0].split('=')[1]; // Extract the token from the response headers
+                // console.log(token)
+                // setCookie('token', token); // Store the token as a cookie
                 alert('Login successful');
                 navigate('/dashboard');
             } catch (err) {

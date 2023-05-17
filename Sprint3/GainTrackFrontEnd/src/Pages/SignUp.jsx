@@ -153,7 +153,7 @@ const SignUp = () => {
                                 className="form-element"
                                 id="password"
                                 name="password"
-                                placeholder="Password"
+                                placeholder="Confirm Password"
                                 value={confirmPassword}
                                 onChange={e => {setConfirmPassword(e.target.value)}}
                             />

@@ -24,6 +24,7 @@ const Edit = () => {
     //validation schema in edit
     const schema = Joi.object({
         nameActivity: Joi.string().min(3).max(30).required(),
+        activity: Joi.string().min(3).max(30).required(),
         duration:Joi.number().integer().required(),
         distance: Joi.number().integer().required(),
     });
@@ -40,8 +41,6 @@ const Edit = () => {
             setDuration(data.duration);
             setDistance(data.distance);
             setNote(data.note);
-            console.log(data)
-            console.log(id)
         });
     }, [id]);
     
@@ -49,9 +48,11 @@ const Edit = () => {
         e.preventDefault();
         const activityData = {nameActivity, activity, date, duration, distance, note};
 
-        const { error } = schema.validate({nameActivity, duration, distance});
+        const { error } = schema.validate({nameActivity,activity, duration, distance});
         if (error) {
-            const errorMessage = error.details[0].message.replace(/nameActivity/g, 'Activity Name');
+            const errorMessage = error.details[0].message
+                .replace(/nameActivity/g, 'Activity Name')
+                .replace(/activity/g, 'Activity Type');
             alert(errorMessage);
             return;
         }

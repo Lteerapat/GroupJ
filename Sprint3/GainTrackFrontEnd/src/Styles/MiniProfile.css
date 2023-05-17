@@ -1,0 +1,24 @@
+@import '../Styles/global.css';
+
+.db-profile-pic button {
+    background-color: var(--primary-color-dark);
+	color: #fff;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 15px;
+	font-weight: 400;
+	font-size: 18px;
+	transition: all 0.2s;
+	cursor: pointer;
+    width: 100%;
+}
+
+.db-profile-pic button:hover {
+    background-color: var(--primary-color);
+    color: var(--primary-color-dark);
+}
+
+.db-profile-pic button:active {
+    scale: 0.95;
+	background-color: var(--primary-color-light);
+}

@@ -1,22 +1,47 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import profilePic from "../Images/Dashboard/profilePic.png";
 import { UserContext } from "../Contexts/UserContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import '../Styles/MiniProfile.css';
 
 const MiniProfile = () => {
-    const {ready, user, setUser} = useContext(UserContext);
+    const [user, setUser] = useState([]);
+    const [ready, setReady] = useState(false);
 
+    const editProfile = () => {
+        navigate('/dashboard/edit-profile');
+    }
+
+    //Navigation
+    const navigate = useNavigate();
+
+    // fetch user data
+    useEffect(() => {
+        if (user) {
+            axios.get('/profile')
+                .then(({data}) => {
+                    setUser(data);
+                    setReady(true)
+                })
+                .catch(() => {
+                    setUser(null);
+                });
+        }
+    }, []);
 
     
     return (
         <div className="db-mini-profile">
             <div className="db-location">
-            <i className="fa-solid fa-location-dot"></i>
-            <span>Somewhere, Space</span>
+                <i className="fa-solid fa-location-dot"></i>
+                <span>{!ready ? 'Loading...' : user.location}</span>
             </div>
 
             <div className="db-profile-pic">
                 <img src={profilePic} alt="profile-pic" />
-                <h2>Welcome, {user.firstName}</h2>
+                <h2>Welcome, {!ready ? 'Loading...' : user.first_name}</h2>
+                <button onClick={() => editProfile()}>Edit Profile</button>
             </div>
         </div>
     );
