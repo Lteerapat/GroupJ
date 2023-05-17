@@ -44,14 +44,20 @@ router.post('/login', async (req, res) => {
                 id:userDoc._id,
             }, jwtSecret, {}, (err, token) => {
                 if (err) throw err;
-                res.cookie('token', token).json(userDoc);
+                const cookieOptions = {
+                    httpOnly: true, // set the cookie as HTTP only
+                    secure: true, //only set the cookie over HTTPS
+                    sameSite: 'none', // allow cross-site cookies
+                    expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
+                }
+                res.cookie('token', token, cookieOptions).json(userDoc);
             });
         } else {
-            res.status(422).json({ user: null, error: 'Wrong password' })
+            res.status(422).json({ user: null, error: 'Wrong password' });
         }
     } else {
         res.status(404).json({ user: null, error: 'User not found' });
-    }
+    } 
 });
 
 module.exports = router;

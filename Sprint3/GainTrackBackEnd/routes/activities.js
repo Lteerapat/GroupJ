@@ -12,8 +12,10 @@ router.post('/add', (req, res) => {
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
         if(err) throw err;
         const activityDoc = await Activity.create({
-            user_id: userData.id,
-            title:nameActivity, activity_type:activity, date, duration, distance, note,
+            user_id: userData.id,  
+            title:nameActivity, 
+            activity_type:activity, 
+            date, duration, distance, note,
         });
         res.json(activityDoc);
     });
