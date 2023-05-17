@@ -25,6 +25,9 @@ const userSchema = new Schema({
     location: {
         type: String
     },
+    user_line_id: {
+        type: String
+    },
     
 });
 

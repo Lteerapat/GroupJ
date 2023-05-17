@@ -7,6 +7,10 @@ const activitySchema = new Schema({
         ref: 'User',
         required: true
     },
+    user_line_id: {
+        type: String,
+        ref: 'User'
+    },
     title: {
         type: String,
         required: true
