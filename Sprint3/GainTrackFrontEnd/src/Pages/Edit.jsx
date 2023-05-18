@@ -4,6 +4,7 @@ import axios from "axios";
 import Joi from "joi";
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import {format} from 'date-fns';
 
 const Edit = () => {
     const {id} =useParams();
@@ -142,7 +143,7 @@ const TypeActivity = (props) => {
 const DateActivity = (props) => {
     const {date, setDate} = props
     return (
-        <div className="DateAcitvity">
+        <div className="DateAcitvity"> 
         <label>Date: {date}</label>
         <br />
         <input 

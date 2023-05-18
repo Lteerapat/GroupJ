@@ -11,8 +11,8 @@
   background-color: var(--primary-color-light);
   border-radius: 20px;
   padding: 30px;
-  width: 500px;
-  height: 610px;
+  width: auto;
+  height: auto;
 }
 .container-form-add-edit h1 {
   text-align: center;
