@@ -6,6 +6,7 @@ const User = require('./models/User');
 const Activity = require('./models/Activity');
 const LineUser = require('./models/LineUser');
 const cookieParser = require('cookie-parser');
+const activityRoute = require('./routes/activityRoute');
 
 require('dotenv').config();
 const app = express();
@@ -20,6 +21,8 @@ app.use(cors({
 app.get('/', (req, res) => {
     res.json('test ok');
 });
+
+app.use("/activity-add", activityRoute);
 
 const port = process.env.PORT || 3002
 const start = async () => {
