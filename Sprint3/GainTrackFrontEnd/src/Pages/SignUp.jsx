@@ -15,6 +15,7 @@ const SignUp = () => {
     const[confirmPassword, setConfirmPassword] = useState('');
     const[profileImageUrl, setProfileImageUrl] = useState('');
     const [passwordType, setPasswordType] = useState('password');
+    const [lineId, setLineId] = useState('')
 
     const togglePassword = () =>{
         if (passwordType==="password") {
@@ -47,7 +48,8 @@ const SignUp = () => {
             firstName, 
             lastName, 
             email, 
-            password,
+            password
+           
         }
         // const formData = new FormData(event.target);
         // const data = Object.fromEntries(formData.entries());
@@ -64,7 +66,7 @@ const SignUp = () => {
         }
 
         try {
-            await axios.post('/auth/signup', userData);
+            await axios.post('/auth/signup', { firstName, lastName, email, password,lineId });
             alert('Registration successful');
             navigationToLogin();
         } catch (err) {
@@ -156,6 +158,19 @@ const SignUp = () => {
                                 placeholder="Confirm Password"
                                 value={confirmPassword}
                                 onChange={e => {setConfirmPassword(e.target.value)}}
+                            />
+                        </div>
+                        <div className="form-item">
+                            <label htmlFor="password">Line id</label>
+                            
+                            <input
+                                type='text'
+                                className="form-element"
+                                id="lineId"
+                                name="lineId"
+                                placeholder="lineId"
+                                value={lineId}
+                                onChange={e => {setLineId(e.target.value)}}
                             />
                         </div>
                         <div className="flex">

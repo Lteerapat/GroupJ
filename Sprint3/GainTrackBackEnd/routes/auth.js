@@ -9,7 +9,7 @@ const jwtSecret = 'asjdgbhflijasdhripasdhf';
 
 // signup new user
 router.post('/signup', async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password,lineId } = req.body;
     try {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
@@ -21,6 +21,7 @@ router.post('/signup', async (req, res) => {
             last_name: lastName,
             email,
             password: bcrypt.hashSync(password, bcryptSalt),
+            user_line_id:lineId
         });
         
         res.json(userDoc);

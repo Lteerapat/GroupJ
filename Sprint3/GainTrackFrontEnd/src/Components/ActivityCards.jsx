@@ -4,6 +4,7 @@ import axios from "axios";
 import React from "react";
 import {format} from 'date-fns';
 import ActivityCardIcon from "./ActivityTypeIcon";
+import '../Styles/ActivityCards.css';
 
 const ActivityCards = () => {
 
@@ -29,7 +30,7 @@ const ActivityCards = () => {
     };
 
     return (
-        <div className="db-card-container">
+        <div className="db-activities-card-container">
         {activityCards.length > 0 && activityCards.map((activityCard) => (
             <div className="db-card" key={activityCard._id}>
                 <div className="db-activity-bg">

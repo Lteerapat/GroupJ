@@ -6,7 +6,7 @@ import logoLight from "../Images/Logo/gaintrack-logo-light.png";
 import { UserContext } from "../Contexts/UserContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
-import ActivityCards from "../Components/ActivityCard";
+import ActivityCards from "../Components/ActivityCards";
 import {format} from 'date-fns';
 import MiniProfile from "../Components/MiniProfile";
 import EditProfile from "./EditProfile";
