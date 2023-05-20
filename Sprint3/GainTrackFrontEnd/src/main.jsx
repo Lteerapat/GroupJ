@@ -19,7 +19,9 @@ import UserContextProvider, { UserContext } from './Contexts/UserContext';
 import Cookies from 'js-cookie';
 import EditProfile from './Pages/EditProfile';
 
-axios.defaults.baseURL = 'http://localhost:3001';
+
+
+axios.defaults.baseURL = import.meta.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
 
 
