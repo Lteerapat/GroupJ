@@ -6,7 +6,7 @@ dotenv.config()
 // https://vitejs.dev/config/
 export default defineConfig({
     server: {
-        host: '127.0.0.1'
+        host: process.env.REACT_APP_HOST
     },
   plugins: [react()],
 })
