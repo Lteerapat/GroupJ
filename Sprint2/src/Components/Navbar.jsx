@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import './Navbar.css';
-import logo from '../images/Logo/gaintrack-logo-light.png';
+import logo from '../Images/Logo/gaintrack-logo-light.png';
 
 
 const Navbar = () => {
