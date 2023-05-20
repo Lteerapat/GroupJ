@@ -3,9 +3,10 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+require('dotenv').config();
 
-const bcryptSalt = bcrypt.genSaltSync(10);
-const jwtSecret = 'asjdgbhflijasdhripasdhf';
+const bcryptSalt = bcrypt.genSaltSync(+process.env.SALTROUND);
+const jwtSecret = process.env.JWTSECRET;
 
 // signup new user
 router.post('/signup', async (req, res) => {
@@ -54,10 +55,10 @@ router.post('/login', async (req, res) => {
                 res.cookie('token', token, cookieOptions).json(userDoc);
             });
         } else {
-            res.status(422).json({ user: null, error: 'Wrong password' });
+            res.status(422).json({ user: null, error: 'Email or Password is incorrect' });
         }
     } else {
-        res.status(404).json({ user: null, error: 'User not found' });
+        res.status(404).json({ user: null, error: 'Email or Password is incorrect' });
     } 
 });
 

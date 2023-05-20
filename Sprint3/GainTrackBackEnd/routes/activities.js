@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Activity = require('../models/Activity');
 const jwt = require('jsonwebtoken');
-
-const jwtSecret = 'asjdgbhflijasdhripasdhf';
+require('dotenv').config();
+const jwtSecret = process.env.JWTSECRET;
 
 //add activity
 router.post('/add', (req, res) => {

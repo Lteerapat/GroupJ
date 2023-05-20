@@ -10,6 +10,8 @@ import ActivityCards from "../Components/ActivityCards";
 import {format} from 'date-fns';
 import MiniProfile from "../Components/MiniProfile";
 import EditProfile from "./EditProfile";
+import ChartJsNumOfActivity from "../Components/ChartJsNumOfActivity";
+import ChartJsDuraDisOfAllActivity from "../Components/ChartJsDuraDisOfAllActivity";
 
 const Dashboard = () => {
     // const {ready, user, setUser} = useContext(UserContext);
@@ -101,9 +103,12 @@ const Dashboard = () => {
                         <h2>Activity Tracking</h2>
                         <h3>{format(new Date(), 'EEEE, dd MMM')}</h3>
                         </div>
-                        <div className="db-activity-summary">a</div>
-                        <div className="db-activity-summary">a</div>
-                        <div className="db-activity-summary">sa</div>
+                        <div className="db-activity-summary">
+                            <ChartJsNumOfActivity />
+                        </div>
+                        <div className="db-activity-summary">
+                            {/* <ChartJsDuraDisOfAllActivity /> */}
+                        </div>
                     </div>
                 </div>
             </div>

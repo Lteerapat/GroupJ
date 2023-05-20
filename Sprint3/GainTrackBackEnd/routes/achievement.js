@@ -3,8 +3,8 @@ const router = express.Router();
 const Activity = require('../models/Activity');
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-
-const jwtSecret = 'asjdgbhflijasdhripasdhf';
+require('dotenv').config();
+const jwtSecret = process.env.JWTSECRET;
 
 // get user's completed achievements
 router.get('/', async (req, res) => {
@@ -14,10 +14,11 @@ router.get('/', async (req, res) => {
             if (err) throw err;
             const {id} = userData;
             const activities = await Activity.find({user_id:id});
+            const user = await User.find({_id:id})
             const completedAchievements = [];
 
             // check for each achievement condition
-            // const isLineConnected = await User.find({user_line_id});
+            const isLineConnected = user[0].user_line_id;
             const isFirstActivityCreated = activities.length > 0;
             const is90MinsActivityDuration = activities.some((activity) => (activity.duration >= 90));
             const is10000mACtivityDistance = activities.some((activity) => (activity.distance >= 10000));
@@ -32,18 +33,18 @@ router.get('/', async (req, res) => {
             const hasDoneMoreThan10Activities = activities.length >= 10;
 
             // add completed to array
-            // if (isLineConnected) completedAchievements.push({title:'Ready To Fight', completed: true});
-            if (isFirstActivityCreated) completedAchievements.push({title:'The Beginner', completed: true});
-            if (is90MinsActivityDuration) completedAchievements.push({title:'Extraordinary', completed: true});
-            if (is10000mACtivityDistance) completedAchievements.push({title:'Warrior Reborn', completed: true});
-            if (is9000MinsAllActivityDuration) completedAchievements.push({title:'Legendary Player', completed: true});
-            if (isWalkingMoreThan5Times.length >= 5) completedAchievements.push({title:'The Golden Legs', completed: true});
-            if (isRunningMoreThan5Times.length >= 5) completedAchievements.push({title:'The Flash', completed: true});
-            if (isSwimmingMoreThan5Times.length >= 5) completedAchievements.push({title:'Aquaman', completed: true});
-            if (isBikingMoreThan5Times.length >= 5) completedAchievements.push({title:'Ride The Legend', completed: true});
-            if (isHikingMoreThan5Times.length >= 5) completedAchievements.push({title:'The Conqueror', completed: true});
-            if (hasDoneMoreThan5Activities) completedAchievements.push({title:'A Healthy Person', completed: true});
-            if (hasDoneMoreThan10Activities) completedAchievements.push({title:'Unstoppable', completed: true});
+            if (isLineConnected) completedAchievements.push({title:'Ready To Fight'});
+            if (isFirstActivityCreated) completedAchievements.push({title:'The Beginner'});
+            if (is90MinsActivityDuration) completedAchievements.push({title:'Extraordinary'});
+            if (is10000mACtivityDistance) completedAchievements.push({title:'Warrior Reborn'});
+            if (is9000MinsAllActivityDuration) completedAchievements.push({title:'Legendary Player'});
+            if (isWalkingMoreThan5Times.length >= 5) completedAchievements.push({title:'The Golden Legs'});
+            if (isRunningMoreThan5Times.length >= 5) completedAchievements.push({title:'The Flash'});
+            if (isSwimmingMoreThan5Times.length >= 5) completedAchievements.push({title:'Aquaman'});
+            if (isBikingMoreThan5Times.length >= 5) completedAchievements.push({title:'Ride The Legend'});
+            if (isHikingMoreThan5Times.length >= 5) completedAchievements.push({title:'The Conqueror'});
+            if (hasDoneMoreThan5Activities) completedAchievements.push({title:'A Healthy Person'});
+            if (hasDoneMoreThan10Activities) completedAchievements.push({title:'Unstoppable'});
             
 
 
