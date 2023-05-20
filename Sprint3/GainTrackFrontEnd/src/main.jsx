@@ -21,7 +21,7 @@ import EditProfile from './Pages/EditProfile';
 
 
 
-axios.defaults.baseURL = import.meta.env.REACT_APP_API_URL;
+axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
 axios.defaults.withCredentials = true;
 
 
