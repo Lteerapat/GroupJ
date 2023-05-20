@@ -25,6 +25,7 @@ const Dashboard = () => {
         e.preventDefault();
         await axios.post('/logout');
         localStorage.removeItem('token');
+        sessionStorage.removeItem('sessionToken');
         setUser(null);
         navigate('/login');
     }

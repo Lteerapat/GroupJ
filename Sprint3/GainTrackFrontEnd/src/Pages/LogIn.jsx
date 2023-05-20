@@ -39,8 +39,10 @@ const LogIn = () => {
             setRememberMe(storedRememberMe);
         }
 
+        const token = localStorage.getItem('token');
+        const sessionToken = sessionStorage.getItem('sessionToken');
 
-        if (cookies.token) {
+        if (token || sessionToken) {
             navigate('/dashboard');
         }
 
@@ -65,12 +67,13 @@ const LogIn = () => {
         } else {
             try {
                 const {data, headers} = await axios.post('/auth/login', {email, password}, {withCredentials:true});
-                if (rememberMe) {
+                if (rememberMe) { //bug is here!!!!!!!!!!!
                     localStorage.setItem('token', data.password)
                     localStorage.setItem("email", email);
                     localStorage.setItem("password", password);
                     localStorage.setItem("rememberMe", true);
                 } else {
+                    sessionStorage.setItem('sessionToken', data.password)
                     localStorage.removeItem("email");
                     localStorage.removeItem("password");
                     localStorage.removeItem("rememberMe");
