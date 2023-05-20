@@ -47,9 +47,9 @@ router.post('/login', async (req, res) => {
             }, jwtSecret, {}, (err, token) => {
                 if (err) throw err;
                 const cookieOptions = {
-                    httpOnly: true, // set the cookie as HTTP only
-                    secure: true, //only set the cookie over HTTPS
-                    sameSite: 'none', // allow cross-site cookies
+                    // httpOnly: true, // set the cookie as HTTP only
+                    // secure: true, //only set the cookie over HTTPS
+                    // sameSite: 'none', // allow cross-site cookies
                     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days from now
                 }
                 res.cookie('token', token, cookieOptions).json(userDoc);
