@@ -25,6 +25,7 @@ const Add = () => {
     const schema = Joi.object({
         nameActivity: Joi.string().min(3).max(30).required(),
         activity: Joi.string().min(3).max(30).required(),
+        date: Joi.date().required(),
         duration:Joi.number().integer().required(),
         distance: Joi.number().integer().required(),
     });
@@ -33,7 +34,7 @@ const Add = () => {
         e.preventDefault();
         const activityData = {nameActivity, activity, date, duration, distance, note};
 
-        const { error } = schema.validate({nameActivity,activity, duration, distance});
+        const { error } = schema.validate({nameActivity,activity,date, duration, distance});
         if (error) {
             const errorMessage = error.details[0].message
                 .replace(/nameActivity/g, 'Activity Name')

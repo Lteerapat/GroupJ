@@ -26,6 +26,7 @@ const Edit = () => {
     const schema = Joi.object({
         nameActivity: Joi.string().min(3).max(30).required(),
         activity: Joi.string().min(3).max(30).required(),
+        date: Joi.date().required(),
         duration:Joi.number().integer().required(),
         distance: Joi.number().integer().required(),
     });
@@ -38,7 +39,7 @@ const Edit = () => {
             const {data} = res;
             setNameActivity(data.title);
             setActivity(data.activity_type);
-            setDate(data.date);
+            setDate(data.date.replace(/T00:00:00.000Z/g, ''));
             setDuration(data.duration);
             setDistance(data.distance);
             setNote(data.note);
@@ -49,7 +50,7 @@ const Edit = () => {
         e.preventDefault();
         const activityData = {nameActivity, activity, date, duration, distance, note};
 
-        const { error } = schema.validate({nameActivity,activity, duration, distance});
+        const { error } = schema.validate({nameActivity,activity,date, duration, distance});
         if (error) {
             const errorMessage = error.details[0].message
                 .replace(/nameActivity/g, 'Activity Name')
