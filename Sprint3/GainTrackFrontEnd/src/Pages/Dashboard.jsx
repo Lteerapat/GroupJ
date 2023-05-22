@@ -3,15 +3,14 @@ import "../Styles/Dashboard.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import bgDashBoard from "../Images/Dashboard/bg-dashboard.png";
 import logoLight from "../Images/Logo/gaintrack-logo-light.png";
-import { UserContext } from "../Contexts/UserContext";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ActivityCards from "../Components/ActivityCards";
 import {format} from 'date-fns';
 import MiniProfile from "../Components/MiniProfile";
-import EditProfile from "./EditProfile";
 import ChartJsNumOfActivity from "../Components/ChartJsNumOfActivity";
 import ChartJsDuraDisOfAllActivity from "../Components/ChartJsDuraDisOfAllActivity";
+import lineQRPic from '../Images/Dashboard/LineOAQR.png';
 
 const Dashboard = () => {
     // const {ready, user, setUser} = useContext(UserContext);
@@ -29,32 +28,11 @@ const Dashboard = () => {
         setUser(null);
         navigate('/login');
     }
-
-    // // render mini profile
-    // useEffect(() => {
-    //     if (user) {
-    //         axios.get('/profile')
-    //             .then(({data}) => {
-    //                 setUser(data);
-    //                 setReady(true)
-    //             })
-    //             .catch(() => {
-    //                 setUser(null);
-    //             });
-    //     }
-
-         
-    // }, []);
-
-    
-
    
-    
 
     return (
 
         <div className="db-big-container">
-            {/* <EditProfile /> */}
             <div className="db-container">
                 <img src={bgDashBoard} alt="bg" />
 
@@ -68,17 +46,26 @@ const Dashboard = () => {
                         <div className="db-nav-bar">
                         <nav>
                             <ul>
-                            <li>
-                                <a href={"/dashboard/achievement"}>
-                                <i className="fa-solid fa-trophy"></i>Achievement
-                                </a>
-                            </li>
-                            <li>
-                                <a onClick={logout}>
-                                    Log out
-                                    <i className="fa-solid fa-right-from-bracket"></i>
-                                </a>
-                            </li>
+                                <li>
+                                    <a href={"/dashboard/achievement"}>
+                                    <i className="fa-solid fa-trophy"></i>Achievement
+                                    </a>
+                                </li>
+                                <li>
+                                    <div className="db-line-connection">
+                                        <a>
+                                            <i class="fa-brands fa-line"></i>
+                                            Connect Line
+                                        </a>
+                                        <img src={lineQRPic} alt='lineQR-pic' />
+                                    </div>
+                                </li>
+                                <li>
+                                    <a onClick={logout}>
+                                        Log out
+                                        <i className="fa-solid fa-right-from-bracket"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </nav>
                         </div>

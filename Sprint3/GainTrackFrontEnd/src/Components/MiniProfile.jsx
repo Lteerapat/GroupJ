@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import profilePic from "../Images/Dashboard/profilePic.png";
-import { UserContext } from "../Contexts/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import '../Styles/MiniProfile.css';
@@ -38,8 +37,10 @@ const MiniProfile = () => {
                 <span>{!ready ? 'Loading...' : user.location}</span>
             </div>
 
-            <div className="db-profile-pic">
-                <img src={profilePic} alt="profile-pic" />
+            <div className="db-profile-pic-container">
+                <div className="db-profile-pic">
+                    <img src={user.profile_image_url || profilePic} alt="profile-pic" />
+                </div>
                 <h2>Welcome, {!ready ? 'Loading...' : user.first_name}</h2>
                 <button onClick={() => editProfile()}>Edit Profile</button>
             </div>

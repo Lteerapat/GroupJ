@@ -96,7 +96,7 @@
     width: 100%;
 }
 
-.edit-profile-card button:first-child:hover {
+.edit-profile-card button:first-child:hover:not(.disabled) {
 	background-color: #a5e65a;
     font-weight: bolder;
     color: #5f7174;
@@ -105,7 +105,7 @@
     transition: all 0.25s ease;
 }
 
-.edit-profile-card button:last-child:hover {
+.edit-profile-card button:last-child:hover:not(.disabled) {
 	background-color: #ff4026;
     font-weight: bolder;
     color: #000000;
@@ -114,9 +114,18 @@
     transition: all 0.25s ease;
 }
 
-.edit-profile-card button:active {
+.edit-profile-card button:active:not(.disabled) {
 	scale: 0.95;
 	background-color: var(--bg-color-alt);
 }
+
+.edit-profile-button-section button.disabled {
+    opacity: 0.5;
+    cursor: default;
+    transition: none;
+  }
+
+
+
 
 

@@ -24,23 +24,25 @@
     font-size: 3rem;
 }
 
-.db-profile-pic {
+.db-profile-pic-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .db-profile-pic img {
-    display: block;
-    width: 5rem;
     border-radius: 100%;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    display: block;
 }
 
-.db-profile-pic h2 {
+.db-profile-pic-container h2 {
     color: white;
 }
 
-.db-profile-pic button {
+.db-profile-pic-container button {
     background-color: var(--primary-color-dark);
 	color: #fff;
 	border: none;
@@ -53,12 +55,12 @@
     width: 100%;
 }
 
-.db-profile-pic button:hover {
+.db-profile-pic-container button:hover {
     background-color: var(--primary-color);
     color: var(--primary-color-dark);
 }
 
-.db-profile-pic button:active {
+.db-profile-pic-container button:active {
     scale: 0.95;
 	background-color: var(--primary-color-light);
 }

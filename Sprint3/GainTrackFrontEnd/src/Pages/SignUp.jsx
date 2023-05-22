@@ -13,7 +13,6 @@ const SignUp = () => {
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[confirmPassword, setConfirmPassword] = useState('');
-    const[profileImageUrl, setProfileImageUrl] = useState('');
     const [passwordType, setPasswordType] = useState('password');
     const [lineId, setLineId] = useState('')
 
@@ -160,22 +159,8 @@ const SignUp = () => {
                                 onChange={e => {setConfirmPassword(e.target.value)}}
                             />
                         </div>
-                        <div className="form-item">
-                            <label htmlFor="password">Line id</label>
-                            
-                            <input
-                                type='text'
-                                className="form-element"
-                                id="lineId"
-                                name="lineId"
-                                placeholder="lineId"
-                                value={lineId}
-                                onChange={e => {setLineId(e.target.value)}}
-                            />
-                        </div>
                         <div className="flex">
                             <button>Create Account</button>
-                            {/* <input type="submit" value="Create Account" /> */}
                             <p>
                             Already have an account? <a href="/login">Log In</a>
                             </p>
