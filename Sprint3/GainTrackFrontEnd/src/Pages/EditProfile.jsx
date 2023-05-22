@@ -12,7 +12,8 @@ const [firstName, setFirstName] = useState('');
 const [lastName, setLastName] = useState('');
 const [email, setEmail] = useState('');
 const [password, setPassword] = useState('');
-const [profileImage, setProfileImage] = useState('');
+const [profileImage, setProfileImage] = useState(null);
+const [previewImage, setPreviewImage] = useState('');
 const [location, setLocation] = useState('');
 const [passwordType, setPasswordType] = useState('password');
 const [isLoading, setIsLoading] = useState(false);
@@ -85,20 +86,6 @@ const saveProfile = async (e) => {
     }
 
     try {
-        // const file = e.target.files[0];
-
-
-        // if (file) {
-        //     if (file.size > 250000) {
-        //         // Display an error message if the file size exceeds the limit
-        //         alert('Image size exceeds the limit (250KB). Please choose a smaller file.');
-        //         e.target.value = null; // Reset the file input value
-        //         setIsFileSelected(false); // Set isFileSelected to false
-        //     } else {
-        //         setProfileImage(file);
-        //         setIsFileSelected(true); // Set isFileSelected to true when a valid file is selected
-        //     }
-        // }
         // Validate the old password
         const response = await axios.post('/profile/validate-password', { password });
         if (response.data.correctPass) {
@@ -130,15 +117,22 @@ const handleFileChange = (e) => {
         if (file.size > 250000) {
             // Display an error message if the file size exceeds the limit
             alert('Image size exceeds the limit (250KB). Please choose a smaller file.');
-            e.target.value = null; // Reset the file input value
+            // e.target.value = null; // Reset the file input value
             setIsFileSelected(false); // Set isFileSelected to false
         } else {
             setProfileImage(file);
             setIsFileSelected(true); // Set isFileSelected to true when a valid file is selected
+            setPreviewImage(URL.createObjectURL(file)); //preview image
         }
     }
 }
 
+const handleDeletePreview = (e) => {
+    e.preventDefault();
+    setProfileImage(null);
+    setIsFileSelected(false);
+    setPreviewImage('');
+}
 
 return (
     <div className="container-edit-profile">
@@ -204,13 +198,30 @@ return (
                         onChange={(e)=> setPassword(e.target.value)}
                     />
                 </div>
-                <div className='edit-profile-form-item'>
-                    <label>Profile Image:</label>
-                    <input
-                        type="file"
-                        onChange={handleFileChange}
-                    />
+                <div className='edit-profile-image-form-item'>
+                    <label className="profile-image-label">
+                        <input
+                            type="file"
+                            onChange={handleFileChange}
+                        />
+                        {isFileSelected ?
+                            <div className="edit-profile-preview-image">
+                                <img src={previewImage} alt="preview-img"  className="preview-image" />
+                                <button className="delete-preview-button" onClick={handleDeletePreview}>
+                                    <i class="fa-solid fa-xmark" style={{color: '#ff0000'}}></i>
+                                </button>
+                            </div>
+                            :
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                                </svg>
+                            </div>
+                        }
+                        Upload Your Image
+                    </label>
                 </div>
+                
                 <div className="edit-profile-button-section">
                     <button 
                         className={isLoading ? 'disabled' : ''}

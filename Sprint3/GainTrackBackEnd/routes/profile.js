@@ -70,8 +70,8 @@ router.put('/', upload.single('profile_image'), async (req, res) => {
         // check if a file was uploaded
         
         if (req.file) {
-            if (req.file.size > 250000) {
-                res.status(400).json({error: 'File size exceeds the limit (250 KB)'});
+            if (req.file.size > 500000) {
+                res.status(400).json({error: 'File size exceeds the limit (500 KB)'});
                 return;
             }
             
