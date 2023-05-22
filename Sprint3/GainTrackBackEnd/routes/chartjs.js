@@ -37,38 +37,49 @@ router.get('/numOfActivity', async (req, res) => {
     }
 });
 
-// router.get('/dura-dis', async (req, res) => {
-//     try {
-//         const {token} = req.cookies;
-//         jwt.verify(token, jwtSecret, {}, async (err, userData) => {
-//             if (err) throw err;
-//             const {id} = userData;
-//             const activities = await Activity.find({user_id:id});
+router.get('/dura-dis', async (req, res) => {
+    try {
+        const {token} = req.cookies;
+        jwt.verify(token, jwtSecret, {}, async (err, userData) => {
+            if (err) throw err;
+            const {id} = userData;
+            const activities = await Activity.find({user_id:id});
 
-//             const walkingActivitiesDuration = 
-//                 activities
-//                     .filter((activity) => activity.activity_type === 'walking')
-//                     .reduce((total, activity) => total + activity.duration,0);
-//             const runningActivitiesDuration = activities.filter((activity) => activity.activity_type === 'running');
-//             const swimmingActivitiesDuration = activities.filter((activity) => activity.activity_type === 'swimming');
-//             const bikingActivitiesDuration = activities.filter((activity) => activity.activity_type === 'biking');
-//             const hikingActivitiesDuration = activities.filter((activity) => activity.activity_type === 'hiking');
+            const walkingActivitiesDuration = 
+                activities
+                    .filter((activity) => activity.activity_type === 'walking')
+                    .reduce((total, activity) => total + activity.duration,0);
+            const runningActivitiesDuration = 
+                activities
+                    .filter((activity) => activity.activity_type === 'running')
+                    .reduce((total, activity) => total + activity.duration,0);
+            const swimmingActivitiesDuration = 
+                activities
+                    .filter((activity) => activity.activity_type === 'swimming')
+                    .reduce((total, activity) => total + activity.duration,0);
+            const bikingActivitiesDuration = 
+                activities
+                    .filter((activity) => activity.activity_type === 'biking')
+                    .reduce((total, activity) => total + activity.duration,0);
+            const hikingActivitiesDuration = 
+                activities
+                    .filter((activity) => activity.activity_type === 'hiking')
+                    .reduce((total, activity) => total + activity.duration,0);
+
+            const allActivitiesDurationForChartJs = {
+                walkingActivitiesDuration,
+                runningActivitiesDuration,
+                swimmingActivitiesDuration,
+                bikingActivitiesDuration,
+                hikingActivitiesDuration
+            };
+            res.status(200).json(allActivitiesDurationForChartJs);
 
 
-//             const allActivitiesDurationForChartJs = {
-//                 walkingActivitiesDuration,
-//                 runningActivitiesDuration,
-//                 swimmingActivitiesDuration,
-//                 bikingActivitiesDuration,
-//                 hikingActivitiesDuration
-//             };
-//             res.status(200).json(allActivitiesDurationForChartJs);
-
-
-//         })
-//     } catch (err) {
-//         res.status(500).json('Internal Server Error');
-//     }
-// });
+        })
+    } catch (err) {
+        res.status(500).json('Internal Server Error');
+    }
+});
 
 module.exports = router;

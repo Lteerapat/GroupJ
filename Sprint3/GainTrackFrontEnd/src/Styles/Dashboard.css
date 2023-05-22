@@ -97,6 +97,8 @@
 
 .db-line-connection a i {
     margin-right: 5px;
+    background-color: white;
+    border-radius: 8px;
 }
 
 
@@ -181,11 +183,11 @@
 .db-activity-summary {
     background-color: var(--bg-color-alt);
     width: 90%;
-    height: 20%;
-    border-radius: 50px;
+    height: 35%;
+    border-radius: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+    padding: 6px;
 }
 

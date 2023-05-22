@@ -48,13 +48,13 @@ const Dashboard = () => {
                             <ul>
                                 <li>
                                     <a href={"/dashboard/achievement"}>
-                                    <i className="fa-solid fa-trophy"></i>Achievement
+                                        <i className="fa-solid fa-trophy" style={{color: 'yellow'}}></i>Achievement
                                     </a>
                                 </li>
                                 <li>
                                     <div className="db-line-connection">
                                         <a>
-                                            <i class="fa-brands fa-line"></i>
+                                            <i class="fa-brands fa-line" style={{color: '#06c655'}}></i>
                                             Connect Line
                                         </a>
                                         <img src={lineQRPic} alt='lineQR-pic' />
@@ -95,7 +95,7 @@ const Dashboard = () => {
                             <ChartJsNumOfActivity />
                         </div>
                         <div className="db-activity-summary">
-                            {/* <ChartJsDuraDisOfAllActivity /> */}
+                            <ChartJsDuraDisOfAllActivity />
                         </div>
                     </div>
                 </div>

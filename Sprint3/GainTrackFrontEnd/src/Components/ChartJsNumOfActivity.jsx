@@ -2,7 +2,6 @@ import axios from 'axios';
 import { 
     Chart as CHARTJS,
     BarElement,
-    ArcElement,
     CategoryScale,
     LinearScale, //y
     Tooltip,
@@ -10,11 +9,10 @@ import {
 } from 'chart.js';
 import { useEffect, useState } from 'react';
 
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 CHARTJS.register(
     BarElement,
-    ArcElement,
     CategoryScale,
     LinearScale, //y
     Tooltip,
@@ -30,7 +28,6 @@ const ChartJsNumOfActivity = () => {
 
     useEffect(() => {
         axios.get('/chartjs/numOfActivity').then(({data})=> {
-            console.log(data)
             setWalkingActivities(data.walkingActivities)
             setRunningActivities(data.runningActivities)
             setSwimmingActivities(data.swimmingActivities)
@@ -47,17 +44,43 @@ const ChartJsNumOfActivity = () => {
             {
                 label: 'number of activity',
                 data: [walkingActivities,runningActivities,swimmingActivities,bikingActivities,hikingActivities],
-                backgroundColor: 'aqua',
-                borderColor: 'black',
-                borderWidth: 1,
+                backgroundColor: '#B38BFF',
             },
             
         ]
     }
 
     const options = {
-
+        scales: {
+            x: {
+                grid: {
+                    drawOnChartArea: false
+                },
+                ticks: {
+                    color: 'white'
+                }
+            },
+            y: {
+                grid: {
+                    drawOnChartArea: false,
+                    beginAtZero: false
+                },
+                ticks: {
+                    color: 'white',
+                    precision: 0
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white'
+                }
+            }
+        }
     }
+
+    
 
     
     return (

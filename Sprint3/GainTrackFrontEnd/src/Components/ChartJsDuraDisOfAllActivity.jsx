@@ -1,20 +1,20 @@
 import axios from 'axios';
 import { 
     Chart as CHARTJS,
-    BarElement,
-    ArcElement,
     CategoryScale,
     LinearScale, //y
     Tooltip,
-    Legend
+    Legend,
+    PointElement,
+    LineElement
 } from 'chart.js';
 import { useEffect, useState } from 'react';
 
-import { Bar, Doughnut } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 CHARTJS.register(
-    BarElement,
-    ArcElement,
+    PointElement,
+    LineElement,
     CategoryScale,
     LinearScale, //y
     Tooltip,
@@ -43,30 +43,56 @@ const ChartJsDuraDisOfAllActivity = () => {
         labels: ['walking','running', 'swimming', 'biking', 'hiking'],
         datasets: [
             {
-                label: 'number of activity',
+                label: 'over all duration in minute',
                 data: [walkingDuration,runningDuration,swimmingDuration,bikingDuration,hikingDuration],
-                backgroundColor: 'aqua',
-                borderColor: 'black',
-                borderWidth: 1,
+                backgroundColor: '#B38BFF',
+                borderColor: '#D9C5FF',
+                cubicInterpolationMode: 'monotone',
             },
             
         ]
     }
 
     const options = {
-
+        scales: {
+            x: {
+                grid: {
+                    drawOnChartArea: false
+                },
+                ticks: {
+                    color: 'white'
+                }
+            },
+            y: {
+                grid: {
+                    drawOnChartArea: false,
+                    beginAtZero: false
+                },
+                ticks: {
+                    color: 'white',
+                    precision: 0
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                labels: {
+                    color: 'white'
+                }
+            }
+        }
     }
 
     
     return (
         <>
-            <Bar
+            <Line
                 style={
                     {}
                 }
                 data = {data}
                 options = {options}
-            ></Bar>
+            ></Line>
         </>
     );
 };
