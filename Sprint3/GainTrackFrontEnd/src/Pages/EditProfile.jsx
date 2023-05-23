@@ -3,7 +3,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import axios from "axios";
 import Joi from "joi";
 import { useEffect, useState } from "react";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import '../Styles/EditProfile.css';
 
 const EditProfile = () => {
@@ -35,8 +35,6 @@ const schema = Joi.object({
     lastName: Joi.string().alphanum().min(3).max(30).required(),
     email: Joi.string().email({ tlds: { allow: false } }).required(),
     password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
-    // confirmPassword: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
-    // oldPassword: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
     location: Joi.string().min(3).max(30).required(),
 });
 
@@ -70,8 +68,6 @@ const saveProfile = async (e) => {
     formData.append('email', email);
     formData.append('password', password);
     formData.append('location', location);
-
-    // Append the profile image file to the FormData object
     formData.append('profile_image', profileImage);
 
     const {error} = schema.validate({firstName, lastName, email, password, location});
@@ -79,8 +75,6 @@ const saveProfile = async (e) => {
         const errorMessage = error.details[0].message
             .replace(/firstName/g, 'First Name')
             .replace(/lastName/g, 'Last Name')
-            // .replace(/oldPassword/g, 'Old Password')
-            // .replace(/confirmPassword/g, 'Confirm Password')
         alert(errorMessage);
         return;
     }
@@ -114,10 +108,17 @@ const handleFileChange = (e) => {
     const file = e.target.files[0];
 
     if (file) {
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        const fileType = file.type;
+
+        if (!allowedTypes.includes(fileType)) {
+            alert('Invalid file type. Please choose a JPEG, JPG, or PNG file.');
+            setIsFileSelected(false);
+            return;
+        }
+        
         if (file.size > 250000) {
-            // Display an error message if the file size exceeds the limit
             alert('Image size exceeds the limit (250KB). Please choose a smaller file.');
-            // e.target.value = null; // Reset the file input value
             setIsFileSelected(false); // Set isFileSelected to false
         } else {
             setProfileImage(file);
@@ -146,7 +147,6 @@ return (
                             type="text"
                             className='edit-profile-form-element'
                             value={firstName}
-                            // defaultValue={user.first_name}
                             onChange={(e)=> setFirstName(e.target.value)}
                         />
                     </div>
@@ -156,7 +156,6 @@ return (
                             type="text"
                             className='edit-profile-form-element'
                             value={lastName}
-                            // defaultValue={user.last_name}
                             onChange={(e)=> setLastName(e.target.value)}
                         />
                     </div>
@@ -178,7 +177,6 @@ return (
                         type="email"
                         className='edit-profile-form-element'
                         value={email}
-                        // defaultValue={user.email}
                         onChange={(e)=> setEmail(e.target.value)}
                     />
                 </div>
@@ -225,7 +223,7 @@ return (
                 <div className="edit-profile-button-section">
                     <button 
                         className={isLoading ? 'disabled' : ''}
-                        disabled={isLoading } //error here
+                        disabled={isLoading }
                      >
                         {isLoading ? 'Uploading...' : 'Save'}
                     </button>

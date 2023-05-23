@@ -26,8 +26,7 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({
-  storage: storage,
-//   limits: { fileSize: 250000 } // Limit file size to 250KB
+    storage: storage,
 });
 
 //get user profile
@@ -70,8 +69,8 @@ router.put('/', upload.single('profile_image'), async (req, res) => {
 
         console.log(userDoc)
         let newProfileImageUrl  = userDoc.profile_image_url; // set new to original to prevent null overwrite the picture in db
+
         // check if a file was uploaded
-        
         if (req.file) {
             if (req.file.size > 500000) {
                 res.status(400).json({error: 'File size exceeds the limit (500 KB)'});
