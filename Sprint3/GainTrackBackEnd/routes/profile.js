@@ -63,10 +63,13 @@ router.post('/validate-password', async (req, res) => {
 router.put('/', upload.single('profile_image'), async (req, res) => {
     try {
         const userData = await getUserDataFromReq(req);
-        const {id, profile_image_url} = userData;
+        const {id} = userData;
         const { first_name, last_name, email, location } = req.body;
 
-        let newProfileImageUrl  = profile_image_url; // set new to original to prevent null overwrite the picture in db
+        const userDoc = await User.findById(id)
+
+        console.log(userDoc)
+        let newProfileImageUrl  = userDoc.profile_image_url; // set new to original to prevent null overwrite the picture in db
         // check if a file was uploaded
         
         if (req.file) {
@@ -76,11 +79,9 @@ router.put('/', upload.single('profile_image'), async (req, res) => {
             }
             
             //delete the old profile photo if it exists
-            if (profile_image_url) {
-                const public_id = profile_image_url.split('/').slice(-1)[0].split('.')[0];
-                console.log(public_id)
-                await cloudinary.uploader.destroy(public_id);
-                console.log(profile_image_url)
+            if (newProfileImageUrl) {
+                const public_id = newProfileImageUrl.split('/').slice(-1)[0].split('.')[0];
+                const checkupload = await cloudinary.uploader.destroy('GainTrackUserImg/'+public_id, {folder: 'GainTrackUserImg'})
             }
             const filePath = req.file.path;
             //upload new photo to cloudinary
