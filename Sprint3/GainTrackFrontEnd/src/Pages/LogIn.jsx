@@ -7,6 +7,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useCookies } from 'react-cookie';
+import Swal from 'sweetalert2';
 
 
 const LogIn = () => {
@@ -59,15 +60,15 @@ const LogIn = () => {
         e.preventDefault();
 
         if (email === '' && password === '') {
-            alert("Please enter you email and password!")
+            Swal.fire("Please enter you email and password!")
         } else if (email === '') {
-            alert("Please enter your email!")
+            Swal.fire("Please enter your email!")
         } else if (password === '') {
-            alert("Please enter you password!")
+            Swal.fire("Please enter you password!")
         } else {
             try {
                 const {data, headers} = await axios.post('/auth/login', {email, password}, {withCredentials:true});
-                if (rememberMe) { //bug is here!!!!!!!!!!!
+                if (rememberMe) { 
                     localStorage.setItem('token', data.password)
                     localStorage.setItem("email", email);
                     localStorage.setItem("password", password);
@@ -78,13 +79,17 @@ const LogIn = () => {
                     localStorage.removeItem("password");
                     localStorage.removeItem("rememberMe");
                 }
-                // const token = headers['set-cookie'][0].split('=')[1]; // Extract the token from the response headers
-                // console.log(token)
-                // setCookie('token', token); // Store the token as a cookie
-                alert('Login successful');
+                
+                await Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Login successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
                 navigate('/dashboard');
             } catch (err) {
-                alert('Login failed: '+err.response.data.error);
+                Swal.fire('Login failed: '+err.response.data.error);
             }
         }
     };

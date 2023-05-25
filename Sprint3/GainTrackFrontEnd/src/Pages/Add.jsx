@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import  axios  from 'axios';
 import Joi from "joi";
+import Swal from 'sweetalert2';
 
 const Add = () => {
     //NameActivity
@@ -21,13 +22,28 @@ const Add = () => {
     const [addRedirect, setAddRedirect] = useState(false);
 
 
+    //custom the joi validation to limit input number at 5 digits
+    const customValidation = (value, helpers) => {
+        if (value.toString().length <= 5) {
+            return value;
+        } else {
+            return helpers.error('any.custom', { custom: 'must be less than or equal to 5 digits' });
+        }
+    };
+
     //validation schema in add
     const schema = Joi.object({
-        nameActivity: Joi.string().min(3).max(30).required(),
+        nameActivity: Joi.string().min(3).max(20).required(),
         activity: Joi.string().min(3).max(30).required(),
         date: Joi.date().required(),
-        duration:Joi.number().integer().required(),
-        distance: Joi.number().integer().required(),
+        duration: Joi.number().integer().custom(customValidation).required()
+            .messages({
+            'any.custom': '{{#label}} {{#custom}}'
+            }),
+        distance: Joi.number().integer().custom(customValidation).required()
+            .messages({
+            'any.custom': '{{#label}} {{#custom}}'
+            }),
     });
     
     const addActivity = async (e) => {
@@ -39,13 +55,36 @@ const Add = () => {
             const errorMessage = error.details[0].message
                 .replace(/nameActivity/g, 'Activity Name')
                 .replace(/activity/g, 'Activity Type');
-            alert(errorMessage);
+            Swal.fire(errorMessage);
             return;
         }
         
         await axios.post('/activities/add', activityData);
+        await Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'saved',
+            showConfirmButton: false,
+            timer: 1500
+        });
         setAddRedirect(true);
         
+    }
+
+    const handleCancelButton = async (e) => {
+        e.preventDefault();
+        await Swal.fire({
+            title: 'Do you want to cancel the changes?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                setAddRedirect(true);
+            } else if (result.isDenied) {
+               return;
+            } 
+        })
     }
 
     //Navigate
@@ -63,7 +102,7 @@ const Add = () => {
             <DateActivity date={date} setDate={setDate} />
             <DurationNote duration={duration} setDuration={setDuration} distance={distance} setDistance={setDistance} />
             <Note note={note} setNote={setNote} />
-            <Button />
+            <Button handleCancelButton={handleCancelButton} />
         </form>
         </div>
     );
@@ -187,7 +226,7 @@ const Add = () => {
     );
     };
 
-    const Button = () => {
+    const Button = ({handleCancelButton}) => {
         const [cancelRedirect, setCancelRedirect] = useState(false);
         if (cancelRedirect) {
             return <Navigate to={'/dashboard'} />
@@ -195,7 +234,7 @@ const Add = () => {
     return (
         <div className="Buttom-Add-Edit">
         <button>Add</button>
-        <button onClick={()=>{setCancelRedirect(true)}}>Cancel</button>
+        <button onClick={handleCancelButton}>Cancel</button>
         </div>
     );
 };

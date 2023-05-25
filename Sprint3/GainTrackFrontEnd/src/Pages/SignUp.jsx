@@ -5,6 +5,7 @@ import Joi from 'joi';
 import { useState } from 'react';
 import axios from 'axios';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Swal from 'sweetalert2';
 
 
 const SignUp = () => {  
@@ -50,29 +51,34 @@ const SignUp = () => {
             password
            
         }
-        // const formData = new FormData(event.target);
-        // const data = Object.fromEntries(formData.entries());
+        
     
         const { error } = schema.validate(userData);
         if (error) {
-            alert(error.details[0].message);
+            Swal.fire(error.details[0].message.replace(/firstName/g, 'First Name').replace(/lastName/g, 'Last Name'));
             return;
         }
 
         if (password !== confirmPassword) {
-            alert('Passwords do NOT match');
+            Swal.fire('Passwords do NOT match');
             return;
         }
 
         try {
             await axios.post('/auth/signup', { firstName, lastName, email, password,lineId });
-            alert('Registration successful');
+            await Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Registration successful',
+                showConfirmButton: false,
+                timer: 1500
+            });
             navigationToLogin();
         } catch (err) {
             err.response.data.error === 'This email already registered' ?
-                alert (err.response.data.error)
+                Swal.fire(err.response.data.error)
                 :
-                alert ("Registration failed. Please try again later.")
+                Swal.fire("Registration failed. Please try again later.")
         }
         // Form data is valid, do something with it here
     };

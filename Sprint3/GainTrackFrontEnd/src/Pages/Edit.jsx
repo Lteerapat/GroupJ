@@ -4,7 +4,7 @@ import axios from "axios";
 import Joi from "joi";
 import { useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
-import {format} from 'date-fns';
+import Swal from 'sweetalert2';
 
 const Edit = () => {
     const {id} =useParams();
@@ -22,13 +22,32 @@ const Edit = () => {
     const [note,setNote] = useState('');
     const [saveRedirect, setSaveRedirect] = useState(false);
 
+   
+    
+
+    //custom the joi validation to limit input number at 5 digits
+    const customValidation = (value, helpers) => {
+        if (value.toString().length <= 5) {
+            return value;
+        } else {
+            return helpers.error('any.custom', { custom: 'must be less than or equal to 5 digits' });
+        }
+    };
+
+    
     //validation schema in edit
     const schema = Joi.object({
-        nameActivity: Joi.string().min(3).max(30).required(),
-        activity: Joi.string().min(3).max(30).required(),
-        date: Joi.date().required(),
-        duration:Joi.number().integer().required(),
-        distance: Joi.number().integer().required(),
+    nameActivity: Joi.string().min(3).max(20).required(),
+    activity: Joi.string().min(3).max(30).required(),
+    date: Joi.date().required(),
+    duration: Joi.number().integer().custom(customValidation).required()
+        .messages({
+        'any.custom': '{{#label}} {{#custom}}'
+        }),
+    distance: Joi.number().integer().custom(customValidation).required()
+        .messages({
+        'any.custom': '{{#label}} {{#custom}}'
+        })
     });
 
     useEffect(() => {
@@ -54,16 +73,43 @@ const Edit = () => {
         if (error) {
             const errorMessage = error.details[0].message
                 .replace(/nameActivity/g, 'Activity Name')
-                .replace(/activity/g, 'Activity Type');
-            alert(errorMessage);
+                .replace(/activity/g, 'Activity Type')
+            Swal.fire(errorMessage);
             return;
         }
 
         if (id) {
             await axios.put('/activities/edit', {id, ...activityData});
-            setSaveRedirect(true);
+            await Swal.fire({
+                title: 'Do you want to save the changes?',
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+              }).then(async (result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                   await Swal.fire('saved', '', 'success')
+                   setSaveRedirect(true);
+                } else return;
+              })
+            
         } 
     };
+
+    const handleCancelButton = async (e) => {
+        e.preventDefault();
+        await Swal.fire({
+            title: 'Do you want to cancel the changes?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                setSaveRedirect(true);
+            } else if (result.isDenied) {
+               return;
+            } 
+        })
+    }
 
     //Navigate
     if (saveRedirect) {
@@ -79,7 +125,7 @@ const Edit = () => {
         <DateActivity date={date} setDate={setDate} />
         <DurationNote duration={duration} setDuration={setDuration} distance={distance} setDistance={setDistance} />
         <Note note={note} setNote={setNote} />
-        <Button />
+        <Button handleCancelButton={handleCancelButton} />
       </form>
     </div>
   );
@@ -202,7 +248,7 @@ const Note = (props) => {
   );
 };
 
-const Button = () => {
+const Button = ({handleCancelButton}) => {
     const [cancelRedirect, setCancelRedirect] = useState(false);
     if (cancelRedirect) {
         return <Navigate to={'/dashboard'} />
@@ -210,7 +256,7 @@ const Button = () => {
     return (
         <div className="Buttom-Add-Edit">
         <button>Save</button>
-        <button onClick={()=>{setCancelRedirect(true)}}>Cancel</button>
+        <button onClick={handleCancelButton}>Cancel</button>
         </div>
     );
 };

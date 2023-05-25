@@ -67,7 +67,6 @@ router.put('/', upload.single('profile_image'), async (req, res) => {
 
         const userDoc = await User.findById(id)
 
-        console.log(userDoc)
         let newProfileImageUrl  = userDoc.profile_image_url; // set new to original to prevent null overwrite the picture in db
 
         // check if a file was uploaded

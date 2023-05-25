@@ -5,6 +5,7 @@ import Joi from "joi";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../Styles/EditProfile.css';
+import Swal from 'sweetalert2';
 
 const EditProfile = () => {
 const [user, setUser] = useState([]);
@@ -72,10 +73,7 @@ const saveProfile = async (e) => {
 
     const {error} = schema.validate({firstName, lastName, email, password, location});
     if (error) {
-        const errorMessage = error.details[0].message
-            .replace(/firstName/g, 'First Name')
-            .replace(/lastName/g, 'Last Name')
-        alert(errorMessage);
+        Swal.fire(error.details[0].message.replace(/firstName/g, 'First Name').replace(/lastName/g, 'Last Name'));
         return;
     }
 
@@ -93,13 +91,26 @@ const saveProfile = async (e) => {
             });
 
             setIsLoading(false); //end the loading state
-            alert('Profile updated successfully.')
-            navigate('/dashboard')
+            await Swal.fire({
+                title: 'Do you want to save the changes?',
+                showCancelButton: true,
+                confirmButtonText: 'Save',
+              }).then(async (result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                   await Swal.fire('Profile updated successfully', '', 'success')
+                   navigate('/dashboard')
+                } else return;
+              })
         } else {
-            alert('Your password is incorrect. Please try again.');
+            Swal.fire('Your password is incorrect. Please try again.');
         }
     } catch (err) {
-        alert(`Error updating profile. Please try again.`);
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Error updating profile. Please try again.',
+        })
     }
 };
 
@@ -112,13 +123,13 @@ const handleFileChange = (e) => {
         const fileType = file.type;
 
         if (!allowedTypes.includes(fileType)) {
-            alert('Invalid file type. Please choose a JPEG, JPG, or PNG file.');
+            Swal.fire('Invalid file type. Please choose a JPEG, JPG, or PNG file.');
             setIsFileSelected(false);
             return;
         }
         
         if (file.size > 250000) {
-            alert('Image size exceeds the limit (250KB). Please choose a smaller file.');
+            Swal.fire('Image size exceeds the limit (250KB). Please choose a smaller file.');
             setIsFileSelected(false); // Set isFileSelected to false
         } else {
             setProfileImage(file);
@@ -133,6 +144,22 @@ const handleDeletePreview = (e) => {
     setProfileImage(null);
     setIsFileSelected(false);
     setPreviewImage('');
+}
+
+const handleCancelButton = async (e) => {
+    e.preventDefault();
+    await Swal.fire({
+        title: 'Do you want to cancel the changes?',
+        showDenyButton: true,
+        confirmButtonText: 'Yes',
+        denyButtonText: `No`,
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+           navigate('/dashboard')
+        } else if (result.isDenied) {
+           return;
+        } 
+    })
 }
 
 return (
@@ -230,7 +257,7 @@ return (
                     <button 
                         className={isLoading ? 'disabled' : ''} 
                         disabled={isLoading} 
-                        onClick={() => {navigate('/dashboard')}}
+                        onClick={handleCancelButton}
                     >Cancel</button>
                 </div>
             </form>

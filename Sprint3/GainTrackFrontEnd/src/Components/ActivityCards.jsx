@@ -5,10 +5,11 @@ import React from "react";
 import {format} from 'date-fns';
 import ActivityCardIcon from "./ActivityTypeIcon";
 import '../Styles/ActivityCards.css';
+import Swal from 'sweetalert2';
 
 const ActivityCards = () => {
-
     const [activityCards, setActivityCards] = useState([]);
+
 
     // render all activities
     useEffect(() => {
@@ -18,20 +19,37 @@ const ActivityCards = () => {
     }, []);
     
     const handleDelete = async (id) => {
-        const confirmDelete = window.confirm("Are you sure you want to delete this activity?");
+        const confirmDelete = await Swal.fire({
+            title: 'Do you want to delete this activity ?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await Swal.fire('delete successful', '', 'success')
+                return true;
+            } else if (result.isDenied) {
+               return;
+            } 
+        });
+
         if (confirmDelete) {
             try {
                 await axios.delete('/activities/'+id);
                 setActivityCards(activityCards.filter(activityCard => activityCard._id !== id));
             } catch (err) {
-                console.error(err);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                })
             }
         }
     };
 
     return (
         <div className="db-activities-card-container">
-        {activityCards.length > 0 && activityCards.map((activityCard) => (
+        {activityCards.length > 0 && activityCards.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at)).map((activityCard) => (
             <div className="db-card" key={activityCard._id}>
                 <div className="db-activity-bg">
                     <ActivityCardIcon activityCard={activityCard} />
@@ -45,7 +63,7 @@ const ActivityCards = () => {
                         </div>
                         <div className="db-activity-property-bottom">
                             <h4>Distance: {activityCard.distance} m</h4>
-                            <h4>Note: {activityCard.note}</h4>
+                            <h4>Note: {activityCard.note.length>10? `${activityCard.note.substring(0, 10)}...`:activityCard.note}</h4>
                         </div>
                     </div>
                 </div>

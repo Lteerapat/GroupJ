@@ -1,18 +1,6 @@
 @import '../Styles/global.css';
 
-/* :root {
-    --primary-dark: #3B0967;
-    --primary-light: #d9c5ff
-} */
 
-
-/* body {
-    width: 100%;
-    height: 100%; 
-    width: 1200px;
-     height: 900px;
-   
-} */
 
 .body {
     display: flex;
@@ -106,13 +94,16 @@
 .name {
     border-radius: 5px;
     font-size: 20px;
+    padding: 5px;
 }
 .email {
     border-radius: 5px;
     font-size: 20px;
+    padding: 5px;
 }
 .message {
     border-radius: 5px;
     font-size: 20px;
+    padding: 5px;
 }
 

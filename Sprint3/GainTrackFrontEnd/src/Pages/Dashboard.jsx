@@ -11,9 +11,9 @@ import MiniProfile from "../Components/MiniProfile";
 import ChartJsNumOfActivity from "../Components/ChartJsNumOfActivity";
 import ChartJsDuraDisOfAllActivity from "../Components/ChartJsDuraDisOfAllActivity";
 import lineQRPic from '../Images/Dashboard/LineOAQR.png';
+import Swal from 'sweetalert2';
 
 const Dashboard = () => {
-    // const {ready, user, setUser} = useContext(UserContext);
     const [user, setUser] = useState([]);
 
     //Navigation
@@ -22,11 +22,23 @@ const Dashboard = () => {
     //when click logout 
     const logout = async (e) => {
         e.preventDefault();
-        await axios.post('/logout');
-        localStorage.removeItem('token');
-        sessionStorage.removeItem('sessionToken');
-        setUser(null);
-        navigate('/login');
+        await Swal.fire({
+            title: 'Confirm Logout ?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                await axios.post('/logout');
+                localStorage.removeItem('token');
+                sessionStorage.removeItem('sessionToken');
+                setUser(null);
+                navigate('/login');
+            } else if (result.isDenied) {
+               return;
+            } 
+        })
+        
     }
    
 

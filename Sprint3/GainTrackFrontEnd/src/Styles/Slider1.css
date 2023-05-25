@@ -13,6 +13,7 @@
   text-align: center;
   position: relative;
   display: flex;
+  overflow: hidden;
 }
 .picture-img {
   margin-bottom: 1rem;
