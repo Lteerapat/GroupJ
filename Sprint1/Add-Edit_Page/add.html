@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Add css -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Add FA -->
+  <script src="https://kit.fontawesome.com/e154fbcc79.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add</title>
+</head>
+
+<body>
+  <div class="container">
+    <!-- add Heading -->
+    <div class="headtext">
+      <h3>Add Your Activity</h3>
+    </div>
+    <br>
+    <!-- add Text Form -->
+    <div class="text-form">
+      <label for="activityName" class="form-label">Activity Name</label>
+      <input type="text" class="form-control" id="activityName" placeholder="" required>
+    </div>
+    <br>
+    <!-- add Icon Form -->
+    <div class="icon-form">
+      <label for="activityType" class="form-label">Activity Type</label><br><br>
+      <span class="fa-stack fa-2x">
+        <i class="fa-solid fa-circle fa-stack-2x" style="color: #1D0648;"></i>
+        <i class="fa-solid fa-person-walking fa-xs fa-stack-1x fa-inverse" style="color: #ffffff;"></i>
+      </span>
+      <span class="fa-stack fa-2x">
+        <i class="fa-solid fa-circle fa-stack-2x" style="color: #1D0648;"></i>
+        <i class="fa-solid fa-person-running fa-xs fa-stack-1x fa-inverse" style="color: #ffffff;"></i>
+      </span>
+      <span class="fa-stack fa-2x">
+        <i class="fa-solid fa-circle fa-stack-2x" style="color: #1D0648;"></i>
+        <i class="fa-solid fa-person-biking fa-xs fa-stack-1x fa-inverse" style="color: #ffffff;"></i>
+      </span>
+      <span class="fa-stack fa-2x">
+        <i class="fa-solid fa-circle fa-stack-2x" style="color: #1D0648;"></i>
+        <i class="fa-solid fa-person-swimming fa-xs fa-flip-horizontal fa-stack-1x fa-inverse"
+          style="color: #ffffff;"></i>
+      </span>
+      <span class="fa-stack fa-2x">
+        <i class="fa-solid fa-circle fa-stack-2x" style="color: #1D0648;"></i>
+        <i class="fa-solid fa-person-hiking fa-xs fa-stack-1x fa-inverse" style="color: #ffffff;"></i>
+      </span>
+      <span class="fa-stack fa-2x">
+        <i class="fa-solid fa-circle fa-stack-2x" style="color: #1D0648;"></i>
+        <i class="fa-solid fa-plus fa-xs fa-stack-1x fa-inverse" style="color: #ffffff;"></i>
+      </span>
+    </div>
+    <br>
+    <!-- add Date Form -->
+    <div class="date-form">
+      <label for="date" class="form-label">Date</label>
+      <input type="date" class="form-control" id="date" placeholder="" required>
+    </div>
+    <br>
+    <!-- add Row Box -->
+    <div class="row-form">
+      <!-- add Duration Form -->
+      <div class="duration-form">
+        <label for="duration" class="form-label">Duration</label>
+        <input type="text" class="form-control" id="duration" placeholder="" value="" required>
+      </div>
+      <!-- add Note Form -->
+      <div class="note-form">
+        <label for="note" class="form-label">Note</label>
+        <input type="text" class="form-control" id="note" placeholder="" value="" required>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <!-- add Button -->
+    <div class="button">
+      <button class="addbutton" type="submit">Add</button>
+      <button class="cancelbutton" type="submit">Cancel</button>
+    </div>
+  </div>
+</body>
+
+</html>
