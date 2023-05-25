@@ -96,7 +96,7 @@ const SignUp = () => {
                     <h1>Create an account</h1>
                     <form onSubmit={handleCreateAccount}>
                         <div className="form-item">
-                            <label htmlFor="firstname">First Name</label>
+                            <label htmlFor="firstname">First Name:</label>
                             <input
                                 type="text"
                                 className="form-element"
@@ -108,7 +108,7 @@ const SignUp = () => {
                             />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="lastname">Last Name</label>
+                            <label htmlFor="lastname">Last Name:</label>
                             <input
                                 type="text"
                                 className="form-element"
@@ -120,7 +120,7 @@ const SignUp = () => {
                             />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="email">Email</label>
+                            <label htmlFor="email">Email:</label>
                             <input
                                 type="text"
                                 className="form-element"
@@ -132,7 +132,7 @@ const SignUp = () => {
                             />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="password">Password</label>
+                            <label htmlFor="password">Password:</label>
                             {passwordType==="password" ? 
                                 <i className="fa-solid fa-eye-slash" onClick={togglePassword}></i>
                                 :
@@ -149,7 +149,7 @@ const SignUp = () => {
                             />
                         </div>
                         <div className="form-item">
-                            <label htmlFor="password">Confirm password</label>
+                            <label htmlFor="password">Confirm Password:</label>
                             {passwordType==="password" ? 
                                 <i className="fa-solid fa-eye-slash" onClick={togglePassword}></i>
                                 :

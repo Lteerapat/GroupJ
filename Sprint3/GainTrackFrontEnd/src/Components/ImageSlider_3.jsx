@@ -78,7 +78,7 @@ const Slider = ({slides, parentWidth}) => {
 
         timeRef.current = setTimeout(() => {
             goToNext()
-        }, 4000);
+        }, 10000);
 
         return () => clearTimeout(timeRef.current);
     }, [goToNext]);

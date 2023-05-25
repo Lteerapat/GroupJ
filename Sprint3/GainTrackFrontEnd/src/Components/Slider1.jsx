@@ -17,12 +17,12 @@ const data = [
   {
     id: 2,
     image: Image2,
-    buttonJU: <button className="join-us-slider-top">Join US</button>,
+    buttonJU: <button className="join-us-slider-top">Join Us</button>,
   },
   {
     id: 3,
     image: Image3,
-    buttonJU: <button className="join-us-slider-top">Join US</button>,
+    buttonJU: <button className="join-us-slider-top">Join Us</button>,
   },
 ];
 
@@ -46,7 +46,7 @@ function Slider() {
   useEffect(() => {
     let slider = setInterval(() => {
       setIndex(index + 1);
-    }, 4000);
+    }, 10000);
     return () => clearInterval(slider);
   }, [index]);
 
