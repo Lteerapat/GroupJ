@@ -1,0 +1,10 @@
+@import '../Styles/global.css';
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    max-width: 1440px;
+    margin: 0 auto
+}
