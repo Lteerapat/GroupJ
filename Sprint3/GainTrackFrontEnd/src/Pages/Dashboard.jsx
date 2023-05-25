@@ -66,7 +66,7 @@ const Dashboard = () => {
                                 <li>
                                     <div className="db-line-connection">
                                         <a>
-                                            <i class="fa-brands fa-line" style={{color: '#06c655'}}></i>
+                                            <i className="fa-brands fa-line" style={{color: '#06c655'}}></i>
                                             Connect Line
                                         </a>
                                         <img src={lineQRPic} alt='lineQR-pic' />
