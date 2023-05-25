@@ -19,18 +19,19 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    username: {
+        type: String,
+        required: true
+    },
     profile_image_url: {
-        type: String
+        type: String,
+        unique: true
     },
     location: {
         type: String
-    },
-    user_line_id: {
-        type: String
-    },
-    
+    }
 });
 
-const User = mongoose.model('users', userSchema);
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;

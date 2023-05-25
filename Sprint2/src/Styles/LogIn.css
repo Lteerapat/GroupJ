@@ -1,0 +1,206 @@
+@import '../Styles/global.css';
+
+.login-page-container {
+	display: grid;
+    place-items: center;
+	min-height: 100vh;
+	padding: 1.5rem;
+}
+
+.login-page-container:after {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background-color: var(--primary-color);
+	width: 60%;
+	height: 100vh;
+	-webkit-clip-path: polygon(0 100%, 0 0, 100% 0, 70% 100%);
+	clip-path: polygon(0 100%, 0 0, 100% 0, 70% 100%);
+	z-index: -1;
+}
+
+.login-card {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	box-shadow: 0 10px 50px -20px black;
+	width: 1200px;
+	border-radius: 30px;
+	overflow: hidden;
+	display: grid;
+	grid-template-columns: auto auto;
+}
+
+.login-card a {
+	text-decoration: none;
+	color: var(--primary-color);
+}
+
+.login-card a:hover {
+	color: var(--primary-color-dark);
+}
+
+.login-card .login-card-column {
+	padding: 4rem;
+}
+
+.login-card .login-card-column img {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.login-card .login-card-column:last-child {
+	background: url(../Images/Login-Signup/bg-login-signup.png) center;
+	background-size: cover;
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+	gap: 40px;
+	text-align: center;
+    opacity: .9;
+}
+
+.login-card .login-card-column:last-child h2 {
+	font-weight: 900;
+    font-size: 2rem;
+}
+
+.login-card .login-card-column:last-child:after {
+	content: "";
+	position: absolute;
+	background: linear-gradient(90deg, #fff, rgba(179,139,255,.8));
+	inset: 0;
+}
+
+.login-card .login-card-column:last-child * {
+	z-index: 1;
+}
+
+.login-card .login-card-column:last-child button {
+	padding: 12px 30px;
+	font-size: 16px;
+	background: var(--primary-color-dark);
+	color: white;
+	border-radius: 50px;
+	cursor: pointer;
+	transition: all 0.3s;
+	font-weight: 600;
+    border:none;
+}
+
+.login-card .login-card-column:last-child button:hover {
+	background-color: var(--primary-color);
+	color: white;
+    transform: .2;
+}
+
+.login-card .login-card-column:last-child button:active {
+	scale: 0.95;
+	background-color: var(--bg-color-alt);
+}
+
+.login-card .login-form-element {
+	width: 100%;
+	border: none;
+	background-color: #f1f1f1;
+	padding: 20px 30px;
+	font-size: 18px;
+	border-radius: 50px;
+	transition: box-shadow 0.2s;
+}
+
+.login-card .login-form-element:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px var(--primary-color-light);
+}
+
+.login-card input[type=checkbox] {
+	accent-color: var(--primary-color);
+	width: 16px;
+	height: 16px;
+    cursor: pointer;
+}
+
+.login-card form .login-form-item {
+    position: relative;
+}
+
+.login-card form .login-form-item i {
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5rem;
+    padding: 20px;
+    right: 0;
+    opacity: .5;
+}
+
+.login-card form .login-form-checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
+
+.login-card form {
+	margin-top: 3rem;
+}
+.login-card form > * {
+	margin-top: 1rem;
+}
+
+.login-card form p {
+	margin-top: 3rem;
+	margin-bottom: 1.5rem;
+}
+
+.login-card form button {
+	background-color: var(--primary-color);
+	color: #fff;
+	border: none;
+	padding: 20px 40px;
+	border-radius: 50px;
+	font-weight: 600;
+	font-size: 18px;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+
+.login-card form button:hover {
+	background-color: var(--primary-color-dark);
+}
+
+.login-card form button:active {
+	scale: 0.95;
+	background-color: var(--primary-color-light);
+}
+
+.login-flex {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.login-flex > button:last-child {
+    display: none;
+}
+
+@media (max-width: 992px) {
+	.login-card {
+	display: block;
+	width: 500px;
+	text-align: center;
+	}
+
+	.login-card .login-card-column:last-child {
+	display: none;
+	}
+
+	.login-flex {
+	flex-direction: column;
+	gap: 1rem;
+	}
+
+    .login-flex > button:last-child {
+        display: block;
+    }
+}
