@@ -87,10 +87,10 @@ const Slider = ({slides, parentWidth}) => {
         <div className="my-journey-slider">
             <div>
                 <div className="my-journey-previous-arrow" onClick={goToPrevious}>
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i className="fa-solid fa-chevron-left"></i>
                 </div>
                 <div className="my-journey-next-arrow" onClick={goToNext}>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <i className="fa-solid fa-chevron-right"></i>
                 </div>
             </div>
 

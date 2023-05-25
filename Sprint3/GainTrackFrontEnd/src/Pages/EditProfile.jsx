@@ -233,7 +233,7 @@ return (
                             <div className="edit-profile-preview-image">
                                 <img src={previewImage} alt="preview-img"  className="preview-image" />
                                 <button className="delete-preview-button" onClick={handleDeletePreview}>
-                                    <i class="fa-solid fa-xmark" style={{color: '#ff0000'}}></i>
+                                    <i className="fa-solid fa-xmark" style={{color: '#ff0000'}}></i>
                                 </button>
                             </div>
                             :

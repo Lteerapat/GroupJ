@@ -86,10 +86,10 @@ const Slider = ({slides, parentWidth}) => {
         <div className="container-content-slider2" id="feature">
             <div>
                 <div className="slider2-previous-arrow" onClick={goToPrevious}>
-                    <i class="fa-solid fa-chevron-left"></i>
+                    <i className="fa-solid fa-chevron-left"></i>
                 </div>
                 <div className="slider2-next-arrow" onClick={goToNext}>
-                    <i class="fa-solid fa-chevron-right"></i>
+                    <i className="fa-solid fa-chevron-right"></i>
                 </div>
             </div>
 
