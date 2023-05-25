@@ -1,69 +1,96 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import { setCookie, getCookie, deleteCookie } from './cookieUtils'
+import { UserContext } from '../Contexts/UserContext';
 import '../Styles/LogIn.css';
 import gaintrackLogo from '../Images/Logo/gaintrack-logo-dark.png';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import axios from 'axios';
+import Cookies from 'js-cookie';
+import { useCookies } from 'react-cookie';
+import Swal from 'sweetalert2';
+
 
 const LogIn = () => {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordType, setpasswordType] = useState('password');
+    const [passwordType, setPasswordType] = useState('password');
     const [rememberMe, setRememberMe] = useState(false);
-    
-    //see and unsee password
-    const handleEyeClick = (e) => {
-        setPassword(e.target.value);
-    }
+    const [cookies, setCookie] = useCookies(['token']);
+    const {setUser} = useContext(UserContext);
+
+    const navigate = useNavigate();
 
     const togglePassword = () =>{
-        if(passwordType==="password") {
-            setpasswordType("text")
+        if (passwordType==="password") {
+            setPasswordType("text")
             return;
         }
-        setpasswordType("password")
+        setPasswordType("password")
     }
 
     //remember me checkbox
     useEffect(() => {
-        const storedUsername = localStorage.getItem("username");
+        const storedEmail = localStorage.getItem("email");
         const storedPassword = localStorage.getItem("password");
-        const storedRememberme = localStorage.getItem("rememberMe");
+        const storedRememberMe = localStorage.getItem("rememberMe");
 
-        if (storedRememberme && storedUsername) {
-            setUsername(storedUsername);
+        if (storedRememberMe && storedEmail) {
+            setEmail(storedEmail);
             setPassword(storedPassword);
-            setRememberMe(storedRememberme);
+            setRememberMe(storedRememberMe);
         }
+
+        const token = localStorage.getItem('token');
+        const sessionToken = sessionStorage.getItem('sessionToken');
+
+        if (token || sessionToken) {
+            navigate('/dashboard');
+        }
+
+        
     }, []);
 
     //Navigation
-    const navigate = useNavigate();
-
     const navigateToSignUp = () => {
         navigate('/signup');
     };
 
     //check login input before submit
-    const handleLogIn = (e) => {
+    const handleLogIn = async (e) => {
         e.preventDefault();
-        if (username === '' && password === '') {
-            alert("Please enter you username and password!")
-        } else if (username === '') {
-            alert("Please enter your username!")
+
+        if (email === '' && password === '') {
+            Swal.fire("Please enter you email and password!")
+        } else if (email === '') {
+            Swal.fire("Please enter your email!")
         } else if (password === '') {
-            alert("Please enter you password!")
+            Swal.fire("Please enter you password!")
         } else {
-            if (rememberMe) {
-                localStorage.setItem("username", username);
-                localStorage.setItem("password", password);
-                localStorage.setItem("rememberMe", true);
-            } else {
-                localStorage.removeItem("username");
-                localStorage.removeItem("password");
-                localStorage.removeItem("rememberMe");
+            try {
+                const {data, headers} = await axios.post('/auth/login', {email, password}, {withCredentials:true});
+                if (rememberMe) { 
+                    localStorage.setItem('token', data.password)
+                    localStorage.setItem("email", email);
+                    localStorage.setItem("password", password);
+                    localStorage.setItem("rememberMe", true);
+                } else {
+                    sessionStorage.setItem('sessionToken', data.password)
+                    localStorage.removeItem("email");
+                    localStorage.removeItem("password");
+                    localStorage.removeItem("rememberMe");
+                }
+                
+                await Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Login successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/dashboard');
+            } catch (err) {
+                Swal.fire('Login failed: '+err.response.data.error);
             }
-            navigate('/dashboard');
         }
     };
 
@@ -77,7 +104,13 @@ const LogIn = () => {
                         <p>Easy to track your activities</p>
                         <form>
                             <div className="login-form-item">
-                                <input type="text" className="login-form-element" placeholder="Username or Email" onChange={(e) => setUsername(e.target.value)} value={username} />
+                                <input 
+                                    type="email" 
+                                    className="login-form-element" 
+                                    placeholder="Email" 
+                                    onChange={(e) => setEmail(e.target.value)} 
+                                    value={email} 
+                                />
                             </div>
                             <div className="login-form-item">
                                 {passwordType==="password" ? 
@@ -85,7 +118,13 @@ const LogIn = () => {
                                     :
                                     <i className="fa-solid fa-eye" onClick={togglePassword}></i>
                                 }
-                                <input type={passwordType} className="login-form-element" placeholder="Password" onChange={handleEyeClick} value={password} />
+                                <input 
+                                    type={passwordType} 
+                                    className="login-form-element" 
+                                    placeholder="Password" 
+                                    value={password} 
+                                    onChange={(e) => setPassword(e.target.value)} 
+                                />
                             </div>
                             <div className="login-form-checkbox-item">
                                 <input 
@@ -94,11 +133,11 @@ const LogIn = () => {
                                     checked={rememberMe}
                                     onChange={(e) => setRememberMe(e.target.checked)}
                                 />
-                                <label for="rememberMe">Remember me</label>
+                                <label htmlFor="rememberMe">Remember me</label>
                             </div>
                             <div className="login-flex">
                                 <button type="button" onClick={handleLogIn}>Log In</button>
-                                <button type="button" onClick={navigateToSignUp}>Sign Up</button>
+                                <button type="button" onClick={navigateToSignUp}>Sign Up</button> {/* for responsive */}
                             </div>
                         </form>
                     </div>

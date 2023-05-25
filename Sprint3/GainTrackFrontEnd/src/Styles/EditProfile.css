@@ -1,0 +1,193 @@
+@import '../Styles/global.css';
+
+.container-edit-profile {
+    display: flex;    
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1.5rem;
+    /* position: absolute; */
+    z-index: 999999;
+    /* left: 20%; */
+    /* display: hidden; */
+}
+
+.edit-profile-card {
+    background: var(--primary-color);
+	box-shadow: 0 10px 50px -20px black;
+    padding: 1.5rem;
+	border-radius: 30px;
+	overflow: hidden;
+    display: grid;
+    place-items: center;
+}
+
+.edit-profile-card form {
+    margin-top: 2rem;
+}
+
+.edit-profile-card form > *{
+    margin-top: 1rem;
+}
+
+.edit-profile-form-item {
+    position: relative;
+}
+
+.edit-profile-form-item i {
+    cursor: pointer;
+    position: absolute;
+    font-size: 1.5rem;
+    padding: 20px;
+    right: 0;
+    bottom: 0;
+    opacity: .5;
+}
+
+.edit-profile-name-container {
+    display: flex;
+    gap: 1rem;
+}
+
+.edit-profile-form-element {
+    width: 100%;
+	border: none;
+	background-color: #f1f1f1;
+	padding: 20px 30px;
+	font-size: 18px;
+	border-radius: 25px;
+	transition: box-shadow 0.2s;
+    margin-top: 8px;
+}
+
+.edit-profile-form-element:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--primary-color-dark);
+}
+
+.edit-profile-button-section {
+    display: flex;
+    gap: 2rem;
+}
+
+.edit-profile-button-section button:first-child {
+    background-color: #008000;
+	color: #fff;
+	border: none;
+	padding: 20px 40px;
+	border-radius: 25px;
+	font-weight: 600;
+	font-size: 18px;
+	transition: all 0.2s;
+	cursor: pointer;
+    width: 100%;
+}
+
+.edit-profile-button-section button:last-child {
+    background-color: #ff0000;
+	color: #fff;
+	border: none;
+	padding: 20px 40px;
+	border-radius: 25px;
+	font-weight: 600;
+	font-size: 18px;
+	transition: all 0.2s;
+	cursor: pointer;
+    width: 100%;
+}
+
+.edit-profile-card button:first-child:hover:not(.disabled) {
+	background-color: #a5e65a;
+    font-weight: bolder;
+    color: #5f7174;
+    box-shadow: 5px 5px 10px #888888;
+    transform: translate(0, -2px);
+    transition: all 0.25s ease;
+}
+
+.edit-profile-card button:last-child:hover:not(.disabled):not( .delete-preview-button) {
+	background-color: #ff4026;
+    font-weight: bolder;
+    color: #000000;
+    box-shadow: 5px 5px 10px #888888;
+    transform: translate(0, -2px);
+    transition: all 0.25s ease;
+}
+
+.edit-profile-card button:active:not(.disabled):not( .delete-preview-button) {
+	scale: 0.95;
+	background-color: var(--bg-color-alt);
+}
+
+.edit-profile-button-section button.disabled {
+    opacity: 0.5;
+    cursor: default;
+    transition: none;
+}
+
+.edit-profile-image-form-item {
+    display: flex;
+    justify-content: center;
+}
+
+.edit-profile-image-form-item .profile-image-label{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background:#f1f1f1;
+    border-radius: 25px;
+    padding-bottom: 8px;
+    font-size: 24px;
+    width: 50%;
+}
+
+.edit-profile-image-form-item .profile-image-label input{
+    display: none;
+}
+
+.edit-profile-image-form-item .profile-image-label div{
+    width: 300px;
+    height: 150px;
+    border: 2px dashed var(--primary-color);
+    border-radius: 25px;
+    display: flex;
+    margin: 16px;
+}
+
+.edit-profile-image-form-item .profile-image-label div svg {
+    color: var(--primary-color);
+    width: 100%;
+}
+
+.edit-profile-preview-image {
+    overflow: hidden ;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.delete-preview-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    border: none;
+    padding: 6px 12px;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 5;
+}
+
+.delete-preview-button:hover {
+    background: rgba(255, 0, 0, .2);
+    border-radius: 100%;
+}
+
+
+
+
+
+
+

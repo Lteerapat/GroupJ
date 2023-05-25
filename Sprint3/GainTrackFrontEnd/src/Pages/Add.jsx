@@ -1,164 +1,242 @@
 import "../Styles/Add.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import  axios  from 'axios';
+import Joi from "joi";
+import Swal from 'sweetalert2';
 
 const Add = () => {
-  //Navigate
-  const navigate = useNavigate();
-  const submitButton = () => {
-    navigate("/dashboard");
-  };
-
-  //NameActivity
-  const [nameActivity, setNameActivity] = useState();
-
-  //Type Acrivity
-  const [activity, setActivity] = useState();
-  const handleActivity = (active) => {
-    setActivity(active);
-  };
-
-  //Date 
-  const [date,setDate] = useState()
-
-  //Duration
-  const [duration,setDuration] = useState()
-
-  //Distance
-  const [distance,setDistance] = useState()
-
-  //Note
-  const [note,setNote] = useState()
+    //NameActivity
+    const [nameActivity, setNameActivity] = useState('');
+    //Type Activity
+    const [activity, setActivity] = useState('');
+    //Date 
+    const [date,setDate] = useState('');
+    //Duration
+    const [duration,setDuration] = useState('');
+    //Distance
+    const [distance,setDistance] = useState('');
+    //Note
+    const [note,setNote] = useState('');
+    const [addRedirect, setAddRedirect] = useState(false);
 
 
+    //custom the joi validation to limit input number at 5 digits
+    const customValidation = (value, helpers) => {
+        if (value.toString().length <= 5) {
+            return value;
+        } else {
+            return helpers.error('any.custom', { custom: 'must be less than or equal to 5 digits' });
+        }
+    };
 
-  return (
-    <div className="container-add">
-      <div className="container-form-add-edit">
-        <h1>Add Your Activity</h1>
-        <NameActivity nameActivity={nameActivity} setNameActivity={setNameActivity}/>
-        <TypeActivity handleActivity={handleActivity} activity={activity} />
-        <DateAcitvity date={date} setDate={setDate} />
-        <DurationNote duration={duration} setDuration={setDuration} distance={distance} setDistance={setDistance} />
-        <Note note={note} setNote={setNote} />
-        <Buttom submitButton={submitButton} />
-      </div>
-    </div>
-  );
-};
+    //validation schema in add
+    const schema = Joi.object({
+        nameActivity: Joi.string().min(3).max(20).required(),
+        activity: Joi.string().min(3).max(30).required(),
+        date: Joi.date().required(),
+        duration: Joi.number().integer().custom(customValidation).required()
+            .messages({
+            'any.custom': '{{#label}} {{#custom}}'
+            }),
+        distance: Joi.number().integer().custom(customValidation).required()
+            .messages({
+            'any.custom': '{{#label}} {{#custom}}'
+            }),
+    });
+    
+    const addActivity = async (e) => {
+        e.preventDefault();
+        const activityData = {nameActivity, activity, date, duration, distance, note};
 
-const NameActivity = (props) => {
-  const { nameActivity,setNameActivity } = props;
-  return (
-    <div className="NameActivity">
-      <label>Activity Name  {nameActivity} </label>
-      <br />
-      <input onChange={(event)=> setNameActivity(event.target.value)} type="text" ></input>
-    </div>
-  );
-};
+        const { error } = schema.validate({nameActivity,activity,date, duration, distance});
+        if (error) {
+            const errorMessage = error.details[0].message
+                .replace(/nameActivity/g, 'Activity Name')
+                .replace(/activity/g, 'Activity Type');
+            Swal.fire(errorMessage);
+            return;
+        }
+        
+        await axios.post('/activities/add', activityData);
+        await Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'saved',
+            showConfirmButton: false,
+            timer: 1500
+        });
+        setAddRedirect(true);
+        
+    }
 
-const TypeActivity = (props) => {
-  const { handleActivity, activity } = props;
-  return (
-    <div className="TypeActivity">
-      <label>Activity Type  {activity}</label>
-      <ul>
-        <li
-          id={activity === "walking" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("walking")}
-        >
-          <i className="fa-solid fa-person-walking"></i>
-        </li>
-        <li
-          id={activity === "running" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("running")}
-        >
-          <i className="fa-sharp fa-solid fa-person-running"></i>
-        </li>
-        <li
-          id={activity === "biking" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("biking")}
-        >
-          <i className="fa-sharp fa-solid fa-person-biking"></i>
-        </li>
-        <li
-          id={activity === "swimming" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("swimming")}
-        >
-          <i className="fa-sharp fa-solid fa-person-swimming"></i>
-        </li>
-        <li
-          id={activity === "hiking" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("hiking")}
-        >
-          <i className="fa-sharp fa-solid fa-person-hiking"></i>
-        </li>
-        <li
-          id={activity === "plus" ? "SeleteActive" : ""}
-          onClick={() => handleActivity("plus")}
-        >
-          <i className="fa-sharp fa-solid fa-plus"></i>
-        </li>
-      </ul>
-    </div>
-  );
-};
+    const handleCancelButton = async (e) => {
+        e.preventDefault();
+        await Swal.fire({
+            title: 'Do you want to cancel the changes?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: `No`,
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                setAddRedirect(true);
+            } else if (result.isDenied) {
+               return;
+            } 
+        })
+    }
 
-const DateAcitvity = (props) => {
-  const {date ,setDate} = props
-  return (
-    <div className="DateAcitvity">
-      <label>Date  {date}</label>
-      <br />
-      <input type="date" onChange={(event)=> setDate(event.target.value)} placeholder="Date / Month / Year"></input>
-    </div>
-  );
-};
-
-const DurationNote = (props) => {
-  const { duration,setDuration,distance,setDistance} = props
+    //Navigate
+    if (addRedirect) {
+        return <Navigate to={'/dashboard'} />
+    }
 
 
-  return (
-    <div className="DurationDistance">
-      <div>
-        <label>Duration {duration}</label>
+    return (
+        <div className="container-add">
+        <form className="container-form-add-edit" onSubmit={addActivity}>
+            <h1>Add Your Activity</h1>
+            <NameActivity nameActivity={nameActivity} setNameActivity={setNameActivity}/>
+            <TypeActivity setActivity={setActivity} activity={activity} />
+            <DateActivity date={date} setDate={setDate} />
+            <DurationNote duration={duration} setDuration={setDuration} distance={distance} setDistance={setDistance} />
+            <Note note={note} setNote={setNote} />
+            <Button handleCancelButton={handleCancelButton} />
+        </form>
+        </div>
+    );
+    };
+
+    const NameActivity = (props) => {
+    const { nameActivity,setNameActivity } = props;
+    return (
+        <div className="NameActivity">
+        <label>Activity Name: {nameActivity} </label>
         <br />
-        <input type="number" onChange={(event)=> setDuration(event.target.value)}/><span>min</span>
-      </div>
-      <div>
-        <label>Distance {distance}</label>
+        <input 
+            type="text" 
+            value={nameActivity}
+            onChange={(event)=> setNameActivity(event.target.value)} 
+        />
+        </div>
+    );
+    };
+
+    const TypeActivity = (props) => {
+    const { activity, setActivity } = props;
+    return (
+        <div className="TypeActivity">
+        <label>Activity Type: {activity}</label>
+        <ul>
+            <li
+            id={activity === "walking" ? "SeleteActive" : ""}
+            onClick={() => setActivity("walking")}
+            >
+            <i className="fa-solid fa-person-walking"></i>
+            </li>
+            <li
+            id={activity === "running" ? "SeleteActive" : ""}
+            onClick={() => setActivity("running")}
+            >
+            <i className="fa-sharp fa-solid fa-person-running"></i>
+            </li>
+            <li
+            id={activity === "biking" ? "SeleteActive" : ""}
+            onClick={() => setActivity("biking")}
+            >
+            <i className="fa-sharp fa-solid fa-person-biking"></i>
+            </li>
+            <li
+            id={activity === "swimming" ? "SeleteActive" : ""}
+            onClick={() => setActivity("swimming")}
+            >
+            <i className="fa-sharp fa-solid fa-person-swimming"></i>
+            </li>
+            <li
+            id={activity === "hiking" ? "SeleteActive" : ""}
+            onClick={() => setActivity("hiking")}
+            >
+            <i className="fa-sharp fa-solid fa-person-hiking"></i>
+            </li>
+        </ul>
+        </div>
+    );
+    };
+
+    const DateActivity = (props) => {
+    const {date ,setDate} = props
+    return (
+        <div className="DateAcitvity">
+        <label>Date:  {date}</label>
         <br />
-        <input type="number" onChange={(event)=> setDistance(event.target.value)}/><span>meter</span>
-      </div>
-    </div>
-  );
-};
+        <input 
+            type="date" 
+            value={date}
+            onChange={(event)=> setDate(event.target.value)} 
+        />
+        </div>
+    );
+    };
 
-const Note = (props) => {
-  const { note,setNote} = props
+    const DurationNote = (props) => {
+    const { duration,setDuration,distance,setDistance} = props
 
-  return (
-    <div className="Note">
-      <div>
-        <label for="note-area">Note</label>
-        <br />
-        <textarea name="note-area" rows="4" cols="39" onChange={(event)=> setNote(event.target.value)}></textarea>
-      </div>
-    </div>
-  );
-};
 
-const Buttom = (props) => {
-  const { submitButton } = props;
-  return (
-    <div className="Buttom-Add-Edit">
-      <button onClick={submitButton}>Add</button>
-      <button onClick={submitButton}>Cancel</button>
-    </div>
-  );
+    return (
+        <div className="DurationDistance">
+        <div>
+            <label>Duration: {duration}</label>
+            <br />
+            <input 
+                type="number" 
+                value={duration}
+                onChange={(event)=> setDuration(event.target.value)}
+            />
+            <span>min</span>
+            </div>
+        <div>
+            <label>Distance: {distance}</label>
+            <br />
+            <input 
+                type="number" 
+                value={distance}
+                onChange={(event)=> setDistance(event.target.value)}
+            />      
+            <span>meter</span> 
+            </div>
+        </div>
+    );
+    };
+
+    const Note = (props) => {
+    const { note,setNote} = props
+
+    return (
+        <div className="Note">
+        <div>
+            <label for="note-area">Note:</label>
+            <br />
+            <textarea name="note-area" rows="4" cols="39" 
+                value={note}
+                onChange={(event)=> setNote(event.target.value)} 
+            />        
+        </div>
+        </div>
+    );
+    };
+
+    const Button = ({handleCancelButton}) => {
+        const [cancelRedirect, setCancelRedirect] = useState(false);
+        if (cancelRedirect) {
+            return <Navigate to={'/dashboard'} />
+        }
+    return (
+        <div className="Buttom-Add-Edit">
+        <button>Add</button>
+        <button onClick={handleCancelButton}>Cancel</button>
+        </div>
+    );
 };
 
 export default Add;

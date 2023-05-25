@@ -4,7 +4,7 @@ import {useRef} from 'react';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import emailjs from '@emailjs/browser';
 import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
+import Swal from 'sweetalert2';
 
 const ContactUs = () => {
     return (
@@ -25,9 +25,15 @@ const ContactUs2 = () => {
 
     emailjs.sendForm('service_ezo9kc5', 'template_q9agsnf', form.current, 'aTw7yilb9W5PFkiOp')
       .then((result) => {
-          console.log(result.text);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Your email has been sent',
+            showConfirmButton: false,
+            timer: 1500
+        })
       }, (error) => {
-          console.log(error.text);
+        Swal.fire('Failed to send your email. Please try again later.')
       });
       e.target.reset()
   };

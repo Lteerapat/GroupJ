@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import './Navbar.css';
-import logo from '../images/Logo/gaintrack-logo-light.png';
+import logo from '../Images/Logo/gaintrack-logo-light.png';
 
 
 const Navbar = () => {
@@ -32,7 +32,7 @@ const Navbar = () => {
                 <div className="right-navbar">
                             <ul className="nav-ul">
                                 <li>
-                                <a href="/login"><button className="login-navbar footer-link">Login</button></a>
+                                <a href="/login"><button className="login-navbar footer-link">LogIn</button></a>
                                 </li>
                                 <li>
                                 <a href="/signup"><button className="signup-navbar footer-link">SignUp</button></a>

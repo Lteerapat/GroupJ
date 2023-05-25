@@ -3,15 +3,16 @@
 .container-add {
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  /* padding-top: 100px; */
+  margin-top: 25px;
 }
 
 .container-form-add-edit {
   background-color: var(--primary-color-light);
   border-radius: 20px;
   padding: 30px;
-  width: 500px;
-  height: 610px;
+  width: auto;
+  height: auto;
 }
 .container-form-add-edit h1 {
   text-align: center;
@@ -58,12 +59,14 @@
 .TypeActivity ul li i:hover {
   color: greenyellow;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 .TypeActivity ul li:hover {
   transform: translate(0, -2px);
   box-shadow: 5px 5px 10px #afafaf;
   transition: all 0.5s ease;
   border: 3px solid greenyellow;
+  cursor: pointer;
 }
 #SeleteActive {
   background-color: rgb(14, 10, 241);
@@ -85,14 +88,14 @@
 .DurationDistance {
   display: flex;
   margin: 20px 0;
-  
+  gap: 60px
 }
 .DurationDistance div {
   position: relative;
 }
 
 .DurationDistance :nth-child(1) input {
-  width: 50%;
+    width: 100%;
   height: 35px;
   outline: none;
   font-size: 1.25rem;
@@ -103,12 +106,11 @@
   font-size: 1.25rem;
   position: absolute;
   top: 49%;
-  left: 25%;
+  right: 15%;
 }
 .DurationDistance :nth-child(2) input {
-  width: 100%;
+    width: 100%;
   height: 35px;
-  width: 150px;
   outline: none;
   font-size: 1.25rem;
   padding: 5px;
@@ -117,7 +119,7 @@
   font-size: 1.25rem;
   position: absolute;
   top: 49%;
-  right: 17%;
+  right: 15%;
 }
 
 /* Note */
@@ -127,6 +129,8 @@
 .Note textarea {
   outline: none;
   font-size: 1.25rem;
+  display: block;
+  width: 100%;
   padding: 5px;
 }
 
